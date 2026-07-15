@@ -78,7 +78,6 @@ export default function EsgTabBar({
       setActiveTab(id);
     }
   };
-  // console.log(tabs, "tabs");
   return (
     <div className="w-full bg-white border-b border-gray-200/40 py-4 px-4 sticky top-[98px] md:top-[158px] z-40 transition-all duration-300">
       <div className="max-w-[1540px] mx-auto flex items-center justify-start lg:justify-center overflow-x-auto no-scrollbar gap-2 md:gap-4 lg:gap-6">

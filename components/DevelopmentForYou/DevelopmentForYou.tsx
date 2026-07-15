@@ -9,33 +9,6 @@ import { useParams } from "next/navigation";
 import { NavigationMenuItemProps } from "@/interfaces";
 import Link from "next/link";
 
-// const dummyProperties = [
-//   {
-//     id: "raaya-by-atmosphere",
-//     title: "Maldives",
-//     location: "Kudakurathu, Maldives",
-//     image:
-//       "https://www.panchshil.com/asset/images/properties/raaya-by-atmosphere-555633484.webp",
-//     link: "https://www.panchshil.com/hospitality/raaya-by-atmosphere",
-//   },
-//   {
-//     id: "pottuvil,-a-ritz-carlton-reserve",
-//     title: "Sri Lanka",
-//     location: "Pottuvil, Sri Lanka",
-//     image:
-//       "https://www.panchshil.com/asset/images/properties/the-ritz-carlton-reserve-22205866.webp",
-//     link: "",
-//   },
-//   {
-//     id: "42-east-residences",
-//     title: "United Arab Emirates",
-//     location: "Dubai Islands",
-//     image:
-//       "https://www.panchshil.com/asset/images/properties/42-east-residences-314781686.webp",
-//     link: "https://www.panchshil.com/luxury-residences/42-east-residences",
-//   },
-// ];
-
 interface DevelopmentForYouProps {
   title?: string;
   subtitle?: string;
@@ -89,14 +62,14 @@ const DevelopmentForYou = ({
             ${theme === "day" ? "text-gold-beige" : "text-white"}
             `}
           >
-            {subtitle}
+            {title}
           </div>
           <h2
             className={`text-2xl uppercase md:text-[28px] font-display-semi transition-colors ${
               theme === "day" ? "text-black" : "text-white"
             }`}
           >
-            {title}
+            {subtitle}
           </h2>
           {description && (
             <p

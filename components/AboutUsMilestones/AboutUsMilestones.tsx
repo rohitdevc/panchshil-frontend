@@ -170,9 +170,6 @@ export default function AboutUsMilestones({ content }: AboutUsMilestonesProps) {
                       <h3 className="text-xl md:text-xl font-display-semi text-black-chocolate my-4">
                         {item.title}
                       </h3>
-                      <p className="text-black/80 text-sm md:text-base leading-relaxed">
-                        {item.content}
-                      </p>
                       <div className="w-full h-px bg-[#B09E81]/30 mt-6"></div>
                     </div>
                   );

@@ -33,10 +33,10 @@ export default function AboutUsVisibleImpact({
             </div>
           )} */}
           <div className="mt-5">
-            <p className="text-black/85 text-sm md:text-base py-2 font-display-semi">
+            <h3 className="text-black/85 text-lg py-1 font-display-semi">
               {content.about_intro_name}
-            </p>
-            <p className="text-black/85 text-sm md:text-base py-2 ">
+            </h3>
+            <p className="text-black/85 text-sm md:text-base py-1 ">
               {content.about_intro_designation}
             </p>
           </div>

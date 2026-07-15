@@ -6,7 +6,7 @@ import { getPropertyCategory } from "@/api/property";
 import ApiException from "@/api/Api.exception";
 import type { AuthTokenResponse, PropertyCategoryProps } from "@/interfaces";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segments = pathname.split("/").filter(Boolean);
 

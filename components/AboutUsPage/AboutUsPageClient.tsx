@@ -30,8 +30,10 @@ export default function AboutUsPageClient({ data }: AboutUsPageClientProps) {
       <AboutUsVideoBanner content={data.videoBanner} />
       <div className="bg-white">
         <DevelopmentForYou
-          title="FROM PUNE TO THE WORLD"
-          subtitle={data.globalIntroduction?.global_caption || "WE ARE NOW"}
+          title={data.globalIntroduction?.global_heading || "WE ARE NOW"}
+          subtitle={
+            data.globalIntroduction?.global_caption || "FROM PUNE TO THE WORLD"
+          }
           description={
             data.globalIntroduction?.global_description ||
             "With developments in Dubai, the Maldives, Sri Lanka and across Indian cities, panchshil brings global design sensibilities and international standards to every address-while staying deeply rooted in local context and community needs."
