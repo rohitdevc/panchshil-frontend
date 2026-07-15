@@ -359,7 +359,6 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
             }`}
           >
             <Link
-              target="_blank"
               className={
                 !isDarkMode ? "hover:text-gold-beige" : "hover:opacity-80"
               }
@@ -369,7 +368,6 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
               Term Of Use
             </Link>
             <Link
-              target="_blank"
               className={
                 !isDarkMode ? "hover:text-gold-beige" : "hover:opacity-80"
               }
@@ -378,7 +376,6 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
               Privacy
             </Link>
             <Link
-              target="_blank"
               className={
                 !isDarkMode ? "hover:text-gold-beige" : "hover:opacity-80"
               }

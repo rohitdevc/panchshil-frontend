@@ -227,6 +227,33 @@ export type AboutUsIntroData = {
   about_intro_image: string;
 };
 
+export type AboutUsVision = {
+  about_vision_title: string;
+  about_vision_caption: string;
+  about_vision_description: string;
+};
+
+export type AboutUsMission = {
+  about_mission_title: string;
+  about_mission_caption: string;
+  about_mission_description: string;
+};
+
+export type AboutUsCoreValuesIntro = {
+  about_core_values_intro_title: string;
+  about_core_values_intro_caption: string;
+};
+
+export type AboutUsCoreValues = {
+  core_value_title: string;
+  core_value_description: string;
+};
+
+export type AboutUsCommitmentIntro = {
+  about_commitment_intro_title: string;
+  about_commitment_intro_description: string;
+};
+
 export type AboutUsMilestonesApiItem = {
   milestone_count: string;
   milestone_title: string;

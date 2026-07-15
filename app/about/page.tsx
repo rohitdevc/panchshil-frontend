@@ -3,6 +3,11 @@ import { aboutUsPageDummyData } from "./about.data";
 import {
   getAuthToken,
   getAboutUsIntro,
+  getAboutUsVision,
+  getAboutUsMission,
+  getAboutUsCoreValuesIntro,
+  getAboutUsCoreValues,
+  getAboutUsCommitmentIntro,
   getAboutUsMilestones,
   getAboutUsGrowthChronicles,
   getAboutUsVideo,
@@ -16,6 +21,11 @@ import {
 import {
   AuthTokenResponse,
   AboutUsIntroData,
+  AboutUsVision,
+  AboutUsMission,
+  AboutUsCoreValuesIntro,
+  AboutUsCoreValues,
+  AboutUsCommitmentIntro,
   AboutUsMilestonesApiItem,
   GrowthChronicleItem,
   AboutVideoData,
@@ -93,6 +103,11 @@ export default async function AboutUsPage() {
     ? [
         getBanner(token, "About"),
         getAboutUsIntro(token),
+        getAboutUsVision(token),
+        getAboutUsMission(token),
+        getAboutUsCoreValuesIntro(token),
+        getAboutUsCoreValues(token),
+        getAboutUsCommitmentIntro(token),
         getAboutUsMilestones(token),
         getAboutUsGrowthChronicles(token),
         getAboutUsVideo(token),
@@ -111,11 +126,21 @@ export default async function AboutUsPage() {
         Promise.resolve(null),
         Promise.resolve(null),
         Promise.resolve(null),
+        Promise.resolve(null),
+        Promise.resolve(null),
+        Promise.resolve(null),
+        Promise.resolve(null),
+        Promise.resolve(null),
       ];
 
   const [
     bannerRes,
     aboutIntroRes,
+    aboutVisionRes,
+    aboutMissionRes,
+    aboutCoreValuesIntroRes,
+    aboutCoreValuesRes,
+    aboutCommitmentRes,
     milestonesRes,
     growthChroniclesRes,
     videoRes,
@@ -143,6 +168,42 @@ export default async function AboutUsPage() {
         introData.about_intro_image || mergedData.visibleImpact.imageSrc,
       about_intro_name: introData.about_intro_name,
       about_intro_designation: introData.about_intro_designation,
+    };
+  }
+
+  if (aboutVisionRes.status === "fulfilled" && aboutVisionRes.value) {
+    const introData = aboutVisionRes.value as AboutUsVision;
+    mergedData.vision = {
+      ...introData,
+    };
+  }
+
+  if (aboutMissionRes.status === "fulfilled" && aboutMissionRes.value) {
+    const introData = aboutMissionRes.value as AboutUsMission;
+    mergedData.mission = {
+      ...introData,
+    };
+  }
+
+  if (
+    aboutCoreValuesIntroRes.status === "fulfilled" &&
+    aboutCoreValuesIntroRes.value
+  ) {
+    const introData = aboutCoreValuesIntroRes.value as AboutUsCoreValuesIntro;
+    mergedData.core_values_intro = {
+      ...introData,
+    };
+  }
+
+  if (aboutCoreValuesRes.status === "fulfilled" && aboutCoreValuesRes.value) {
+    const coreValuesData = aboutCoreValuesRes.value as AboutUsCoreValues[];
+    mergedData.core_values = coreValuesData;
+  }
+
+  if (aboutCommitmentRes.status === "fulfilled" && aboutCommitmentRes.value) {
+    const introData = aboutCommitmentRes.value as AboutUsCommitmentIntro;
+    mergedData.commitment_intro = {
+      ...introData,
     };
   }
 

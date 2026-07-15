@@ -12,6 +12,8 @@ import DevelopmentForYou from "@/components/DevelopmentForYou";
 import { AboutUsClients } from "../AboutUsClients";
 import AboutUsMilestones from "@/components/AboutUsMilestones/AboutUsMilestones";
 import AboutUsVideoBanner from "@/components/AboutUsVideoBanner/AboutUsVideoBanner";
+import { AboutUsVision } from "../AboutUsVision";
+import { AboutUsMission } from "../AboutUsMission";
 
 type AboutUsPageClientProps = {
   data: AboutUsPageDummyData;
@@ -26,6 +28,8 @@ export default function AboutUsPageClient({ data }: AboutUsPageClientProps) {
         <AboutUsStatsBar stats={data.stats} />
       </section>
       <AboutUsVisibleImpact content={data.visibleImpact} />
+      <AboutUsVision content={data.vision} />
+      <AboutUsMission content={data.mission} />
       <AboutUsMilestones content={data.milestones} />
       <AboutUsVideoBanner content={data.videoBanner} />
       <div className="bg-white">

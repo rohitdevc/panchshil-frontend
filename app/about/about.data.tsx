@@ -29,6 +29,33 @@ export type AboutUsVisibleImpactContent = {
   about_intro_designation?: string;
 };
 
+export type AboutUsVisionProps = {
+  about_vision_title: string;
+  about_vision_caption: string;
+  about_vision_description: string;
+};
+
+export type AboutUsMissionProps = {
+  about_mission_title: string;
+  about_mission_caption: string;
+  about_mission_description: string;
+};
+
+export type AboutUsCoreValuesIntroProps = {
+  about_core_values_intro_title: string;
+  about_core_values_intro_caption: string;
+};
+
+export type AboutUsCoreValuesProps = {
+  core_value_title: string;
+  core_value_description: string;
+};
+
+export type AboutUsCommitmentIntroProps = {
+  about_commitment_intro_title: string;
+  about_commitment_intro_description: string;
+};
+
 export type AboutUsSustainabilitySlide = {
   imageSrc: string;
   title: string;
@@ -67,6 +94,11 @@ export type AboutUsPageDummyData = {
     label: string;
   }>;
   visibleImpact: AboutUsVisibleImpactContent;
+  vision?: AboutUsVisionProps;
+  mission?: AboutUsMissionProps;
+  core_values_intro?: AboutUsCoreValuesIntroProps;
+  core_values?: AboutUsCoreValuesProps[];
+  commitment_intro?: AboutUsCommitmentIntroProps;
   milestones: AboutUsMilestonesContent;
   sustainability: AboutUsSustainabilityContent;
   ourValuedClients: OurValuedClientsType[];

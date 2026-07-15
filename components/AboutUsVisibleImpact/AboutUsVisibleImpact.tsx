@@ -19,19 +19,6 @@ export default function AboutUsVisibleImpact({
           <div className="text-sm md:text-base text-black/80 leading-relaxed max-w-[640px]">
             {content.description}
           </div>
-
-          {/* {content.points && content.points.length > 0 && (
-            <div className="mt-5">
-              {content.points.map((point) => (
-                <p
-                  key={point}
-                  className="text-black/85 text-sm md:text-base py-2 font-display-semi"
-                >
-                  {point}
-                </p>
-              ))}
-            </div>
-          )} */}
           <div className="mt-5">
             <h3 className="text-black/85 text-lg py-1 font-display-semi">
               {content.about_intro_name}

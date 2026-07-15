@@ -207,6 +207,66 @@ export const getAboutUsIntro = (token: string) => {
   );
 };
 
+export const getAboutUsVision = (token: string) => {
+  return doGet(
+    API_CONSTANTS.ABOUT_US_VISION,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const getAboutUsMission = (token: string) => {
+  return doGet(
+    API_CONSTANTS.ABOUT_US_MISSION,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const getAboutUsCoreValuesIntro = (token: string) => {
+  return doGet(
+    API_CONSTANTS.ABOUT_US_CORE_VALUES_INTRO,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const getAboutUsCoreValues = (token: string) => {
+  return doGet(
+    API_CONSTANTS.ABOUT_US_CORE_VALUES,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const getAboutUsCommitmentIntro = (token: string) => {
+  return doGet(
+    API_CONSTANTS.ABOUT_US_COMMITMENT_INTRO,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
 export const getAboutUsMilestones = (token: string) => {
   return doGet(
     API_CONSTANTS.ABOUT_US_MILESTONES,
