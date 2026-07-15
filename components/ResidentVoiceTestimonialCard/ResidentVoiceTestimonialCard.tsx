@@ -41,14 +41,18 @@ export default function ResidentVoiceTestimonialCard({
       </div>
 
       <div className="bg-[#AB9B81] px-6 md:px-8 py-4 flex items-center gap-4 min-h-[110px]">
-        <div className="relative w-14 h-14 shrink-0 overflow-hidden">
-          <Image
-            src={avatarSrc}
-            alt={avatarAlt}
-            fill
-            className="object-cover"
-          />
-        </div>
+        {
+          avatarSrc && (
+          <div className="relative w-14 h-14 shrink-0 overflow-hidden hidden">
+            <Image
+              src={avatarSrc}
+              alt={avatarAlt}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )
+        }
         <div>
           <p className="text-white font-display-semi text-xl md:text-[18px] leading-tight">
             {author}
