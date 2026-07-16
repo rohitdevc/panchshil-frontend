@@ -39,7 +39,7 @@ export function BlogsPagination({
             aria-label={`Page ${page}`}
             aria-current={isActive ? "page" : undefined}
             onClick={() => onPageChange(page)}
-            className={`flex items-center justify-center min-w-10 h-10 px-2 border transition-colors text-sm ${
+            className={`flex items-center justify-center min-w-10 h-10 px-2 border transition-colors text-sm cursor-pointer ${
               isActive
                 ? "bg-gold-beige text-white border-gold-beige"
                 : "border-gray-300 text-gray-700 hover:bg-gray-100 bg-white"
