@@ -1,9 +1,10 @@
 import { CareerHeroContent } from "@/app/careers/career-page.data";
-// import { BannersProps, MetaDataProps } from "@/interfaces";
 
 export type AwardItem = {
   id: string;
   title: string;
+  caption: string;
+  year: string;
   imageSrc: string;
   imageAlt: string;
 };

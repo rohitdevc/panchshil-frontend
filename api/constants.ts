@@ -85,9 +85,11 @@ const API_CONSTANTS = {
   ENQUIRY_GET_PROPERTY_LIST: `/enquiry/properties`,
   SERVICES_INTRO: `/services/intro`,
   SERVICES: `/services`,
+  BLOG_FEATURED: `/blog/featured`,
+  BLOG: `/blog`,
 };
 
 // Pagination constants
-export const PER_PAGE_LIMIT = 5;
+export const PER_PAGE_LIMIT = 20;
 
 export default API_CONSTANTS;

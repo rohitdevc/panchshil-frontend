@@ -400,3 +400,11 @@ export const getEsgReports = esgBearerGet(API_CONSTANTS.ESG_REPORTS);
 export const getEsgReportsAPI = esgProxyGet(API_CONSTANTS.ESG_REPORTS_API);
 export const getEsgTicker = esgBearerGet(API_CONSTANTS.ESG_TICKER);
 export const getEsgTickerAPI = esgProxyGet(API_CONSTANTS.ESG_TICKER_API);
+
+export const getBlogFeatured = () => {
+  return doGet(API_CONSTANTS.BLOG_FEATURED);
+};
+
+export const getBlog = () => {
+  return doGet(API_CONSTANTS.BLOG);
+};

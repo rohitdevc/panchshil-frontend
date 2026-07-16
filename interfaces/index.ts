@@ -844,6 +844,8 @@ export type EsgReportApiItem = {
 export type AwardsApiItem = {
   award_title?: string;
   award_image?: string;
+  award_caption: string;
+  award_year: string;
 };
 
 export type EsgSafetyGovernanceMetric = {

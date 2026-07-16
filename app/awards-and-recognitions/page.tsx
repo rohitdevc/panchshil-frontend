@@ -93,6 +93,8 @@ export default async function AwardsPage() {
       ? awardsFromApi.map((award, index) => ({
           id: String(index + 1),
           title: award.award_title || "",
+          caption: award.award_caption || "",
+          year: award.award_year || "",
           imageSrc: toAbsoluteAssetUrl(award.award_image),
           imageAlt: award.award_title || "",
         }))
