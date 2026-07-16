@@ -28,13 +28,13 @@ export default function AwardsListing({ awards }: AwardsListingProps) {
                 </div>
               </div>
               <div className="break-words leading-tight flex flex-col gap-3 bg-white px-2 py-2 border border-[#F7F5F4]">
-                <div className="flex justify-between text-gold-beige text-[13px]">
-                  <h2 className="uppercase text-[13px] tracking-wider">
+                <div className="flex justify-between text-gold-beige text-xs">
+                  <h2 className="uppercase text-xs tracking-wider">
                     {award.caption}
                   </h2>
                   <h4>{award.year}</h4>
                 </div>
-                <h3 className="text-base text-[#1f1f1f] font-display-semi">
+                <h3 className="text-lg text-[#1f1f1f] font-display-semi">
                   {award.title}
                 </h3>
               </div>
