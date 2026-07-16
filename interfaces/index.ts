@@ -878,3 +878,18 @@ export type EsgBannerApiItem = {
   banner_description?: string;
   banner_image?: string;
 };
+
+export type BlogFeaturedProp = {
+  blog_title: string;
+  blog_preview: string;
+  blog_thumbnail: string;
+  blog_published_date: string;
+  blog_url: string;
+};
+
+export type BlogProp = {
+  blog_title: string;
+  blog_thumbnail: string;
+  blog_published_date: string;
+  blog_url: string;
+};

@@ -29,7 +29,9 @@ export default function AwardsListing({ awards }: AwardsListingProps) {
               </div>
               <div className="break-words leading-tight flex flex-col gap-3 bg-white px-2 py-2 border border-[#F7F5F4]">
                 <div className="flex justify-between text-gold-beige text-sm">
-                  <h2 className="uppercase">{award.caption}</h2>
+                  <h2 className="uppercase text-sm tracking-wider">
+                    {award.caption}
+                  </h2>
                   <h4>{award.year}</h4>
                 </div>
                 <h3 className="text-base text-[#1f1f1f] font-display-semi">

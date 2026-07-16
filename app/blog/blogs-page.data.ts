@@ -56,7 +56,7 @@ export const blogsPageStaticData: BlogsPageData = {
   sharing: {
     heading: "SHARING IS CARING SO WE MAKE TIME TO WRITE ABOUT OUR EXPERIENCES",
     featured: {
-      publishedOn: "08Aug, 2025",
+      publishedOn: "08th Aug, 2025",
       title: "Villas Or Penthouses - Which One Is Better?",
       excerpt:
         "In the game of luxury real estate, much like in ‘Game of Thrones’, every detail matters; from the grandeur of the Highgarden to the stark beauty of Winterfell, each property pledges allegiance to its owner’s vision.",
@@ -87,7 +87,7 @@ export const blogsPageStaticData: BlogsPageData = {
         id: "2",
         categoryId: "luxury-property",
         title: "Things To Keep In Mind When Investing In A Luxury Apartment",
-        publishedOn: "08Aug, 2025",
+        publishedOn: "08th Aug, 2025",
         imageSrc: IMG_B,
         href: "/blogs/villas-penthouses",
       },
@@ -104,7 +104,7 @@ export const blogsPageStaticData: BlogsPageData = {
         categoryId: "generic",
         title:
           "How The Internet Of Things Is Poised To Elevate And Transform Any Home",
-        publishedOn: "08Aug, 2025",
+        publishedOn: "08th Aug, 2025",
         imageSrc: IMG_D,
         href: "/blogs/villas-penthouses",
       },
