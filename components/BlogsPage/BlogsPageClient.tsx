@@ -3,7 +3,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CareerHero } from "@/components/CareerHero";
-import { BlogsPageData } from "@/app/blogs/blogs-page.data";
+import { BlogsPageData } from "@/app/blog/blogs-page.data";
 import { BlogsSharingSection } from "@/components/BlogsPage/BlogsSharingSection";
 import { BlogsArticlesSection } from "@/components/BlogsPage/BlogsArticlesSection";
 

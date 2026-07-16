@@ -10,11 +10,7 @@ import {
 } from "./fonts";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { NavigationMenuProvider } from "@/components/NavigationMenuProvider";
-import {
-  getAuthToken,
-  getNavigationMenu,
-  getContactDetails,
-} from "@/api/CMS.api";
+import { getNavigationMenu, getContactDetails } from "@/api/CMS.api";
 import { NavigationMenuProps, ContactDetailsProps } from "@/interfaces";
 
 // Open Sans as default font
@@ -46,60 +42,43 @@ export const metadata: Metadata = {
   manifest: "/assets/site.webmanifest",
 };
 
-interface AuthTokenResponse {
-  token: string;
-}
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let initialToken: string | null = null;
-  let initialError: string | null = null;
+  const initialToken: string | null = null;
+  const initialError: string | null = null;
   let initialNavigationMenu: NavigationMenuProps[] = [];
   let initialContactDetails: ContactDetailsProps = [];
 
   try {
-    const response = (await getAuthToken()) as AuthTokenResponse;
-    if (response?.token && typeof response.token === "string") {
-      initialToken = response.token;
+    const [menuResponse, contactDetailsResponse] = await Promise.allSettled([
+      getNavigationMenu(),
+      getContactDetails(),
+    ]);
 
-      // Fetch navigation menu and contact details at build time
-      try {
-        const [menuResponse, contactDetailsResponse] = await Promise.allSettled(
-          [getNavigationMenu(initialToken), getContactDetails(initialToken)]
-        );
-
-        if (
-          menuResponse.status === "fulfilled" &&
-          menuResponse.value &&
-          Array.isArray(menuResponse.value)
-        ) {
-          initialNavigationMenu = menuResponse.value as NavigationMenuProps[];
-        }
-
-        if (
-          contactDetailsResponse.status === "fulfilled" &&
-          contactDetailsResponse.value &&
-          Array.isArray(contactDetailsResponse.value)
-        ) {
-          initialContactDetails =
-            contactDetailsResponse.value as ContactDetailsProps;
-        }
-      } catch (menuError) {
-        console.error(
-          "Error fetching navigation menu or contact details in layout:",
-          menuError
-        );
-      }
-    } else {
-      initialError = "Token not found in response";
+    if (
+      menuResponse.status === "fulfilled" &&
+      menuResponse.value &&
+      Array.isArray(menuResponse.value)
+    ) {
+      initialNavigationMenu = menuResponse.value as NavigationMenuProps[];
     }
-  } catch (err) {
-    initialError =
-      err instanceof Error ? err.message : "Failed to fetch auth token";
-    console.error("Error fetching auth token in layout:", err);
+
+    if (
+      contactDetailsResponse.status === "fulfilled" &&
+      contactDetailsResponse.value &&
+      Array.isArray(contactDetailsResponse.value)
+    ) {
+      initialContactDetails =
+        contactDetailsResponse.value as ContactDetailsProps;
+    }
+  } catch (menuError) {
+    console.error(
+      "Error fetching navigation menu or contact details in layout:",
+      menuError
+    );
   }
 
   const structuredData = [

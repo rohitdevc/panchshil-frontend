@@ -6,14 +6,12 @@ import {
   meetTheCityPageDummyData,
 } from "./meet-the-city-page.data";
 import {
-  getAuthToken,
   getMeetTheCityMagazines,
   getMeetTheCityMagazinesAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
 import {
-  AuthTokenResponse,
   MeetTheCityMagazineApiItem,
   BannersProps,
   MetaDataProps,
@@ -23,21 +21,8 @@ import type { Metadata } from "next";
 export const revalidate = 1800;
 export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "Meet The City")) as MetaDataProps;
+    return (await getMetaData("Meet The City")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -113,48 +98,22 @@ export default async function MeetTheCityPage() {
     }
   }
 
-  let token: string | null = null;
   if (magazinesFromApi === null || magazinesFromApi.length === 0) {
     try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
+      const response = await getMeetTheCityMagazines();
+      if (Array.isArray(response) && response.length > 0) {
+        magazinesFromApi = response as MeetTheCityMagazineApiItem[];
       }
     } catch (error) {
-      console.error("Error fetching auth token for Meet The City:", error);
-    }
-
-    if (token) {
-      try {
-        const response = await getMeetTheCityMagazines(token);
-        if (Array.isArray(response) && response.length > 0) {
-          magazinesFromApi = response as MeetTheCityMagazineApiItem[];
-        }
-      } catch (error) {
-        console.error("Error fetching Meet The City magazines:", error);
-      }
-    }
-  }
-
-  // Fetch banner
-  if (!token) {
-    try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token for banner:", error);
+      console.error("Error fetching Meet The City magazines:", error);
     }
   }
 
   let banner: BannersProps | null = null;
-  if (token) {
-    try {
-      banner = (await getBanner(token, "Meet The City")) as BannersProps;
-    } catch (error) {
-      console.error("Error fetching banner:", error);
-    }
+  try {
+    banner = (await getBanner("Meet The City")) as BannersProps;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
   }
 
   const editions =

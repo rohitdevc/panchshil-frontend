@@ -4,39 +4,20 @@ import {
   testimonialsPageDummyData,
 } from "./testimonials-page.data";
 import {
-  getAuthToken,
   getTestimonials,
   getTestimonialsAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
-import {
-  AuthTokenResponse,
-  TestimonialsApiItem,
-  BannersProps,
-  MetaDataProps,
-} from "@/interfaces";
+import { TestimonialsApiItem, BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 
 // Revalidate this route every 30 minutes.
 export const revalidate = 1800;
 export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "Testimonials")) as MetaDataProps;
+    return (await getMetaData("Testimonials")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -125,47 +106,21 @@ export default async function TestimonialsPage() {
     }
   }
 
-  let token: string | null = null;
   if (testimonialsFromApi.length === 0) {
     try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
+      const response = await getTestimonials();
+      if (Array.isArray(response)) {
+        testimonialsFromApi = response as TestimonialsApiItem[];
       }
     } catch (error) {
-      console.error("Error fetching auth token for testimonials:", error);
-    }
-
-    if (token) {
-      try {
-        const response = await getTestimonials(token);
-        if (Array.isArray(response)) {
-          testimonialsFromApi = response as TestimonialsApiItem[];
-        }
-      } catch (error) {
-        console.error("Error fetching testimonials:", error);
-      }
+      console.error("Error fetching testimonials:", error);
     }
   }
 
-  // Fetch banner
-  if (!token) {
-    try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token for banner:", error);
-    }
-  }
-
-  if (token) {
-    try {
-      banner = (await getBanner(token, "Testimonials")) as BannersProps;
-    } catch (error) {
-      console.error("Error fetching banner:", error);
-    }
+  try {
+    banner = (await getBanner("Testimonials")) as BannersProps;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
   }
 
   const hero = { ...testimonialsPageDummyData.hero };

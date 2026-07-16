@@ -1,7 +1,6 @@
 import { EsgPageClient } from "@/components/EsgPage";
 import { EsgPageData } from "./esg.data";
 import {
-  getAuthToken,
   getEsgBanner,
   getEsgIntroduction,
   getEsgMilestones,
@@ -13,7 +12,6 @@ import {
   getMetaData,
 } from "@/api/CMS.api";
 import {
-  AuthTokenResponse,
   EsgBannerApiItem,
   EsgIntroductionApiResponse,
   EsgMilestoneApiItem,
@@ -31,21 +29,8 @@ export const revalidate = 1800;
 export const dynamic = "force-dynamic";
 
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "ESG")) as MetaDataProps;
+    return (await getMetaData("ESG")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -79,16 +64,6 @@ const toAbsoluteAssetUrl = (url: string | undefined): string => {
 };
 
 export default async function EsgPage() {
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for ESG:", error);
-  }
-
   let esgBanner: EsgBannerApiItem | null = null;
   let esgMilestones: EsgMilestoneApiItem[] = [];
   let esgTicker: EsgTickerApiItem[] = [];
@@ -97,67 +72,61 @@ export default async function EsgPage() {
   let esgSafetyGovernance: EsgSafetyGovernanceApiItem[] = [];
   let esgReportsIntro: EsgReportsIntroApiResponse | null = null;
   let esgReportsList: EsgReportApiItem[] = [];
-  if (token) {
-    try {
-      esgBanner = (await getEsgBanner(token)) as EsgBannerApiItem;
-    } catch (error) {
-      console.error("Error fetching ESG banner:", error);
-    }
 
-    try {
-      const response = (await getEsgMilestones(token)) as EsgMilestoneApiItem[];
-      esgMilestones = Array.isArray(response) ? response : [];
-    } catch (error) {
-      console.error("Error fetching ESG milestones:", error);
-    }
+  try {
+    esgBanner = (await getEsgBanner()) as EsgBannerApiItem;
+  } catch (error) {
+    console.error("Error fetching ESG banner:", error);
+  }
 
-    try {
-      const response = (await getEsgTicker(token)) as EsgTickerApiItem[];
-      esgTicker = Array.isArray(response) ? response : [];
-    } catch (error) {
-      console.error("Error fetching ESG ticker:", error);
-    }
+  try {
+    const response = (await getEsgMilestones()) as EsgMilestoneApiItem[];
+    esgMilestones = Array.isArray(response) ? response : [];
+  } catch (error) {
+    console.error("Error fetching ESG milestones:", error);
+  }
 
-    try {
-      esgIntroduction = (await getEsgIntroduction(
-        token
-      )) as EsgIntroductionApiResponse;
-    } catch (error) {
-      console.error("Error fetching ESG introduction:", error);
-    }
+  try {
+    const response = (await getEsgTicker()) as EsgTickerApiItem[];
+    esgTicker = Array.isArray(response) ? response : [];
+  } catch (error) {
+    console.error("Error fetching ESG ticker:", error);
+  }
 
-    try {
-      const response = (await getEsgPerformance(
-        token
-      )) as EsgPerformanceApiItem[];
-      esgPerformance = Array.isArray(response) ? response : [];
-    } catch (error) {
-      console.error("Error fetching ESG performance:", error);
-    }
+  try {
+    esgIntroduction =
+      (await getEsgIntroduction()) as EsgIntroductionApiResponse;
+  } catch (error) {
+    console.error("Error fetching ESG introduction:", error);
+  }
 
-    try {
-      const response = (await getEsgSafetyGovernance(
-        token
-      )) as EsgSafetyGovernanceApiItem[];
-      esgSafetyGovernance = Array.isArray(response) ? response : [];
-    } catch (error) {
-      console.error("Error fetching ESG safety & governance:", error);
-    }
+  try {
+    const response = (await getEsgPerformance()) as EsgPerformanceApiItem[];
+    esgPerformance = Array.isArray(response) ? response : [];
+  } catch (error) {
+    console.error("Error fetching ESG performance:", error);
+  }
 
-    try {
-      esgReportsIntro = (await getEsgReportsIntro(
-        token
-      )) as EsgReportsIntroApiResponse;
-    } catch (error) {
-      console.error("Error fetching ESG reports intro:", error);
-    }
+  try {
+    const response =
+      (await getEsgSafetyGovernance()) as EsgSafetyGovernanceApiItem[];
+    esgSafetyGovernance = Array.isArray(response) ? response : [];
+  } catch (error) {
+    console.error("Error fetching ESG safety & governance:", error);
+  }
 
-    try {
-      const response = (await getEsgReports(token)) as EsgReportApiItem[];
-      esgReportsList = Array.isArray(response) ? response : [];
-    } catch (error) {
-      console.error("Error fetching ESG reports:", error);
-    }
+  try {
+    esgReportsIntro =
+      (await getEsgReportsIntro()) as EsgReportsIntroApiResponse;
+  } catch (error) {
+    console.error("Error fetching ESG reports intro:", error);
+  }
+
+  try {
+    const response = (await getEsgReports()) as EsgReportApiItem[];
+    esgReportsList = Array.isArray(response) ? response : [];
+  } catch (error) {
+    console.error("Error fetching ESG reports:", error);
   }
 
   const data: EsgPageData = {

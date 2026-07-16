@@ -1,38 +1,19 @@
 import { ClientsPageClient } from "@/components/ClientsPage";
 import { ClientItem, clientsPageData } from "./clients.data";
 import {
-  getAuthToken,
   getClients,
   getClientsAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
-import {
-  AuthTokenResponse,
-  ClientsApiItem,
-  BannersProps,
-  MetaDataProps,
-} from "@/interfaces";
+import { ClientsApiItem, BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 // Revalidate this route every 30 minutes.
 export const revalidate = 1800;
 export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "Clients")) as MetaDataProps;
+    return (await getMetaData("Clients")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -66,7 +47,6 @@ const toAbsoluteAssetUrl = (imageUrl: string | undefined): string => {
 };
 
 export default async function ClientsPage() {
-  let token: string | null = null;
   let clientsFromApi: ClientsApiItem[] = [];
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "";
@@ -88,18 +68,7 @@ export default async function ClientsPage() {
 
   if (clientsFromApi.length === 0) {
     try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token for clients:", error);
-    }
-  }
-
-  if (clientsFromApi.length === 0 && token) {
-    try {
-      const response = await getClients(token);
+      const response = await getClients();
       if (Array.isArray(response)) {
         clientsFromApi = response as ClientsApiItem[];
       }
@@ -108,25 +77,11 @@ export default async function ClientsPage() {
     }
   }
 
-  // Fetch banner
-  if (!token) {
-    try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token for banner:", error);
-    }
-  }
-
   let banner: BannersProps | null = null;
-  if (token) {
-    try {
-      banner = (await getBanner(token, "Clients")) as BannersProps;
-    } catch (error) {
-      console.error("Error fetching banner:", error);
-    }
+  try {
+    banner = (await getBanner("Clients")) as BannersProps;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
   }
 
   const mappedClients =

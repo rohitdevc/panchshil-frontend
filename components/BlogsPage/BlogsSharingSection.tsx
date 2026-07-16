@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { BlogsSharingSectionData } from "@/app/blogs/blogs-page.data";
+import type { BlogsSharingSectionData } from "@/app/blog/blogs-page.data";
 
 type BlogsSharingSectionProps = {
   content: BlogsSharingSectionData;

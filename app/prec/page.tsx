@@ -7,7 +7,6 @@ import {
   precPageDummyData,
 } from "./prec-page.data";
 import {
-  getAuthToken,
   getPrecBenefits,
   getPrecBenefitsAPI,
   getPrecFaqs,
@@ -18,7 +17,6 @@ import {
   getMetaData,
 } from "@/api/CMS.api";
 import {
-  AuthTokenResponse,
   PrecBenefitApiItem,
   PrecFaqApiItem,
   PrecIntroApiResponse,
@@ -30,21 +28,8 @@ import type { Metadata } from "next";
 export const revalidate = 1800;
 export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "PREC")) as MetaDataProps;
+    return (await getMetaData("PREC")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -171,62 +156,36 @@ export default async function PrecPage() {
   const needBenefits = benefitsApi === null || benefitsApi.length === 0;
   const needFaqs = faqsApi === null || faqsApi.length === 0;
 
-  let token: string | null = null;
   if (needIntro || needBenefits || needFaqs) {
     try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
+      if (needIntro) {
+        const raw = await getPrecIntro();
+        if (isPrecIntroPayload(raw)) {
+          introApi = raw;
+        }
+      }
+      if (needBenefits) {
+        const raw = await getPrecBenefits();
+        if (Array.isArray(raw) && raw.length > 0) {
+          benefitsApi = raw as PrecBenefitApiItem[];
+        }
+      }
+      if (needFaqs) {
+        const raw = await getPrecFaqs();
+        if (Array.isArray(raw) && raw.length > 0) {
+          faqsApi = raw as PrecFaqApiItem[];
+        }
       }
     } catch (error) {
-      console.error("Error fetching auth token for PREC:", error);
-    }
-
-    if (token) {
-      try {
-        if (needIntro) {
-          const raw = await getPrecIntro(token);
-          if (isPrecIntroPayload(raw)) {
-            introApi = raw;
-          }
-        }
-        if (needBenefits) {
-          const raw = await getPrecBenefits(token);
-          if (Array.isArray(raw) && raw.length > 0) {
-            benefitsApi = raw as PrecBenefitApiItem[];
-          }
-        }
-        if (needFaqs) {
-          const raw = await getPrecFaqs(token);
-          if (Array.isArray(raw) && raw.length > 0) {
-            faqsApi = raw as PrecFaqApiItem[];
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching PREC from CMS:", error);
-      }
-    }
-  }
-
-  // Fetch banner
-  if (!token) {
-    try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token for banner:", error);
+      console.error("Error fetching PREC from CMS:", error);
     }
   }
 
   let banner: BannersProps | null = null;
-  if (token) {
-    try {
-      banner = (await getBanner(token, "PREC")) as BannersProps;
-    } catch (error) {
-      console.error("Error fetching banner:", error);
-    }
+  try {
+    banner = (await getBanner("PREC")) as BannersProps;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
   }
 
   const data: PrecPageData = {

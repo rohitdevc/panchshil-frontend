@@ -1,25 +1,12 @@
 import PrivacyPolicyPageClient from "@/components/PrivacyPolicyPage/PrivacyPolicyPageClient";
 import { privacyPolicyPageData } from "./privacy-policy-page.data";
-import { getAuthToken, getBanner, getMetaData } from "@/api/CMS.api";
-import { AuthTokenResponse, BannersProps, MetaDataProps } from "@/interfaces";
+import { getBanner, getMetaData } from "@/api/CMS.api";
+import { BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "Privacy Policy")) as MetaDataProps;
+    return (await getMetaData("Privacy Policy")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -54,22 +41,11 @@ const toAbsoluteAssetUrl = (imageUrl: string | undefined): string => {
 
 export default async function PrivacyPolicyPage() {
   let banner: BannersProps | null = null;
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token:", error);
-  }
 
-  if (token) {
-    try {
-      banner = (await getBanner(token, "Privacy Policy")) as BannersProps;
-    } catch (error) {
-      console.error("Error fetching banner:", error);
-    }
+  try {
+    banner = (await getBanner("Privacy Policy")) as BannersProps;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
   }
 
   const data = { ...privacyPolicyPageData };

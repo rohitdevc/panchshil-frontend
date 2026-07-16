@@ -1,4 +1,3 @@
-import { getAuthToken } from "@/api/CMS.api";
 import {
   getPropertyCategory,
   getPropertyCities,
@@ -8,7 +7,6 @@ import {
   getPropertiesByCategory,
 } from "@/api/property";
 import {
-  AuthTokenResponse,
   CategoryFooterBlocksProps,
   PropertyCategories,
   PropertyCategoryProps,
@@ -40,31 +38,21 @@ export async function generateMetadata({
   const resolvedParams = await params;
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
 
-  let token: string | null = null;
   let propertyCategory: PropertyCategoryProps | null = null;
 
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-
-      if (token && propertyCategoryUrlSlug) {
-        try {
-          const categoryResponse = await getPropertyCategory(
-            token,
-            propertyCategoryUrlSlug
-          );
-          propertyCategory = categoryResponse as PropertyCategoryProps;
-        } catch (error) {
-          console.error(
-            "Error fetching property category for metadata:",
-            error
-          );
-        }
+    if (propertyCategoryUrlSlug) {
+      try {
+        const categoryResponse = await getPropertyCategory(
+          propertyCategoryUrlSlug
+        );
+        propertyCategory = categoryResponse as PropertyCategoryProps;
+      } catch (error) {
+        console.error("Error fetching property category for metadata:", error);
       }
     }
   } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
+    notFound();
   }
 
   return {
@@ -97,36 +85,23 @@ export default async function PaginatedListPage({
     notFound();
   }
 
-  // Fetch token
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token:", error);
-  }
-
-  const apiCalls =
-    token && propertyCategoryUrlSlug
-      ? [
-          getPropertyCategory(token, propertyCategoryUrlSlug),
-          getPropertyCities(token, propertyCategoryUrlSlug),
-          getPropertyStatuses(token, propertyCategoryUrlSlug),
-          // Paginated properties for default view
-          getPropertiesByCategory(
-            token,
-            propertyCategoryUrlSlug,
-            PER_PAGE_LIMIT,
-            PER_PAGE_LIMIT * (page - 1)
-          ),
-          // Full list of properties for filtering (no limit/skip)
-          getPropertiesByCategory(token, propertyCategoryUrlSlug),
-          getOtherPropertyCategories(token, propertyCategoryUrlSlug),
-          getPropertyFooterBlocks(token),
-        ]
-      : Array.from({ length: 1 }, () => Promise.resolve(null));
+  const apiCalls = propertyCategoryUrlSlug
+    ? [
+        getPropertyCategory(propertyCategoryUrlSlug),
+        getPropertyCities(propertyCategoryUrlSlug),
+        getPropertyStatuses(propertyCategoryUrlSlug),
+        // Paginated properties for default view
+        getPropertiesByCategory(
+          propertyCategoryUrlSlug,
+          PER_PAGE_LIMIT,
+          PER_PAGE_LIMIT * (page - 1)
+        ),
+        // Full list of properties for filtering (no limit/skip)
+        getPropertiesByCategory(propertyCategoryUrlSlug),
+        getOtherPropertyCategories(propertyCategoryUrlSlug),
+        getPropertyFooterBlocks(),
+      ]
+    : Array.from({ length: 1 }, () => Promise.resolve(null));
 
   const [
     propertyCategory,

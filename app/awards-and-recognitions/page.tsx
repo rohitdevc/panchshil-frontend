@@ -1,18 +1,6 @@
 import { AwardsPageClient } from "@/components/AwardsPage";
-// import { awardsPageData } from "./awards.data";
-import {
-  getAuthToken,
-  getAwards,
-  getAwardsAPI,
-  getBanner,
-  getMetaData,
-} from "@/api/CMS.api";
-import {
-  AuthTokenResponse,
-  AwardsApiItem,
-  BannersProps,
-  MetaDataProps,
-} from "@/interfaces";
+import { getAwards, getAwardsAPI, getBanner, getMetaData } from "@/api/CMS.api";
+import { AwardsApiItem, BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 import { CareerHeroContent } from "../careers/career-page.data";
 
@@ -21,21 +9,8 @@ export const revalidate = 1800;
 export const dynamic = "force-dynamic";
 
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "Awards")) as MetaDataProps;
+    return (await getMetaData("Awards")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -69,7 +44,6 @@ const toAbsoluteAssetUrl = (imageUrl: string | undefined): string => {
 };
 
 export default async function AwardsPage() {
-  let token: string | null = null;
   let awardsFromApi: AwardsApiItem[] = [];
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "";
@@ -91,18 +65,7 @@ export default async function AwardsPage() {
 
   if (awardsFromApi.length === 0) {
     try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token for awards:", error);
-    }
-  }
-
-  if (awardsFromApi.length === 0 && token) {
-    try {
-      const response = await getAwards(token);
+      const response = await getAwards();
       if (Array.isArray(response)) {
         awardsFromApi = response as AwardsApiItem[];
       }
@@ -112,12 +75,10 @@ export default async function AwardsPage() {
   }
 
   let banner: BannersProps | null = null;
-  if (token) {
-    try {
-      banner = (await getBanner(token, "Awards")) as BannersProps;
-    } catch (error) {
-      console.error("Error fetching banner:", error);
-    }
+  try {
+    banner = (await getBanner("Awards")) as BannersProps;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
   }
 
   const hero = {} as CareerHeroContent;

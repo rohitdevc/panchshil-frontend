@@ -1,7 +1,6 @@
 import { AboutUsPageClient } from "@/components/AboutUsPage";
 import { aboutUsPageDummyData } from "./about.data";
 import {
-  getAuthToken,
   getAboutUsIntro,
   getAboutUsVision,
   getAboutUsMission,
@@ -19,7 +18,6 @@ import {
   getMetaData,
 } from "@/api/CMS.api";
 import {
-  AuthTokenResponse,
   AboutUsIntroData,
   AboutUsVision,
   AboutUsMission,
@@ -41,21 +39,8 @@ export const revalidate = 600;
 export const dynamic = "force-dynamic";
 
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "About")) as MetaDataProps;
+    return (await getMetaData("About")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -89,49 +74,22 @@ const toAbsoluteAssetUrl = (imageUrl: string | undefined): string => {
 };
 
 export default async function AboutUsPage() {
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token:", error);
-  }
-
-  const apiCalls = token
-    ? [
-        getBanner(token, "About"),
-        getAboutUsIntro(token),
-        getAboutUsVision(token),
-        getAboutUsMission(token),
-        getAboutUsCoreValuesIntro(token),
-        getAboutUsCoreValues(token),
-        getAboutUsCommitmentIntro(token),
-        getAboutUsMilestones(token),
-        getAboutUsGrowthChronicles(token),
-        getAboutUsVideo(token),
-        getAboutUsGlobalIntroduction(token),
-        getAboutUsEsg(token),
-        getAboutUsClients(token),
-        getAboutUsPartners(token),
-      ]
-    : [
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-        Promise.resolve(null),
-      ];
+  const apiCalls = [
+    getBanner("About"),
+    getAboutUsIntro(),
+    getAboutUsVision(),
+    getAboutUsMission(),
+    getAboutUsCoreValuesIntro(),
+    getAboutUsCoreValues(),
+    getAboutUsCommitmentIntro(),
+    getAboutUsMilestones(),
+    getAboutUsGrowthChronicles(),
+    getAboutUsVideo(),
+    getAboutUsGlobalIntroduction(),
+    getAboutUsEsg(),
+    getAboutUsClients(),
+    getAboutUsPartners(),
+  ];
 
   const [
     bannerRes,

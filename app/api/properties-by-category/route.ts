@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAuthToken } from "@/api/CMS.api";
-import { AuthTokenResponse } from "@/interfaces";
 import ApiException from "@/api/Api.exception";
 import API_CONSTANTS from "@/api/constants";
 
@@ -36,28 +34,6 @@ export async function GET(request: NextRequest) {
     const limit = PER_PAGE_LIMIT * page;
     const skip = PER_PAGE_LIMIT * (page - 1);
 
-    // Get auth token
-    let token: string | null = null;
-    try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token:", error);
-      return NextResponse.json(
-        { error: "Failed to authenticate" },
-        { status: 500 }
-      );
-    }
-
-    if (!token) {
-      return NextResponse.json(
-        { error: "Authentication token not available" },
-        { status: 500 }
-      );
-    }
-
     // Build the API URL with query parameters
     const baseUrl = process.env.NEXT_PUBLIC_BASE_API_ENDPOINT || "";
     const apiPath = API_CONSTANTS.PROPERTIES_BY_CATEGORY.replace(
@@ -70,7 +46,6 @@ export async function GET(request: NextRequest) {
     const response = await fetch(apiUrl, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       cache: "no-store", // Disable caching for paginated requests

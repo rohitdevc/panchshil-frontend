@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CareerTrackPostCard } from "@/components/CareerTracks/CareerTrackPostCard";
 import { BlogsPagination } from "@/components/BlogsPage/BlogsPagination";
-import type { BlogsArticlesSectionData } from "@/app/blogs/blogs-page.data";
+import type { BlogsArticlesSectionData } from "@/app/blog/blogs-page.data";
 
 const DEFAULT_PER_PAGE = 4;
 

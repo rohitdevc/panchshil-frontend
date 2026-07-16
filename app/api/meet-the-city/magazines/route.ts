@@ -1,32 +1,10 @@
 import { NextResponse } from "next/server";
 import ApiException from "@/api/Api.exception";
-import { getAuthToken, getMeetTheCityMagazines } from "@/api/CMS.api";
-import { AuthTokenResponse } from "@/interfaces";
+import { getMeetTheCityMagazines } from "@/api/CMS.api";
 
 export async function GET() {
   try {
-    let token: string | null = null;
-    try {
-      const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-      if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-        token = tokenResponse.token;
-      }
-    } catch (error) {
-      console.error("Error fetching auth token:", error);
-      return NextResponse.json(
-        { error: "Failed to authenticate" },
-        { status: 500 }
-      );
-    }
-
-    if (!token) {
-      return NextResponse.json(
-        { error: "Authentication token not available" },
-        { status: 500 }
-      );
-    }
-
-    const result = await getMeetTheCityMagazines(token);
+    const result = await getMeetTheCityMagazines();
 
     return NextResponse.json({
       success: true,

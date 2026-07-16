@@ -1,53 +1,19 @@
 import { doGet, doPost } from ".";
 import API_CONSTANTS from "./constants";
 
-export const getPropertyCategory = (
-  token: string,
-  property_category_url_slug: string
-) => {
-  return doGet(
-    API_CONSTANTS.PROPERTY_CATEGORY,
-    { property_category_url_slug },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPropertyCategory = (property_category_url_slug: string) => {
+  return doGet(API_CONSTANTS.PROPERTY_CATEGORY, { property_category_url_slug });
 };
 
-export const getPropertyCities = (
-  token: string,
-  property_category_url_slug: string
-) => {
-  return doGet(
-    API_CONSTANTS.PROPERTY_CITIES,
-    { property_category_url_slug },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPropertyCities = (property_category_url_slug: string) => {
+  return doGet(API_CONSTANTS.PROPERTY_CITIES, { property_category_url_slug });
 };
 
-export const getPropertyStatuses = (
-  token: string,
-  property_category_url_slug: string
-) => {
-  return doGet(
-    API_CONSTANTS.PROPERTY_STATUSES,
-    { property_category_url_slug },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPropertyStatuses = (property_category_url_slug: string) => {
+  return doGet(API_CONSTANTS.PROPERTY_STATUSES, { property_category_url_slug });
 };
 
 export const getPropertiesByCategory = (
-  token: string,
   property_category_url_slug: string,
   limit?: number,
   skip?: number
@@ -63,54 +29,23 @@ export const getPropertiesByCategory = (
     apiPath = `${apiPath}?limit=${limit}&skip=${skip}`;
   }
 
-  return doGet(
-    apiPath,
-    { property_category_url_slug },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return doGet(apiPath, { property_category_url_slug });
 };
 
 export const getOtherPropertyCategories = (
-  token: string,
   property_category_url_slug: string
 ) => {
-  return doGet(
-    API_CONSTANTS.OTHER_PROPERTY_CATEGORIES,
-    { property_category_url_slug },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return doGet(API_CONSTANTS.OTHER_PROPERTY_CATEGORIES, {
+    property_category_url_slug,
+  });
 };
 
-export const getPropertyFooterBlocks = (token: string) => {
-  return doGet(
-    API_CONSTANTS.PROPERTY_FOOTER_BLOCKS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPropertyFooterBlocks = () => {
+  return doGet(API_CONSTANTS.PROPERTY_FOOTER_BLOCKS);
 };
 
-export const getEnquiryPropertyList = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ENQUIRY_GET_PROPERTY_LIST,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getEnquiryPropertyList = () => {
+  return doGet(API_CONSTANTS.ENQUIRY_GET_PROPERTY_LIST);
 };
 
 export const submitPropertyEnquiryFormDetails = (

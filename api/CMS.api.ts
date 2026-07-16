@@ -13,7 +13,7 @@ export const getAuthToken = () => {
   );
 };
 
-export const getMetaData = (token: string, pageName: string = "Home") => {
+export const getMetaData = (pageName: string = "Home") => {
   const formData = new URLSearchParams();
   formData.append("page_name", pageName);
 
@@ -23,14 +23,13 @@ export const getMetaData = (token: string, pageName: string = "Home") => {
     {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
       },
       body: formData.toString(),
     }
   );
 };
 
-export const getBanner = (token: string, pageName: string = "Home") => {
+export const getBanner = (pageName: string = "Home") => {
   const formData = new URLSearchParams();
   formData.append("page_name", pageName);
 
@@ -40,7 +39,6 @@ export const getBanner = (token: string, pageName: string = "Home") => {
     {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
       },
       body: formData.toString(),
     }
@@ -111,392 +109,138 @@ export const submitContactEnquiryFormDetails = (
   );
 };
 
-export const getMasterSlider = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_MASTER_SLIDER,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getMasterSlider = () => {
+  return doGet(API_CONSTANTS.HOME_MASTER_SLIDER);
 };
 
-export const getFeaturedProperties = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_FEATURED_PROPERTIES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getFeaturedProperties = () => {
+  return doGet(API_CONSTANTS.HOME_FEATURED_PROPERTIES);
 };
 
-export const getFeaturedPropertiesIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_FEATURED_PROPERTIES_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getFeaturedPropertiesIntro = () => {
+  return doGet(API_CONSTANTS.HOME_FEATURED_PROPERTIES_INTRO);
 };
 
-export const getProperties = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_PROPERTIES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getProperties = () => {
+  return doGet(API_CONSTANTS.HOME_PROPERTIES);
 };
 
-export const getPropertiesIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_PROPERTIES_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPropertiesIntro = () => {
+  return doGet(API_CONSTANTS.HOME_PROPERTIES_INTRO);
 };
 
-export const getPropertyCategories = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_PROPERTY_CATEGORIES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPropertyCategories = () => {
+  return doGet(API_CONSTANTS.HOME_PROPERTY_CATEGORIES);
 };
 
-export const getAboutIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_ABOUT_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutIntro = () => {
+  return doGet(API_CONSTANTS.HOME_ABOUT_INTRO);
 };
 
-export const getAboutUsIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsIntro = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_INTRO);
 };
 
-export const getAboutUsVision = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_VISION,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsVision = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_VISION);
 };
 
-export const getAboutUsMission = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_MISSION,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsMission = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_MISSION);
 };
 
-export const getAboutUsCoreValuesIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_CORE_VALUES_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsCoreValuesIntro = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_CORE_VALUES_INTRO);
 };
 
-export const getAboutUsCoreValues = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_CORE_VALUES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsCoreValues = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_CORE_VALUES);
 };
 
-export const getAboutUsCommitmentIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_COMMITMENT_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsCommitmentIntro = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_COMMITMENT_INTRO);
 };
 
-export const getAboutUsMilestones = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_MILESTONES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsMilestones = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_MILESTONES);
 };
 
-export const getAboutUsGrowthChronicles = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_GROWTH_CHRONICLES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsGrowthChronicles = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_GROWTH_CHRONICLES);
 };
 
-export const getAboutUsVideo = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_VIDEO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsVideo = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_VIDEO);
 };
 
-export const getAboutUsGlobalIntroduction = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_GLOBAL_INTRODUCTION,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsGlobalIntroduction = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_GLOBAL_INTRODUCTION);
 };
 
-export const getAboutUsEsg = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_ESG,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsEsg = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_ESG);
 };
 
-export const getAboutUsClients = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_CLIENTS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsClients = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_CLIENTS);
 };
 
-export const getAboutUsPartners = (token: string) => {
-  return doGet(
-    API_CONSTANTS.ABOUT_US_PARTNERS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutUsPartners = () => {
+  return doGet(API_CONSTANTS.ABOUT_US_PARTNERS);
 };
 
-export const getAboutServicesIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.SERVICES_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAboutServicesIntro = () => {
+  return doGet(API_CONSTANTS.SERVICES_INTRO);
 };
 
-export const getServicesList = (token: string) => {
-  return doGet(
-    API_CONSTANTS.SERVICES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getServicesList = () => {
+  return doGet(API_CONSTANTS.SERVICES);
 };
 
-export const getMilestones = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_MILESTONES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getMilestones = () => {
+  return doGet(API_CONSTANTS.HOME_MILESTONES);
 };
 
-export const getServices = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_SERVICES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getServices = () => {
+  return doGet(API_CONSTANTS.HOME_SERVICES);
 };
 
-export const getServicesIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.HOME_SERVICES_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getServicesIntro = () => {
+  return doGet(API_CONSTANTS.HOME_SERVICES_INTRO);
 };
 
-export const getContactDetails = (token: string) => {
-  return doGet(
-    API_CONSTANTS.CONTACT_DETAILS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getContactDetails = () => {
+  return doGet(API_CONSTANTS.CONTACT_DETAILS);
 };
 
-export const getContactUsReasons = (token: string) => {
-  return doGet(
-    API_CONSTANTS.CONTACT_US_REASONS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getContactUsReasons = () => {
+  return doGet(API_CONSTANTS.CONTACT_US_REASONS);
 };
 
-export const getFooterBlocks = (token: string) => {
-  return doGet(
-    API_CONSTANTS.FOOTER_BLOCKS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getFooterBlocks = () => {
+  return doGet(API_CONSTANTS.FOOTER_BLOCKS);
 };
 
-export const getSubscriberFormDetails = (token: string) => {
-  return doGet(
-    API_CONSTANTS.SUBSCRIBER_FORM_DETAILS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getSubscriberFormDetails = () => {
+  return doGet(API_CONSTANTS.SUBSCRIBER_FORM_DETAILS);
 };
 
-export const getNavigationMenu = (token: string) => {
-  return doGet(
-    API_CONSTANTS.NAVIGATION_MENU,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getNavigationMenu = () => {
+  return doGet(API_CONSTANTS.NAVIGATION_MENU);
 };
 
 export const getPropertyDetail = (
-  token: string,
   property_category_url_slug: string,
   property_url_slug: string
 ) => {
-  return doGet(
-    API_CONSTANTS.PROPERTY_DETAIL,
-    { property_category_url_slug, property_url_slug },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return doGet(API_CONSTANTS.PROPERTY_DETAIL, {
+    property_category_url_slug,
+    property_url_slug,
+  });
 };
 
-export const getAwards = (token: string) => {
-  return doGet(
-    API_CONSTANTS.AWARDS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getAwards = () => {
+  return doGet(API_CONSTANTS.AWARDS);
 };
 
 export const getAwardsAPI = (baseUrl?: string) => {
@@ -510,16 +254,8 @@ export const getAwardsAPI = (baseUrl?: string) => {
   });
 };
 
-export const getClients = (token: string) => {
-  return doGet(
-    API_CONSTANTS.CLIENTS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getClients = () => {
+  return doGet(API_CONSTANTS.CLIENTS);
 };
 
 export const getClientsAPI = (baseUrl?: string) => {
@@ -533,16 +269,8 @@ export const getClientsAPI = (baseUrl?: string) => {
   });
 };
 
-export const getTestimonials = (token: string) => {
-  return doGet(
-    API_CONSTANTS.TESTIMONIALS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getTestimonials = () => {
+  return doGet(API_CONSTANTS.TESTIMONIALS);
 };
 
 export const getTestimonialsAPI = (baseUrl?: string) => {
@@ -556,16 +284,8 @@ export const getTestimonialsAPI = (baseUrl?: string) => {
   });
 };
 
-export const getPrecIntro = (token: string) => {
-  return doGet(
-    API_CONSTANTS.PREC_INTRO,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPrecIntro = () => {
+  return doGet(API_CONSTANTS.PREC_INTRO);
 };
 
 export const getPrecIntroAPI = (baseUrl?: string) => {
@@ -579,16 +299,8 @@ export const getPrecIntroAPI = (baseUrl?: string) => {
   });
 };
 
-export const getPrecBenefits = (token: string) => {
-  return doGet(
-    API_CONSTANTS.PREC_BENEFITS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPrecBenefits = () => {
+  return doGet(API_CONSTANTS.PREC_BENEFITS);
 };
 
 export const getPrecBenefitsAPI = (baseUrl?: string) => {
@@ -602,16 +314,8 @@ export const getPrecBenefitsAPI = (baseUrl?: string) => {
   });
 };
 
-export const getPrecFaqs = (token: string) => {
-  return doGet(
-    API_CONSTANTS.PREC_FAQS,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getPrecFaqs = () => {
+  return doGet(API_CONSTANTS.PREC_FAQS);
 };
 
 export const getPrecFaqsAPI = (baseUrl?: string) => {
@@ -625,16 +329,8 @@ export const getPrecFaqsAPI = (baseUrl?: string) => {
   });
 };
 
-export const getMeetTheCityMagazines = (token: string) => {
-  return doGet(
-    API_CONSTANTS.MEET_THE_CITY_MAGAZINES,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const getMeetTheCityMagazines = () => {
+  return doGet(API_CONSTANTS.MEET_THE_CITY_MAGAZINES);
 };
 
 export const getMeetTheCityMagazinesAPI = (baseUrl?: string) => {
@@ -648,16 +344,7 @@ export const getMeetTheCityMagazinesAPI = (baseUrl?: string) => {
   });
 };
 
-const esgBearerGet = (path: string) => (token: string) =>
-  doGet(
-    path,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+const esgBearerGet = (path: string) => () => doGet(path);
 
 const esgProxyGet = (apiPath: string) => (baseUrl?: string) => {
   const apiUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}${apiPath}` : apiPath;

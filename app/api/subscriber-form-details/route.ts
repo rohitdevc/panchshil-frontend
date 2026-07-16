@@ -67,7 +67,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get auth token
     let token: string | null = null;
     try {
       const tokenResponse = (await getAuthToken()) as AuthTokenResponse;

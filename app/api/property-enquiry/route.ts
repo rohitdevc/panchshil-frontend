@@ -6,7 +6,6 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // getAuthToken returns parsed JSON, not a Response
     const tokenData = (await getAuthToken()) as { token?: string };
     const token = tokenData?.token;
 
@@ -23,7 +22,6 @@ export async function POST(req: NextRequest) {
       ? ipAddressHeader.split(",")[0]?.trim()
       : "0.0.0.0";
 
-    // Normalize localhost IPv6 (::1) and any empty/unknown value to fallback IP
     if (!ipAddress || ipAddress === "::1") {
       ipAddress = "0.0.0.0";
     }

@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { BlogDetailsData } from "@/app/blogs/[id]/blog-details.data";
+import { BlogDetailsData } from "@/app/blog/[id]/blog-details.data";
 import Image from "next/image";
 
 type BlogDetailsPageClientProps = {

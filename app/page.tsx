@@ -1,5 +1,4 @@
 import {
-  getAuthToken,
   getServicesIntro,
   getServices,
   getAboutIntro,
@@ -25,7 +24,6 @@ import {
   ServicesIntroProps,
   ServicesProps,
   AboutIntroData,
-  AuthTokenResponse,
   MetaDataProps,
   BannersProps,
   FooterBlocksProps,
@@ -37,21 +35,8 @@ import {
 export const revalidate = 600;
 export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
-  let token: string | null = null;
   try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-    return null;
-  }
-
-  if (!token) return null;
-
-  try {
-    return (await getMetaData(token, "Home")) as MetaDataProps;
+    return (await getMetaData("Home")) as MetaDataProps;
   } catch (error) {
     console.error("Error fetching meta data:", error);
     return null;
@@ -71,35 +56,21 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  // Fetch token
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token:", error);
-  }
-
-  // Fetch all data in parallel if token is available, otherwise return null promises
-  const apiCalls = token
-    ? [
-        getMetaData(token, "Home"),
-        getBanner(token, "Home"),
-        getServicesIntro(token),
-        getServices(token),
-        getAboutIntro(token),
-        getMilestones(token),
-        getPropertyCategories(token),
-        getPropertiesIntro(token),
-        getProperties(token),
-        getFeaturedPropertiesIntro(token),
-        getFeaturedProperties(token),
-        getMasterSlider(token),
-        getFooterBlocks(token),
-      ]
-    : Array.from({ length: 13 }, () => Promise.resolve(null));
+  const apiCalls = [
+    getMetaData("Home"),
+    getBanner("Home"),
+    getServicesIntro(),
+    getServices(),
+    getAboutIntro(),
+    getMilestones(),
+    getPropertyCategories(),
+    getPropertiesIntro(),
+    getProperties(),
+    getFeaturedPropertiesIntro(),
+    getFeaturedProperties(),
+    getMasterSlider(),
+    getFooterBlocks(),
+  ];
 
   const [
     metaData,

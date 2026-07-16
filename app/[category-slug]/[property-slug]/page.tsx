@@ -1,7 +1,6 @@
-import { getAuthToken, getPropertyDetail } from "@/api/CMS.api";
+import { getPropertyDetail } from "@/api/CMS.api";
 import PropertyDetailsPageClient from "@/components/PropertyDetailsPage/PropertyDetailsPageClient";
 import type {
-  AuthTokenResponse,
   MasterSliderData,
   Property,
   PropertyDetailResponse,
@@ -46,23 +45,8 @@ export async function generateMetadata({
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
   const propertyUrlSlug = resolvedParams["property-slug"];
 
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token for metadata:", error);
-  }
-
-  if (!token) {
-    return {};
-  }
-
   try {
     const detail = (await getPropertyDetail(
-      token,
       propertyCategoryUrlSlug,
       propertyUrlSlug
     )) as PropertyDetailResponse;
@@ -91,26 +75,10 @@ export default async function PropertyDetailPage({
     notFound();
   }
 
-  // Fetch token
-  let token: string | null = null;
-  try {
-    const tokenResponse = (await getAuthToken()) as AuthTokenResponse;
-    if (tokenResponse?.token && typeof tokenResponse.token === "string") {
-      token = tokenResponse.token;
-    }
-  } catch (error) {
-    console.error("Error fetching auth token:", error);
-  }
-
-  if (!token) {
-    notFound();
-  }
-
   // Fetch property details (server-side)
   let propertyDetail: unknown = null;
   try {
     propertyDetail = await getPropertyDetail(
-      token,
       propertyCategoryUrlSlug,
       propertyUrlSlug
     );
