@@ -14,6 +14,8 @@ import AboutUsMilestones from "@/components/AboutUsMilestones/AboutUsMilestones"
 import AboutUsVideoBanner from "@/components/AboutUsVideoBanner/AboutUsVideoBanner";
 import { AboutUsVision } from "../AboutUsVision";
 import { AboutUsMission } from "../AboutUsMission";
+import { AboutUsCommitment } from "../AboutUsCommitment";
+import AboutUsCoreValues from "../AboutUsCoreValues";
 
 type AboutUsPageClientProps = {
   data: AboutUsPageDummyData;
@@ -30,6 +32,11 @@ export default function AboutUsPageClient({ data }: AboutUsPageClientProps) {
       <AboutUsVisibleImpact content={data.visibleImpact} />
       <AboutUsVision content={data.vision} />
       <AboutUsMission content={data.mission} />
+      <AboutUsCoreValues
+        intro={data.core_values_intro}
+        core_values={data.core_values ?? []}
+      />
+      <AboutUsCommitment content={data.commitment_intro} />
       <AboutUsMilestones content={data.milestones} />
       <AboutUsVideoBanner content={data.videoBanner} />
       <div className="bg-white">
