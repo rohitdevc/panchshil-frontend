@@ -243,5 +243,5 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 65s linear infinite;
+  animation: marquee 50s linear infinite;
 }

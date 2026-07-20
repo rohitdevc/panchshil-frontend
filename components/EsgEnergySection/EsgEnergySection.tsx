@@ -61,7 +61,7 @@ export default function EsgEnergySection({ performance }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
 
-  const energyData = findTypeMetrics(performance, "energy");
+  const energyData = findTypeMetrics(performance, 0);
   const metrics: MetricItem[] =
     energyData?.metrics!.map((m) => ({
       value: m.metric_value || "",

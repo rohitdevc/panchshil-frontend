@@ -145,41 +145,44 @@ function AnimatedMetric({
 
 const PortfolioCoverage = ({ data }: { data: typeof defaultPortfolioData }) => {
   return (
-    <section className=" py-10 border-t border-[#E2DFD7]/80">
-      <div className="mx-auto ">
-        <p className="mb-10 text-xs uppercase tracking-[0.45em] text-[#40a937]">
-          Portfolio Coverage - Assets
-        </p>
+    data &&
+    data.length > 0 && (
+      <section className=" py-10 border-t border-[#E2DFD7]/80">
+        <div className="mx-auto ">
+          <p className="mb-10 text-xs uppercase tracking-[0.45em] text-[#40a937]">
+            Portfolio Coverage - Assets
+          </p>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {data.map((portfolio) => (
-            <div
-              key={portfolio.title}
-              className="bg-[#F8FCFD] p-10 min-h-[400px]"
-            >
-              <h2 className="font-serif text-2xl leading-tight text-[#1C2A22]">
-                {portfolio.title}
-              </h2>
+          <div className="grid gap-8 lg:grid-cols-2">
+            {data.map((portfolio) => (
+              <div
+                key={portfolio.title}
+                className="bg-[#F8FCFD] p-10 min-h-[400px]"
+              >
+                <h2 className="font-serif text-2xl leading-tight text-[#1C2A22]">
+                  {portfolio.title}
+                </h2>
 
-              <p className="mt-1 text-sm leading-8 text-[#5D6963]">
-                {portfolio.description}
-              </p>
+                <p className="mt-1 text-sm leading-8 text-[#5D6963]">
+                  {portfolio.description}
+                </p>
 
-              <ul className="mt-5 space-y-6">
-                {portfolio.assets.map((item) => (
-                  <li key={item} className="flex items-center gap-3 mb-4">
-                    <span className="block h-[1px] w-4 bg-[#40a937]" />
-                    <span className="text-sm leading-none text-[#2E483C]">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                <ul className="mt-5 space-y-6">
+                  {portfolio.assets.map((item) => (
+                    <li key={item} className="flex items-center gap-3 mb-4">
+                      <span className="block h-[1px] w-4 bg-[#40a937]" />
+                      <span className="text-sm leading-none text-[#2E483C]">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    )
   );
 };
 
@@ -189,10 +192,7 @@ export default function EsgCertificationsSection({
 }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const certificationData = findTypeMetrics(
-    performance,
-    "certifications & safety."
-  );
+  const certificationData = findTypeMetrics(performance, 5);
 
   const metrics: MetricItem[] =
     certificationData?.metrics!.map((m, i) => ({
@@ -232,7 +232,7 @@ export default function EsgCertificationsSection({
           description: a.asset_caption || "",
           assets: a.asset_properties || [],
         }))
-      : defaultPortfolioData;
+      : [];
 
   useEffect(() => {
     const observer = new IntersectionObserver(

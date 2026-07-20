@@ -71,7 +71,7 @@ export default function EsgWasteSection({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const wasteData = findTypeMetrics(performance, "waste");
+  const wasteData = findTypeMetrics(performance, 2);
 
   const metrics: MetricItem[] =
     wasteData?.metrics!.map((m, i) => ({

@@ -111,11 +111,9 @@ export const getDeviceType = (): DeviceType => {
 
 export function findTypeMetrics(
   performance?: EsgPerformanceApiItem[],
-  performanceTitle: string = "energy"
+  performanceKey: number = 0
 ) {
-  const energyItem = performance?.find(
-    (p) => p.performance_title?.toLowerCase() === performanceTitle
-  );
-  if (!energyItem?.metrics || energyItem.metrics.length === 0) return null;
+  const energyItem = performance?.[performanceKey];
+
   return energyItem;
 }

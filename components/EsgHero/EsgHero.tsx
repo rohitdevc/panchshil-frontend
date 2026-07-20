@@ -131,7 +131,7 @@ export default function EsgHero({
         <div className="w-full mb-12">
           {/* Badge */}
           <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-4 animate-fade-in-up">
-            - ESG AT PANCHSHIL
+            — ESG AT PANCHSHIL
           </span>
 
           {/* Heading */}

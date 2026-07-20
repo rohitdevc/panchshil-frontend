@@ -72,7 +72,7 @@ export default function EsgMobilitySection({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const mobilityData = findTypeMetrics(performance, "mobility");
+  const mobilityData = findTypeMetrics(performance, 4);
 
   const metrics: MetricItem[] =
     mobilityData?.metrics!.map((m, i) => ({
@@ -107,7 +107,7 @@ export default function EsgMobilitySection({
         .replace(/\./g, "")
         .replace(/\s+/g, "-")}
       ref={sectionRef}
-      className="w-full relative min-h-[600px] flex flex-col justify-between py-16 md:py-24 overflow-hidden "
+      className="w-full relative min-h-[600px] flex flex-col justify-between py-16 md:py-24 overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
         <Image
@@ -116,6 +116,7 @@ export default function EsgMobilitySection({
           fill
           className="object-cover object-center"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/100 to-black/20" />
       </div>
 
       <div className="max-w-[1540px] w-full mx-auto px-6 md:px-10 lg:px-12 relative z-10 flex-1 flex flex-col justify-between">

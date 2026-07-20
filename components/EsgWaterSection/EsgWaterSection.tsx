@@ -70,7 +70,7 @@ export default function EsgWaterSection({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const waterData = findTypeMetrics(performance, "water");
+  const waterData = findTypeMetrics(performance, 1);
 
   const metrics: MetricItem[] =
     waterData?.metrics!.map((m, i) => ({

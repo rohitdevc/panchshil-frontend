@@ -14,7 +14,7 @@ export default function EsgIndoorAirSection({
 }: {
   performance?: EsgPerformanceApiItem[];
 }) {
-  const indoorAirData = findTypeMetrics(performance, "indoor air");
+  const indoorAirData = findTypeMetrics(performance, 3);
 
   const metrics: MetricItem[] =
     indoorAirData?.metrics!.map((m, i) => ({
