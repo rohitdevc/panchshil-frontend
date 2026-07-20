@@ -33,7 +33,7 @@ export default function EsgOverviewSection({
         {/* Section Header */}
         <div className="w-full mb-10 md:mb-14">
           <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-            - 01 / OVERVIEW
+            — 01 / OVERVIEW
           </span>
 
           {introduction?.intro_heading && (

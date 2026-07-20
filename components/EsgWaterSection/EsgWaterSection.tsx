@@ -171,7 +171,7 @@ export default function EsgWaterSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 md:mb-10">
           <div className="lg:col-span-6 flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-              - 02 / {waterData?.performance_tagline}
+              — 02 / {waterData?.performance_tagline}
             </span>
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">
               Water.

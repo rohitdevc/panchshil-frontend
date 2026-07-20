@@ -313,7 +313,7 @@ export default function EsgCertificationsSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-5">
           <div className="lg:col-span-6 flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-              - 06 / {certificationData?.performance_tagline || ""}
+              — 06 / {certificationData?.performance_tagline || ""}
             </span>
 
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">

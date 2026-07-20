@@ -112,7 +112,7 @@ export default function EsgWasteSection({
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 md:mb-14">
           <div className="flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-              - 03 / {wasteData?.performance_tagline || ""}
+              — 03 / {wasteData?.performance_tagline || ""}
             </span>
 
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">
