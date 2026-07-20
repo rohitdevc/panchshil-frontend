@@ -131,7 +131,7 @@ export default function EsgHero({
         <div className="w-full mb-12">
           {/* Badge */}
           <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-4 animate-fade-in-up">
-            — ESG AT PANCHSHIL
+            - ESG AT PANCHSHIL
           </span>
 
           {/* Heading */}
@@ -167,7 +167,7 @@ export default function EsgHero({
                 </div>
                 <div className="flex flex-col mt-4">
                   {card.unit && (
-                    <span className="text-[10px] md:text-[11px] font-semibold tracking-wider text-[#7F847E] font-sans uppercase">
+                    <span className="text-[10px] md:text-[11px] font-semibold tracking-wider text-[#7F847E] font-sans">
                       {card.unit}
                     </span>
                   )}
@@ -199,7 +199,7 @@ export default function EsgHero({
                     </span>
                   )}
                   {item.ticker_count_config && (
-                    <span className="text-[10px] md:text-xs  text-[#7F847E] tracking-wide uppercase select-none align-baseline">
+                    <span className="text-[10px] md:text-xs  text-[#7F847E] tracking-wide select-none align-baseline">
                       {item.ticker_count_config}
                     </span>
                   )}

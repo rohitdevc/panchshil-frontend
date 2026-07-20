@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useCountUp } from "@/hooks/useCountUp";
 import {
   EsgPerformanceApiItem,
+  EsgSafetyGovernanceCategoryApiItem,
   EsgSafetyGovernanceApiItem,
 } from "@/interfaces";
 import { findTypeMetrics } from "@/utils/utils";
@@ -22,10 +23,21 @@ interface SubGridItem {
   desc: string;
 }
 
-interface AccordionItem {
+interface SubGridItem {
+  value: string;
+  label: string;
+  desc: string;
+}
+
+interface SafetyData {
   title: string;
   subtitle: string;
   subGrid?: SubGridItem[];
+}
+
+interface AccordionItem {
+  categoryName: string;
+  safetyData: SafetyData[];
 }
 
 interface MetricItem {
@@ -36,7 +48,7 @@ interface MetricItem {
 }
 
 type Props = {
-  safetyGovernance?: EsgSafetyGovernanceApiItem[];
+  safetyGovernance?: EsgSafetyGovernanceCategoryApiItem[];
   performance?: EsgPerformanceApiItem[];
 };
 
@@ -136,7 +148,7 @@ const PortfolioCoverage = ({ data }: { data: typeof defaultPortfolioData }) => {
     <section className=" py-10 border-t border-[#E2DFD7]/80">
       <div className="mx-auto ">
         <p className="mb-10 text-xs uppercase tracking-[0.45em] text-[#40a937]">
-          Portfolio Coverage — Assets
+          Portfolio Coverage - Assets
         </p>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -192,21 +204,27 @@ export default function EsgCertificationsSection({
 
   const acData: AccordionItem[] =
     safetyGovernance && safetyGovernance.length > 0
-      ? safetyGovernance.map((item) => ({
-          title: item.safety_and_governance_title || "",
-          subtitle: item.safety_and_governance_caption || "",
-          subGrid: (item.metrics || []).map((m) => ({
-            value: m.metric_value || "",
-            label: m.metric_caption || "",
-            desc: m.metric_description || "",
+      ? safetyGovernance.map((categoryData) => ({
+          categoryName: categoryData.safety_and_governance_category_title,
+          safetyData: categoryData.safety_and_governances.map((item) => ({
+            title: item.safety_and_governance_title || "",
+            subtitle: item.safety_and_governance_caption || "",
+            subGrid: (item.metrics || []).map((m) => ({
+              value: m.metric_value || "",
+              label: m.metric_caption || "",
+              desc: m.metric_description || "",
+            })),
           })),
         }))
       : [];
 
-  const isoAssets = safetyGovernance?.find(
-    (item) =>
-      item.safety_and_governance_title === "ISO Integrated Management Systems"
-  )?.assets;
+  const isoAssets = safetyGovernance
+    ?.flatMap((category) => category.safety_and_governances ?? [])
+    .find(
+      (item) =>
+        item.safety_and_governance_title === "ISO Integrated Management Systems"
+    )?.assets;
+
   const pfData: typeof defaultPortfolioData =
     isoAssets && isoAssets.length > 0
       ? isoAssets.map((a) => ({
@@ -232,11 +250,54 @@ export default function EsgCertificationsSection({
     return () => observer.disconnect();
   }, []);
 
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [expandedIndex, setExpandedIndex] = useState<string | null>("");
 
-  const toggleAccordion = (index: number) => {
+  const toggleAccordion = (index: string) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+
+  function numberToAlphabet(index: number) {
+    let result = "";
+
+    do {
+      result = String.fromCharCode((index % 26) + 65) + result;
+      index = Math.floor(index / 26) - 1;
+    } while (index >= 0);
+
+    return result;
+  }
+
+  function numberToRoman(index: number): string {
+    const num = index + 1;
+
+    const romanMap = [
+      { value: 1000, numeral: "M" },
+      { value: 900, numeral: "CM" },
+      { value: 500, numeral: "D" },
+      { value: 400, numeral: "CD" },
+      { value: 100, numeral: "C" },
+      { value: 90, numeral: "XC" },
+      { value: 50, numeral: "L" },
+      { value: 40, numeral: "XL" },
+      { value: 10, numeral: "X" },
+      { value: 9, numeral: "IX" },
+      { value: 5, numeral: "V" },
+      { value: 4, numeral: "IV" },
+      { value: 1, numeral: "I" },
+    ];
+
+    let result = "";
+    let remaining = num;
+
+    for (const { value, numeral } of romanMap) {
+      while (remaining >= value) {
+        result += numeral;
+        remaining -= value;
+      }
+    }
+
+    return result;
+  }
 
   return (
     <section
@@ -252,7 +313,7 @@ export default function EsgCertificationsSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-5">
           <div className="lg:col-span-6 flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-              — 06 / {certificationData?.performance_tagline || ""}
+              - 06 / {certificationData?.performance_tagline || ""}
             </span>
 
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">
@@ -290,7 +351,7 @@ export default function EsgCertificationsSection({
                       <AnimatedMetric value={item.value} isActive={isInView} />
                     </span>
                     {item.unit && (
-                      <span className="font-display text-[10px] md:text-xs font-normal text-[#7F847E] font-sans ml-1.5 tracking-wide uppercase align-baseline">
+                      <span className="font-display text-[10px] md:text-xs font-normal text-[#7F847E] font-sans ml-1.5 tracking-wide align-baseline">
                         {item.unit}
                       </span>
                     )}
@@ -309,79 +370,99 @@ export default function EsgCertificationsSection({
 
         <div id="safety-governance" className="w-full scroll-mt-24">
           <div className="w-full flex flex-col border-t border-[#E2DFD7]/80">
-            {acData.map((item, index) => {
-              const isExpanded = expandedIndex === index;
-              return (
-                <div key={index} className="border-b border-[#E2DFD7]/80">
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    className="cursor-pointer w-full py-6 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between text-left group transition-colors duration-200"
-                  >
-                    <span className="font-display text-lg md:text-[22px] font-medium text-[#1F180D]  transition-colors leading-tight">
-                      {item.title}
-                    </span>
+            {acData.map((categoryData, categoryIndex) => (
+              <>
+                <span
+                  className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight uppercase py-10 border-b border-[#E2DFD7]/80"
+                  key={categoryIndex}
+                >
+                  {numberToRoman(categoryIndex)}. {categoryData.categoryName}
+                </span>
+                {categoryData.safetyData &&
+                  categoryData.safetyData.length > 0 &&
+                  categoryData.safetyData.map((item, index) => {
+                    const isExpanded =
+                      expandedIndex === `${categoryIndex}-${index}`;
 
-                    <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
-                      <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans uppercase">
-                        {item.subtitle}
-                      </span>
-                      <svg
-                        className={`w-4 h-4 text-[#7F847E]  transition-transform duration-300 transform ${
-                          isExpanded ? "rotate-180" : ""
-                        }`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </button>
+                    return (
+                      <div key={index} className="border-b border-[#E2DFD7]/80">
+                        <button
+                          onClick={() =>
+                            toggleAccordion(`${categoryIndex}-${index}`)
+                          }
+                          className="cursor-pointer w-full py-6 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between text-left group transition-colors duration-200"
+                        >
+                          <span className="font-display text-lg md:text-[22px] font-medium text-[#1F180D]  transition-colors leading-tight">
+                            <span className="uppercase">
+                              {numberToAlphabet(index)}.{" "}
+                            </span>
+                            {item.title}
+                          </span>
 
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isExpanded
-                        ? "max-h-auto opacity-100 pb-10"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    {item.subGrid && (
-                      <>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-                          {item.subGrid.map((sub, sIdx) => (
-                            <div
-                              key={sIdx}
-                              className="flex flex-col border-t border-[#E2DFD7]/80 pt-8 p-6 transition-all duration-300  group"
+                          <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
+                            <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans">
+                              {item.subtitle}
+                            </span>
+                            <svg
+                              className={`w-4 h-4 text-[#7F847E]  transition-transform duration-300 transform ${
+                                isExpanded ? "rotate-180" : ""
+                              }`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
                             >
-                              <span className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight">
-                                <AnimatedMetric
-                                  value={sub.value}
-                                  isActive={isInView}
-                                />
-                              </span>
-                              <span className="text-[10px] md:text-[11px] font-normal text-[#40A937] tracking-wider font-sans mt-2 block">
-                                {sub.label}
-                              </span>
-                              <p className="font-sans text-xs text-[#626A70] mt-2 leading-relaxed font-light">
-                                {sub.desc}
-                              </p>
-                            </div>
-                          ))}
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                        </button>
+
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                            isExpanded
+                              ? "max-h-auto opacity-100 pb-10"
+                              : "max-h-0 opacity-0"
+                          }`}
+                        >
+                          {item.subGrid && (
+                            <>
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                                {item.subGrid.map((sub, sIdx) => (
+                                  <div
+                                    key={sIdx}
+                                    className="flex flex-col border-t border-[#E2DFD7]/80 pt-8 p-6 transition-all duration-300  group"
+                                  >
+                                    <span className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight">
+                                      <AnimatedMetric
+                                        value={sub.value}
+                                        isActive={isInView}
+                                      />
+                                    </span>
+                                    <span className="text-[10px] md:text-[11px] font-normal text-[#40A937] tracking-wider font-sans mt-2 block">
+                                      {sub.label}
+                                    </span>
+                                    <p className="font-sans text-xs text-[#626A70] mt-2 leading-relaxed font-light">
+                                      {sub.desc}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                              {item.title ===
+                                "ISO Integrated Management Systems" && (
+                                <PortfolioCoverage data={pfData} />
+                              )}
+                            </>
+                          )}
                         </div>
-                        {item.title === "ISO Integrated Management Systems" && (
-                          <PortfolioCoverage data={pfData} />
-                        )}
-                      </>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+                      </div>
+                    );
+                  })}
+              </>
+            ))}
           </div>
         </div>
       </div>

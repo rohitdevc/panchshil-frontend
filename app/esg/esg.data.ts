@@ -5,7 +5,7 @@ import {
   EsgPerformanceApiItem,
   EsgReportApiItem,
   EsgReportsIntroApiResponse,
-  EsgSafetyGovernanceApiItem,
+  EsgSafetyGovernanceCategoryApiItem,
   EsgTickerApiItem,
   MetaDataProps,
 } from "@/interfaces";
@@ -101,7 +101,7 @@ export type EsgPageData = {
   ticker: EsgTickerApiItem[] | [];
   introduction: EsgIntroductionApiResponse | null;
   performance: EsgPerformanceApiItem[];
-  safetyGovernance: EsgSafetyGovernanceApiItem[];
+  safetyGovernance: EsgSafetyGovernanceCategoryApiItem[];
   reportsIntro: EsgReportsIntroApiResponse | object | null;
   reportsList: EsgReportApiItem[] | [];
 };
@@ -182,7 +182,7 @@ export const esgAccordion: EsgAccordionContent = {
   heading: "ESG PILLARS",
   title: "OUR SUSTAINABILITY FOCUS",
   description:
-    "Our sustainability approach spans energy, water, waste and procurement—ensuring every aspect of our operations contributes to a better future.",
+    "Our sustainability approach spans energy, water, waste and procurement-ensuring every aspect of our operations contributes to a better future.",
   defaultOpen: 1,
   items: [
     {

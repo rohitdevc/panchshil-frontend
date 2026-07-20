@@ -867,6 +867,11 @@ export type EsgSafetyGovernanceApiItem = {
   safety_and_governance_caption?: string;
 };
 
+export type EsgSafetyGovernanceCategoryApiItem = {
+  safety_and_governance_category_title: string;
+  safety_and_governances: EsgSafetyGovernanceApiItem[];
+};
+
 export type EsgTickerApiItem = {
   ticker_count?: string;
   ticker_caption?: string;

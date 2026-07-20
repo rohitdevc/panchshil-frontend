@@ -42,7 +42,7 @@ export const servicesSections: PropertyDefiningFeaturesSectionType[] = [
   {
     property_defining_features_caption: "DEVELOPMENT MANAGEMENT SERVICE",
     property_defining_features_description:
-      "We oversee the full development lifecycle—aligning design intent, cost planning, construction strategy and delivery to ensure every project reflects Panchshil’s long term vision and standards.",
+      "We oversee the full development lifecycle-aligning design intent, cost planning, construction strategy and delivery to ensure every project reflects Panchshil’s long term vision and standards.",
     property_defining_features_subcaption: "OUR CAPABILITIES INCLUDE",
     property_defining_features_layout: "imageLeft",
     property_defining_features_thumbnail:
@@ -153,7 +153,7 @@ export const servicesSections: PropertyDefiningFeaturesSectionType[] = [
   {
     property_defining_features_caption: "RESIDENTIAL LEASING AND RESALE",
     property_defining_features_description:
-      "Support throughout the ownership journey—from leasing assistance to resale guidance, documentation handling and onboarding.",
+      "Support throughout the ownership journey-from leasing assistance to resale guidance, documentation handling and onboarding.",
     property_defining_features_subcaption: "OUR CAPABILITIES INCLUDE",
     property_defining_features_layout: "imageLeft",
     property_defining_features_thumbnail:

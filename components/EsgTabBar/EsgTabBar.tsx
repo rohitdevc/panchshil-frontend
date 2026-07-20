@@ -21,10 +21,6 @@ const createTabs = (tabsData: EsgPerformanceApiItem[] = []): TabItem[] => [
       .replace(/\s+/g, "-"),
     label: item?.performance_title.replace(/\./g, "").toUpperCase(),
   })),
-  {
-    id: "safety-governance",
-    label: "SAFETY & GOVERNANCE",
-  },
 ];
 
 export default function EsgTabBar({

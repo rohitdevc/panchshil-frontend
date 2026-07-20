@@ -18,7 +18,7 @@ import {
   EsgPerformanceApiItem,
   EsgReportApiItem,
   EsgReportsIntroApiResponse,
-  EsgSafetyGovernanceApiItem,
+  EsgSafetyGovernanceCategoryApiItem,
   EsgTickerApiItem,
   MetaDataProps,
 } from "@/interfaces";
@@ -69,7 +69,7 @@ export default async function EsgPage() {
   let esgTicker: EsgTickerApiItem[] = [];
   let esgIntroduction: EsgIntroductionApiResponse | null = null;
   let esgPerformance: EsgPerformanceApiItem[] = [];
-  let esgSafetyGovernance: EsgSafetyGovernanceApiItem[] = [];
+  let esgSafetyGovernance: EsgSafetyGovernanceCategoryApiItem[] = [];
   let esgReportsIntro: EsgReportsIntroApiResponse | null = null;
   let esgReportsList: EsgReportApiItem[] = [];
 
@@ -109,7 +109,7 @@ export default async function EsgPage() {
 
   try {
     const response =
-      (await getEsgSafetyGovernance()) as EsgSafetyGovernanceApiItem[];
+      (await getEsgSafetyGovernance()) as EsgSafetyGovernanceCategoryApiItem[];
     esgSafetyGovernance = Array.isArray(response) ? response : [];
   } catch (error) {
     console.error("Error fetching ESG safety & governance:", error);

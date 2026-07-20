@@ -45,7 +45,7 @@ export default function EsgReportsSection({
               {/* Right Side: Text */}
               <div className="lg:col-span-7 flex flex-col">
                 <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-                  — {reportsIntro?.reports_heading || ""}
+                  - {reportsIntro?.reports_heading || ""}
                 </span>
 
                 <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">

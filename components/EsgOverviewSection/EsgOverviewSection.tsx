@@ -33,7 +33,7 @@ export default function EsgOverviewSection({
         {/* Section Header */}
         <div className="w-full mb-10 md:mb-14">
           <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-            — 01 / OVERVIEW
+            - 01 / OVERVIEW
           </span>
 
           {introduction?.intro_heading && (
@@ -79,7 +79,7 @@ export default function EsgOverviewSection({
 
                 {/* Description */}
                 <p className="font-sans text-xs md:text-[13px] lg:text-sm text-gray-600 mt-3 leading-relaxed transition-colors duration-300 group-hover:text-white/80 font-light">
-                  {item.performance_description}
+                  {item.performance_short_desc}
                 </p>
               </div>
 

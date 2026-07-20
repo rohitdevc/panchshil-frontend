@@ -308,7 +308,7 @@ function PropertyListInner({
   );
   const isDarkMode = isAllowedPage ? theme === "night" : false;
 
-  // Filter state management — initial cities from `?property-country=` when present
+  // Filter state management - initial cities from `?property-country=` when present
   const [selectedLocation, setSelectedLocation] = useState<string[]>(() =>
     propertyCountryKeys.length === 0
       ? []
@@ -347,7 +347,7 @@ function PropertyListInner({
     };
   }, [footerRef]);
 
-  // URL-driven country keys can resolve after hydration; grouped cities API can normalize late — sync selection once keys + data can produce a list.
+  // URL-driven country keys can resolve after hydration; grouped cities API can normalize late - sync selection once keys + data can produce a list.
   useEffect(() => {
     const cities = resolveCitiesForPropertyCountries(
       propertyCities,

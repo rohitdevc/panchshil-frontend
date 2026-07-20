@@ -128,7 +128,7 @@ export const mediaPageDummyData: MediaPageData = {
     heading:
       "The Preferred Real Estate Consultants (MEDIA) network is a community of trusted real estate professionals who work closely with Panchshil to support clients across their residential and commercial requirements.",
     paragraphs: [
-      "With a growing base of over 800 registered consultants across India and international markets, the MEDIA program enables seamless access to Panchshil properties and real estate support services. MEDIA members bring expertise, market understanding and professionalism to every interaction. Their role is not just transactional—they serve as informed advisors who help clients evaluate opportunities and make confident, long-term decisions. Through transparent processes, structured support and consistent communication the MEDIA network ensures customers receive a smooth and dependable experience from first enquiry to closing.",
+      "With a growing base of over 800 registered consultants across India and international markets, the MEDIA program enables seamless access to Panchshil properties and real estate support services. MEDIA members bring expertise, market understanding and professionalism to every interaction. Their role is not just transactional-they serve as informed advisors who help clients evaluate opportunities and make confident, long-term decisions. Through transparent processes, structured support and consistent communication the MEDIA network ensures customers receive a smooth and dependable experience from first enquiry to closing.",
       "Panchshil is committed to strengthening this partnership ecosystem and creating meaningful opportunities for consultants and their clients. Becoming a part of MEDIA network offers distinct advantages and access to exclusive resources.",
     ],
     imageSrc: "/assets/images/media-community.png",
@@ -220,7 +220,7 @@ export const mediaPageDummyData: MediaPageData = {
         name: "Consultant A",
         role: "Residential Advisory",
         quote:
-          "The updates are consistent and the coordination is quick—it helps us focus on clients instead of follow-ups.",
+          "The updates are consistent and the coordination is quick-it helps us focus on clients instead of follow-ups.",
       },
       {
         name: "Consultant B",

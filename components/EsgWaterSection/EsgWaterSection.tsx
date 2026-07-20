@@ -171,7 +171,7 @@ export default function EsgWaterSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 md:mb-10">
           <div className="lg:col-span-6 flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-              — 01 / {waterData?.performance_tagline}
+              - 02 / {waterData?.performance_tagline}
             </span>
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">
               Water.
@@ -263,7 +263,7 @@ export default function EsgWaterSection({
                     <AnimatedMetric value={item.value} isActive={isInView} />
                   </span>
                   {item.unit && (
-                    <span className="font-display text-[10px] md:text-xs font-normal text-[#7F847E] font-sans ml-1.5 tracking-wide uppercase align-baseline">
+                    <span className="font-display text-[10px] md:text-xs font-normal text-[#7F847E] font-sans ml-1.5 tracking-wide align-baseline">
                       {item.unit}
                     </span>
                   )}

@@ -122,7 +122,7 @@ export default function EsgMobilitySection({
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 md:mb-20">
           <div className="flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
-              — 05 / {mobilityData?.performance_tagline || ""}
+              - 05 / {mobilityData?.performance_tagline || ""}
             </span>
 
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-white leading-[1.1] tracking-tight font-medium">
@@ -159,7 +159,7 @@ export default function EsgMobilitySection({
                     )}
                   </span>
                   {item.unit && (
-                    <span className="text-[10px] md:text-xs font-semibold text-white/50 font-sans ml-1.5 tracking-wide uppercase align-baseline transition-colors duration-300 group-hover:text-white/75">
+                    <span className="text-[10px] md:text-xs font-semibold text-white/50 font-sans ml-1.5 tracking-wide align-baseline transition-colors duration-300 group-hover:text-white/75">
                       {item.unit}
                     </span>
                   )}
