@@ -1,7 +1,7 @@
 "use client";
 
 import { EsgPerformanceApiItem } from "@/interfaces";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface TabItem {
   id: string;
@@ -28,19 +28,21 @@ export default function EsgTabBar({
 }: {
   performance?: EsgPerformanceApiItem[];
 }) {
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
   const [activeTab, setActiveTab] = useState<string>("overview");
   const tabs = createTabs(performance ?? []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const headerOffset = 240; // Scrolled header (158px) + tab bar (~60px) + margin
+      const headerOffset = 240;
       let currentActive = "overview";
 
       for (const tab of tabs) {
         const el = document.getElementById(tab.id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          // If the element's top is scrolled past our trigger line
+
           if (rect.top <= headerOffset + 20) {
             currentActive = tab.id;
           }
@@ -50,13 +52,25 @@ export default function EsgTabBar({
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Trigger once on mount to set initial active tab
+
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const activeButton = tabRefs.current[activeTab];
+
+    if (activeButton) {
+      activeButton.scrollIntoView({
+        behavior: "smooth",
+        inline: "center", // centers horizontally
+        block: "nearest",
+      });
+    }
+  }, [activeTab]);
 
   const handleTabClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -82,12 +96,11 @@ export default function EsgTabBar({
           return (
             <button
               key={tab.id}
+              ref={(el) => {
+                if (el) tabRefs.current[tab.id] = el;
+              }}
               onClick={(e) => handleTabClick(e, tab.id)}
-              className={`text-[10px] md:text-xs tracking-widest font-semibold font-sans uppercase transition-all duration-300 whitespace-nowrap cursor-pointer ${
-                isActive
-                  ? "bg-[#0C190E] border-2 border-[#B2D5AE] text-white px-5 py-2 rounded-full"
-                  : "text-[#7F847E] hover:text-black px-4 py-2 border-2 border-transparent"
-              }`}
+              className={`text-[10px] md:text-xs tracking-widest font-semibold font-sans uppercase transition-all duration-300 whitespace-nowrap cursor-pointer ${isActive ? "bg-[#0C190E] border-2 border-[#B2D5AE] text-white px-5 py-2 rounded-full" : "text-[#7F847E] hover:text-black px-4 py-2 border-2 border-transparent"}`}
             >
               {tab.label}
             </button>
