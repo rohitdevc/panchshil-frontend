@@ -58,24 +58,18 @@ const DevelopmentForYou = ({
           }`}
         >
           <div
-            className={`text-lg uppercase font-medium tracking-[0.2em] text-gold-beige mb-2 
-            ${theme === "day" ? "text-gold-beige" : "text-white"}
-            `}
+            className={`text-lg uppercase font-medium tracking-[0.2em] text-gold-beige mb-2`}
           >
             {title}
           </div>
           <h2
-            className={`text-2xl uppercase md:text-[28px] font-display-semi transition-colors ${
-              theme === "day" ? "text-black" : "text-white"
-            }`}
+            className={`text-2xl uppercase md:text-[28px] font-display-semi transition-colors text-black`}
           >
             {subtitle}
           </h2>
           {description && (
             <p
-              className={`mt-4 text-sm md:text-base max-w-[800px] mx-auto leading-relaxed ${
-                theme === "day" ? "text-black/80" : "text-white/80"
-              }`}
+              className={`mt-4 text-sm md:text-base max-w-[800px] mx-auto leading-relaxed text-black/80`}
             >
               {description}
             </p>
