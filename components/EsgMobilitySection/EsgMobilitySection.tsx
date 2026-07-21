@@ -116,7 +116,7 @@ export default function EsgMobilitySection({
           fill
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/100 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C190E] to-[#0B190E]/70" />
       </div>
 
       <div className="max-w-[1540px] w-full mx-auto px-6 md:px-10 lg:px-12 relative z-10 flex-1 flex flex-col justify-between">

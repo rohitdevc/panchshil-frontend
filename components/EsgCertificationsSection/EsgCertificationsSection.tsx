@@ -371,7 +371,7 @@ export default function EsgCertificationsSection({
         <div id="safety-governance" className="w-full scroll-mt-24">
           <div className="w-full flex flex-col border-t border-[#E2DFD7]/80">
             {acData.map((categoryData, categoryIndex) => (
-              <>
+              <React.Fragment key={categoryIndex}>
                 <span
                   className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight uppercase py-10 border-b border-[#E2DFD7]/80"
                   key={categoryIndex}
@@ -461,7 +461,7 @@ export default function EsgCertificationsSection({
                       </div>
                     );
                   })}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
