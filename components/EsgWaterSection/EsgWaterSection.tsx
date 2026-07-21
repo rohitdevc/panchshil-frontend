@@ -256,7 +256,7 @@ export default function EsgWaterSection({
           {metrics.map((item, index) => (
             <div key={index} className="bg-[#ddd]">
               <div
-                className={`px-6 py-8 min-h-[150px] flex flex-col justify-center bg-white transition-all duration-300 hover:bg-[#f8f5ee] hover:-translate-y-[3px] group ${item.borderClass}`}
+                className={`px-6 py-8 min-h-[175px] flex flex-col justify-center bg-white transition-all duration-300 hover:bg-[#f8f5ee] hover:-translate-y-[3px] group ${item.borderClass}`}
               >
                 <div>
                   <span className="font-display text-3xl md:text-[40px] lg:text-[44px] font-normal text-[#1F180D] leading-none tracking-tight">
