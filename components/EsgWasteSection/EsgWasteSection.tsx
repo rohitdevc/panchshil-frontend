@@ -109,7 +109,7 @@ export default function EsgWasteSection({
       className="w-full bg-[#F8F5EE] py-16 md:py-24 border-t border-[#E2DFD7]/30 transition-colors duration-300"
     >
       <div className="max-w-[1540px] mx-auto px-6 md:px-10 lg:px-12">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 md:mb-14">
+        <div className="flex flex-col md:flex-row mb-7">
           <div className="flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
               — 03 / {wasteData?.performance_tagline || ""}
@@ -118,10 +118,7 @@ export default function EsgWasteSection({
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-[#1F180D] leading-[1.1] tracking-tight font-medium">
               {wasteData?.performance_title || ""}
             </h2>
-          </div>
-
-          <div className="mt-4 md:mt-0">
-            <p className="text-sm md:text-base text-gray-600 font-sans font-light tracking-wide md:text-right">
+            <p className="text-sm md:text-base text-gray-600 font-sans font-light tracking-wide">
               {wasteData?.performance_description || ""}
             </p>
           </div>

@@ -66,7 +66,7 @@ export default function EsgTabBar({
     if (activeButton) {
       activeButton.scrollIntoView({
         behavior: "smooth",
-        inline: "center", // centers horizontally
+        inline: "center",
         block: "nearest",
       });
     }

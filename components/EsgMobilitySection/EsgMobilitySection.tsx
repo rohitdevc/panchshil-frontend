@@ -120,7 +120,7 @@ export default function EsgMobilitySection({
       </div>
 
       <div className="max-w-[1540px] w-full mx-auto px-6 md:px-10 lg:px-12 relative z-10 flex-1 flex flex-col justify-between">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row mb-5">
           <div className="flex flex-col">
             <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
               — 05 / {mobilityData?.performance_tagline || ""}
@@ -129,10 +129,8 @@ export default function EsgMobilitySection({
             <h2 className="text-3xl md:text-5xl lg:text-[56px] font-display text-white leading-[1.1] tracking-tight font-medium">
               {mobilityData?.performance_title || ""}
             </h2>
-          </div>
 
-          <div className="mt-4 md:mt-0">
-            <p className="text-sm md:text-base text-white/70 font-sans font-light tracking-wide md:text-right">
+            <p className="text-sm md:text-base text-white/70 font-sans font-light tracking-wide">
               {mobilityData?.performance_description || ""}
             </p>
           </div>
