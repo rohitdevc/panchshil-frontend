@@ -78,13 +78,14 @@ const contactLocations: ContactLocation[] = [
     lng: 72.8219189681855,
     zoom: 15,
   },
+  /*
   {
     id: "international",
     title: "International",
     lat: 25.2272699023725,
     lng: 55.291459563842864,
     zoom: 12,
-  },
+  }, */
 ];
 
 export default function ContactUsPageClient({

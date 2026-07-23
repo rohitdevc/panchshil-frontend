@@ -243,6 +243,14 @@ export const getAwards = () => {
   return doGet(API_CONSTANTS.AWARDS);
 };
 
+export const getFeaturedMedia = () => {
+  return doGet(API_CONSTANTS.MEDIA_FEATURED);
+};
+
+export const getMedia = () => {
+  return doGet(API_CONSTANTS.MEDIA);
+};
+
 export const getAwardsAPI = (baseUrl?: string) => {
   const apiUrl = baseUrl
     ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.AWARDS_API}`

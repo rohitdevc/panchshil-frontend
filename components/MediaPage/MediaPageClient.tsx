@@ -6,7 +6,6 @@ import { CareerHero } from "@/components/CareerHero";
 import { MediaPageData } from "@/app/media/media-page.data";
 import MediaFeaturedArticles from "./MediaFeaturedArticles";
 import MediaInsightSection from "./MediaInsightSection";
-import MediaNewsletter from "./MediaNewsletter";
 
 type MediaPageClientProps = {
   data: MediaPageData;
@@ -21,19 +20,11 @@ export default function MediaPageClient({ data }: MediaPageClientProps) {
         <CareerHero hero={data.hero} />
       </section>
 
-      <MediaFeaturedArticles content={data.featuredArticles} />
-
-      {/* Newsletter Section */}
-      <MediaNewsletter />
+      <MediaFeaturedArticles content={data.featuredArticle} />
 
       {/* Solution Insights Section */}
-      <MediaInsightSection content={data.solutionInsights} bgColor="bg-white" />
 
-      {/* Industry Features Section */}
-      <MediaInsightSection
-        content={data.industryFeatures}
-        bgColor="bg-[#FFFAF7]"
-      />
+      <MediaInsightSection content={data.media} />
       <div className="h-10 w-full bg-white"></div>
       <Footer />
     </main>

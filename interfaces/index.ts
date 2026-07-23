@@ -898,3 +898,11 @@ export type BlogProp = {
   blog_published_date: string;
   blog_url: string;
 };
+
+export type MediaProp = {
+  media_title: string;
+  media_publisher: string;
+  media_thumbnail: string;
+  media_published_date: string;
+  media_url: string;
+};

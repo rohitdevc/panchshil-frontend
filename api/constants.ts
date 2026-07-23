@@ -87,6 +87,8 @@ const API_CONSTANTS = {
   SERVICES: `/services`,
   BLOG_FEATURED: `/blog/featured`,
   BLOG: `/blog`,
+  MEDIA_FEATURED: `/media/featured`,
+  MEDIA: `/media`,
 };
 
 // Pagination constants
