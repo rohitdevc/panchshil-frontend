@@ -1,6 +1,5 @@
 import { FeaturedArticle } from "@/app/media/media-page.data";
 import MediaArticleCard from "./MediaArticleCard";
-import MediaLargeArticleCard from "./MediaLargeArticleCard";
 
 type MediaInsightSectionProps = {
   content: FeaturedArticle[];
