@@ -163,7 +163,7 @@ export const aboutUsPageDummyData: AboutUsPageDummyData = {
     },
   ],
   visibleImpact: {
-    title: "BUILDING LANDMARKS, REDEFINING LIFESTYLE",
+    title: "",
     description: (
       <div className="flex flex-col gap-4">
         <p>

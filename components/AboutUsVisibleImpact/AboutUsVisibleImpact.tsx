@@ -12,9 +12,11 @@ export default function AboutUsVisibleImpact({
     <section className="bg-white py-14 md:py-20">
       <div className="max-w-[1320px] mx-auto px-6 md:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
-          <h2 className="text-2xl md:text-[28px] font-display-semi text-black pb-5">
-            {content.title}
-          </h2>
+          {content.title && (
+            <h2 className="text-2xl md:text-[28px] font-display-semi text-black pb-5">
+              {content.title}
+            </h2>
+          )}
 
           <div className="text-sm md:text-base text-black/80 leading-relaxed max-w-[640px]">
             {content.description}
