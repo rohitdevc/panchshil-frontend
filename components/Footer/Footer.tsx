@@ -100,7 +100,7 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
       }`}
     >
       {/* Row 1: Offices & Sales */}
-      <div className="max-w-[1200px] mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-[1200px] mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {contactDetails.map((contact) => (
           <div key={contact.contact_title}>
             <div
