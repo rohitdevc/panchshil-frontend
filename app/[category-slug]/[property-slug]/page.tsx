@@ -57,6 +57,27 @@ export async function generateMetadata({
       alternates: detail?.meta_data?.canonical_tag
         ? { canonical: detail.meta_data.canonical_tag }
         : undefined,
+      openGraph: {
+        title: detail.meta_data?.meta_title,
+        description: detail.meta_data?.meta_description,
+        type: "website",
+        url: detail.meta_data?.canonical_tag,
+        siteName: "Panchshil Realty",
+        images: [
+          {
+            url: detail?.meta_data?.og_image || "",
+            width: 1200,
+            height: 630,
+            alt: detail.meta_data?.meta_title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: detail.meta_data?.meta_title,
+        description: detail.meta_data?.meta_description,
+        images: [detail?.meta_data?.og_image || ""],
+      },
     };
   } catch (error) {
     console.error("Error fetching property detail for metadata:", error);

@@ -45,12 +45,35 @@ async function getPageMetaData(): Promise<MetaDataProps | null> {
 
 export async function generateMetadata(): Promise<Metadata> {
   const metaData = await getPageMetaData();
+  const banner = (await getBanner("Home")) as BannersProps;
+
   return {
     title: metaData?.meta_title || "",
     description: metaData?.meta_description || "",
     keywords: metaData?.meta_keywords || "",
     alternates: {
       canonical: metaData?.canonical_tag || "",
+    },
+    openGraph: {
+      title: metaData?.meta_title,
+      description: metaData?.meta_description,
+      type: "website",
+      url: metaData?.canonical_tag,
+      siteName: "Panchshil Realty",
+      images: [
+        {
+          url: banner.og_image,
+          width: 1200,
+          height: 630,
+          alt: metaData?.meta_title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaData?.meta_title,
+      description: metaData?.meta_description,
+      images: [banner.og_image],
     },
   };
 }
@@ -88,7 +111,6 @@ export default async function Home() {
     footerBlocks,
   ] = await Promise.allSettled(apiCalls);
 
-  // Extract data from settled promises with type assertions
   const data = {
     metaData:
       metaData.status === "fulfilled"

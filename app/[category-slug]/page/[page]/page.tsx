@@ -65,6 +65,27 @@ export async function generateMetadata({
     alternates: propertyCategory?.canonical_tag
       ? { canonical: propertyCategory.canonical_tag }
       : undefined,
+    openGraph: {
+      title: propertyCategory?.meta_title,
+      description: propertyCategory?.meta_description,
+      type: "website",
+      url: propertyCategory?.canonical_tag,
+      siteName: "Panchshil Realty",
+      images: [
+        {
+          url: propertyCategory?.og_image || "",
+          width: 1200,
+          height: 630,
+          alt: propertyCategory?.meta_title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: propertyCategory?.meta_title,
+      description: propertyCategory?.meta_description,
+      images: [propertyCategory?.og_image || ""],
+    },
   };
 }
 

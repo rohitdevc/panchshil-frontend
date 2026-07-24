@@ -153,6 +153,7 @@ export type NavigationMenuProps = {
 };
 
 export type BannersProps = {
+  og_image: string;
   banner_image: string;
   banner_image_caption: string;
   banner_image_description: string;
@@ -340,7 +341,7 @@ export interface PropertyCategoryProps {
   meta_description: string;
   meta_title: string;
   property_category_title: string;
-  property_category_og_image: string;
+  og_image: string;
   banner_image: string;
   canonical_tag: string;
   property_category_milestones: PropertyCategoryMilestonesProps[];
@@ -458,7 +459,7 @@ export interface PropertyCategoryProps {
   meta_description: string;
   meta_title: string;
   property_category_title: string;
-  property_category_og_image: string;
+  og_image: string;
   banner_image: string;
   canonical_tag: string;
   property_category_milestones: PropertyCategoryMilestonesProps[];
@@ -546,6 +547,7 @@ export type PropertyDetailResponse = {
     meta_title: string;
     meta_description: string;
     canonical_tag: string;
+    og_image: string;
   };
   property_band?: {
     property_location: string;
