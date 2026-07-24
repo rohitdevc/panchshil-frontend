@@ -101,7 +101,6 @@ const doCall = async (
           message = `Request: ${uri} ${response.statusText}`;
         }
 
-        // Preserve the full response including errors array
         throw new ApiException(message, response.status, {
           ...res,
           ...res.error,

@@ -75,7 +75,6 @@ export default async function PropertyDetailPage({
     notFound();
   }
 
-  // Fetch property details (server-side)
   let propertyDetail: unknown = null;
   try {
     propertyDetail = await getPropertyDetail(
@@ -83,9 +82,7 @@ export default async function PropertyDetailPage({
       propertyUrlSlug
     );
   } catch (error) {
-    // Middleware should have caught 404 and "Invalid Property URL Slug" errors
-    // If we get here, it's another type of error
-    console.error("Error fetching property detail:", error);
+    console.error(error);
     notFound();
   }
 

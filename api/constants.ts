@@ -87,6 +87,7 @@ const API_CONSTANTS = {
   SERVICES: `/services`,
   BLOG_FEATURED: `/blog/featured`,
   BLOG: `/blog`,
+  BLOG_DETAIL: `/blog/{blog_url_slug}`,
   MEDIA_FEATURED: `/media/featured`,
   MEDIA: `/media`,
 };

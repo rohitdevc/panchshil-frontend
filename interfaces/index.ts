@@ -899,6 +899,18 @@ export type BlogProp = {
   blog_url: string;
 };
 
+export type BlogDetailProp = {
+  blog_title: string;
+  blog_preview: string;
+  blog_content: string;
+  blog_date: string;
+  og_image: string;
+  banner_image: string;
+  meta_title: string;
+  meta_description: string;
+  canonical_tag: string;
+};
+
 export type MediaProp = {
   media_title: string;
   media_publisher: string;

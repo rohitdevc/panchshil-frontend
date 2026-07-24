@@ -19,7 +19,11 @@ function getTopLevelNavHref(item: {
   return item?.menuTitle === "About" ? link : `/${link}`;
 }
 
-export function Header() {
+type HeaderProps = {
+  blogDetails?: boolean;
+};
+
+export function Header({ blogDetails }: HeaderProps) {
   const navigationMenu = useNavigationMenu();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,23 +31,30 @@ export function Header() {
   const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      // Trigger sticky effect after scrolling 50px
-      setIsScrolled(scrollPosition > 50);
-    };
+    if (!blogDetails) {
+      const handleScroll = () => {
+        const scrollPosition = window.scrollY;
 
-    // Initial check
-    handleScroll();
+        setIsScrolled(scrollPosition > 50);
+      };
 
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    } else {
+      const activateBlogPage = () => {
+        setIsScrolled(true);
+      };
+
+      activateBlogPage();
+
+      return;
+    }
   }, []);
 
   const isMobile = useIsMobile();

@@ -238,22 +238,6 @@ export default async function RootLayout({
             __html: JSON.stringify(structuredData),
           }}
         />
-
-        <meta
-          property="og:title"
-          content="Panchshil - India's Leading Luxury Developer"
-        />
-        <meta
-          property="og:description"
-          content="Since 2002, Panchshil Realty has set benchmarks in design, delivery and urban placemaking. From landmark residences and global office districts to iconic hospitality and convention destinations."
-        />
-        <meta
-          property="og:image"
-          content="https://www.panchshil.com/asset/images/banners/1763372408730-827917860.webp"
-        />
-        <meta property="og:url" content="https://www.panchshil.com/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Panchshil Realty" />
       </head>
       <body
         className={`${openSans.variable} ${zapfHumanist601Roman.variable} ${zapfHumanist601Bold.variable} ${zapfHumanist601Semi.variable} ${zapfHumanist601Ultra.variable} antialiased`}

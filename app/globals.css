@@ -245,3 +245,8 @@ body {
 .animate-marquee {
   animation: marquee 50s linear infinite;
 }
+
+.blog_content h2 {
+  scroll-margin-top: 200px;
+  @apply text-xl md:text-2xl font-normal
+}

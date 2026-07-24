@@ -416,3 +416,7 @@ export const getBlogFeatured = () => {
 export const getBlog = () => {
   return doGet(API_CONSTANTS.BLOG);
 };
+
+export const getBlogDetail = (blog_url_slug: string) => {
+  return doGet(API_CONSTANTS.BLOG_DETAIL, { blog_url_slug });
+};
