@@ -250,3 +250,24 @@ body {
   scroll-margin-top: 200px;
   @apply text-xl md:text-2xl font-normal
 }
+
+.blog_content h3 {
+  font-family: var(--font-zapf-humanist);
+  @apply text-lg md:text-xl font-normal
+}
+
+.blog_content ul {
+  @apply list-disc list-inside flex flex-col gap-2
+}
+
+.blog_content ol {
+  @apply list-decimal  flex flex-col gap-2
+}
+
+.blog_content ol ol {
+  @apply pl-3
+}
+
+.blog_content ol ol li {
+  @apply mt-2
+}
