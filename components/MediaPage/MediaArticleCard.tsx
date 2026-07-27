@@ -15,7 +15,7 @@ export default function MediaArticleCard({ article }: MediaArticleCardProps) {
       target="_blank"
       href={article.link}
     >
-      <div className="relative w-full h-60">
+      <div className="relative w-full h-75">
         <Image
           src={article.imageSrc}
           alt={article.imageAlt}
