@@ -41,7 +41,7 @@ export default function MediaPageClient({ data }: MediaPageClientProps) {
       <section className="min-h-screen flex flex-col bg-white">
         <CareerHero hero={data.hero} />
       </section>
-      <div className="border-b border-gold-beige/30 flex justify-end items-center gap-5 py-5 px-10">
+      <div className="border-b border-gold-beige/30 flex justify-end items-center gap-5 py-5 px-5 sm:px-10">
         <div className="flex items-center gap-5 relative">
           <input
             type="search"
