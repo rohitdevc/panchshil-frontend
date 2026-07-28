@@ -37,7 +37,7 @@ export default function MediaFeaturedArticles({
           </div>
 
           <div className="flex flex-1 flex-col p-6 md:p-8 gap-3 md:w/1/2">
-            <span className="font-medium tracking-[0.2em] text-gold-beige uppercase">
+            <span className="text-sm tracking-wider text-gold-beige">
               Featured · {article.source}
             </span>
             <div className="min-h-20">

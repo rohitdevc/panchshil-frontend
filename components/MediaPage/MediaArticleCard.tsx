@@ -25,9 +25,9 @@ export default function MediaArticleCard({ article }: MediaArticleCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-6 md:p-8 gap-3">
-        <span className="font-medium tracking-[0.2em] text-gold-beige uppercase">
+        <h2 className="uppercase text-xs tracking-wider text-gold-beige">
           {article.source}
-        </span>
+        </h2>
         <div className="min-h-20">
           <h3 className="font-display-semi text-xl md:text-[22px] text-black leading-tight">
             {article.title}
