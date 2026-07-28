@@ -90,6 +90,17 @@ const API_CONSTANTS = {
   BLOG_DETAIL: `/blog/{blog_url_slug}`,
   MEDIA_FEATURED: `/media/featured`,
   MEDIA: `/media`,
+  CAREERS_MILESTONES: `/careers/milestones`,
+  CAREERS_INTRO: `/careers/intro`,
+  CAREERS_CATEGORIES_INTRO: `/careers/categories/intro`,
+  CAREERS_CATEGORIES: `/careers/categories`,
+  CAREERS_WORK_CULTURE_INTRO: `/careers/work-culture/intro`,
+  CAREERS_WORK_CULTURE: `/careers/work-culture`,
+  CAREERS_GROWTH_INTRO: `/careers/growth/intro`,
+  CAREERS_GROWTH: `/careers/growth`,
+  CAREERS_LIFE_AT_PANCHSHIL_INTRO: `/careers/life-at-panchshil/intro`,
+  CAREERS_LIFE_AT_PANCHSHIL: `/careers/life-at-panchshil`,
+  CAREERS_FOOTER_INTRO: `/careers/footer/intro`,
 };
 
 // Pagination constants

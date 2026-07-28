@@ -11,10 +11,10 @@ import { CareerHowWeWork } from "@/components/CareerHowWeWork";
 import { CareerTracks } from "@/components/CareerTracks";
 import { CareerVisibleImpact } from "@/components/CareerVisibleImpact";
 import { AmenitiesAwardsCertificates } from "@/components/Amenities";
-import { CareerPageDummyData } from "@/app/careers/career-page.data";
+import { CareerPageDataProp } from "@/app/careers/career-page.data";
 
 type CareerPageClientProps = {
-  data: CareerPageDummyData;
+  data: CareerPageDataProp;
 };
 
 export default function CareerPageClient({ data }: CareerPageClientProps) {
@@ -30,7 +30,6 @@ export default function CareerPageClient({ data }: CareerPageClientProps) {
       <CareerHowWeWork content={data.howWeWork} />
       <CareerGrowthExposure content={data.growthExposure} />
       <AmenitiesAwardsCertificates
-        title={data.safetyAwards.heading}
         subTitle={data.safetyAwards.subHeading}
         description={data.safetyAwards.description}
       />

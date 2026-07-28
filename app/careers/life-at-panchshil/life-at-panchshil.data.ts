@@ -3,7 +3,7 @@ import {
   CareerHeroContent,
   CareerTracksContent,
   CareerVisibleImpactContent,
-  careerPageDummyData,
+  CareerPageData,
 } from "../career-page.data";
 
 export type TeamsThatMakeProjectContent = {
@@ -78,9 +78,9 @@ export const lifeAtPanchshilPageData: LifeAtPanchshilPageData = {
       href: "/careers/search",
     },
   },
-  stats: careerPageDummyData.stats,
+  stats: CareerPageData.stats,
   visibleImpact: {
-    ...careerPageDummyData.visibleImpact,
+    ...CareerPageData.visibleImpact,
     title: "A WORK CULTURE THAT BUILDS PEOPLE",
     description:
       "Life at Panchshil goes beyond job titles. Across offices, project sites and hospitality destinations, teams work with trust, accountability and shared ambition.",
@@ -92,7 +92,7 @@ export const lifeAtPanchshilPageData: LifeAtPanchshilPageData = {
     imageAlt: "Life at Panchshil team culture",
   },
   careerTracks: {
-    ...careerPageDummyData.careerTracks,
+    ...CareerPageData.careerTracks,
     heading: "INSIDE THE CULTURE",
     subHeading: "HOW LIFE AT PANCHSHIL FEELS",
     description:
@@ -256,7 +256,7 @@ export const lifeAtPanchshilPageData: LifeAtPanchshilPageData = {
     ],
   },
   fitInBanner: {
-    ...careerPageDummyData.fitInBanner,
+    ...CareerPageData.fitInBanner,
     imageSrc: "/assets/images/career/ready-to-see-where-you-fit-in.png",
     title:
       "IF THIS SOUNDS LIKE AN ENVIRONMENT YOU’D LIKE TO GROW IN, TAKE A LOOK AT CURRENT OPPORTUNITIES.",

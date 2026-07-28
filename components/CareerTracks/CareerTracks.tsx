@@ -39,9 +39,7 @@ export default function CareerTracks({ content }: CareerTracksProps) {
         <div
           className={`text-center mb-20 ${isInView ? "animate-fade-in-up" : "opacity-0"} px-4 md:px-0`}
         >
-          <div className="text-lg tracking-[0.2em] font-medium text-gold-beige mb-2">
-            {content.heading}
-          </div>
+          <div className="text-lg tracking-[0.2em] font-medium text-gold-beige mb-2 d-none"></div>
           <h2 className="text-2xl md:text-[28px] font-display-semi text-black">
             {content.subHeading}
           </h2>

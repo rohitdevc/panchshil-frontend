@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CareerPageDummyData } from "@/app/careers/career-page.data";
+import { CareerPageDataProp } from "@/app/careers/career-page.data";
 
 type CareerStatsBarProps = {
-  stats: CareerPageDummyData["stats"];
+  stats: CareerPageDataProp["stats"];
 };
 
 function useCountUp(targetValue: number, isActive: boolean, duration = 1800) {
@@ -41,13 +41,13 @@ function CareerStatItem({
   isActive,
   showDivider,
 }: {
-  value: number;
+  value: string;
   suffix?: string;
   label: string;
   isActive: boolean;
   showDivider: boolean;
 }) {
-  const displayValue = useCountUp(value, isActive);
+  //const displayValue = useCountUp(Number(value), isActive);
 
   return (
     <div
@@ -58,8 +58,7 @@ function CareerStatItem({
       }`}
     >
       <span className="text-2xl md:text-[28px] leading-none font-display-semi text-black-chocolate">
-        {displayValue}
-        {suffix ?? ""}
+        {value}
       </span>
       <span className="mt-1 text-base md:text-[20px] leading-tight font-display-semi text-black-chocolate">
         {label}

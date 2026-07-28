@@ -420,3 +420,47 @@ export const getBlog = () => {
 export const getBlogDetail = (blog_url_slug: string) => {
   return doGet(API_CONSTANTS.BLOG_DETAIL, { blog_url_slug });
 };
+
+export const getCareersMilestones = () => {
+  return doGet(API_CONSTANTS.CAREERS_MILESTONES);
+};
+
+export const getCareersIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_INTRO);
+};
+
+export const getCareersCategoriesIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_CATEGORIES_INTRO);
+};
+
+export const getCareersCategories = () => {
+  return doGet(API_CONSTANTS.CAREERS_CATEGORIES);
+};
+
+export const getCareersWorkCultureIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_WORK_CULTURE_INTRO);
+};
+
+export const getCareersWorkCulture = () => {
+  return doGet(API_CONSTANTS.CAREERS_WORK_CULTURE);
+};
+
+export const getCareersGrowthIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_GROWTH_INTRO);
+};
+
+export const getCareersGrowth = () => {
+  return doGet(API_CONSTANTS.CAREERS_GROWTH);
+};
+
+export const getCareersLifeAtPanchshilIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_LIFE_AT_PANCHSHIL_INTRO);
+};
+
+export const getCareersLifeAtPanchshil = () => {
+  return doGet(API_CONSTANTS.CAREERS_LIFE_AT_PANCHSHIL);
+};
+
+export const getCareersFooterIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_FOOTER_INTRO);
+};

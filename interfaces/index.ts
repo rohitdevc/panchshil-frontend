@@ -920,3 +920,38 @@ export type MediaProp = {
   media_published_date: string;
   media_url: string;
 };
+
+export type CareersMilestonesProps = {
+  milestone_count: string;
+  milestone_name: string;
+};
+
+export type IntroProps = {
+  intro_title: string;
+  intro_caption: string;
+  intro_description: string;
+  intro_image: string;
+};
+
+export type CareersCategoryProps = {
+  category_title: string;
+  category_caption: string;
+  category_thumbnail: string;
+};
+
+export type CareersWorkCultureProps = {
+  work_culture_title: string;
+  work_culture_description: string;
+  work_culture_icon: string;
+};
+
+export type CareersGrowthProps = {
+  growth_title: string;
+  growth_description: string;
+  growth_image: string;
+};
+
+export type CareersLifeAtPanchshilProps = {
+  life_at_panchshil_title: string;
+  life_at_panchshil_image: string;
+};
