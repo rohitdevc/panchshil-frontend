@@ -9,17 +9,21 @@ import {
   getCareersWorkCulture,
   getCareersGrowthIntro,
   getCareersGrowth,
+  getCareersAwardsIntro,
+  getAwards,
   getCareersLifeAtPanchshilIntro,
   getCareersLifeAtPanchshil,
   getCareersFooterIntro,
 } from "@/api/CMS.api";
 import {
   IntroProps,
+  AwardsApiItem,
   CareersMilestonesProps,
   CareersWorkCultureProps,
   CareersLifeAtPanchshilProps,
   CareersCategoryProps,
   CareersGrowthProps,
+  PropertyAwardCertificate,
 } from "@/interfaces";
 import { getBanner, getMetaData } from "@/api/CMS.api";
 import { BannersProps, MetaDataProps } from "@/interfaces";
@@ -105,6 +109,8 @@ export default async function CareersPage() {
     getCareersWorkCulture(),
     getCareersGrowthIntro(),
     getCareersGrowth(),
+    getCareersAwardsIntro(),
+    getAwards(),
     getCareersLifeAtPanchshilIntro(),
     getCareersLifeAtPanchshil(),
     getCareersFooterIntro(),
@@ -119,6 +125,8 @@ export default async function CareersPage() {
     careers_work_culture,
     careers_growth_intro,
     careers_growth,
+    careers_awards_intro,
+    careers_awards,
     careers_life_at_panchshil_intro,
     careers_life_at_panchshil,
     careers_footer_intro,
@@ -257,6 +265,30 @@ export default async function CareersPage() {
           title: growth.growth_title,
           description: growth.growth_description,
           imageSrc: growth.growth_image,
+        });
+      });
+    }
+  }
+
+  if (
+    careers_awards_intro.status === "fulfilled" &&
+    careers_awards_intro.value
+  ) {
+    const awards_intro = careers_awards_intro.value as IntroProps;
+
+    content.safetyAwards = {
+      subHeading: awards_intro.intro_title,
+      description: awards_intro.intro_description,
+      property_award_certificates: [],
+    };
+
+    if (careers_awards.status === "fulfilled" && careers_awards.value) {
+      const awardsRes = careers_awards.value as AwardsApiItem[];
+
+      awardsRes.slice(0, 10).forEach((award) => {
+        content.safetyAwards.property_award_certificates.push({
+          property_award_certificate_caption: award.award_caption,
+          property_award_certificate_image: award.award_image || "",
         });
       });
     }

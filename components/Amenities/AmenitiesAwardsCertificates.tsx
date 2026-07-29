@@ -44,27 +44,21 @@ export function AmenitiesAwardsCertificates({
   const slides = items.map((item, index) => (
     <div
       key={`${item.property_award_certificate_caption}-${index}`}
-      className="w-full pb-10 flex items-center flex-col"
+      className="w-full pb-10"
     >
-      <div className="overflow-hidden">
-        <div className="relative bg-white">
-          {item.property_award_certificate_image ? (
-            <Image
-              src={item.property_award_certificate_image}
-              alt={item.property_award_certificate_caption}
-              width={383}
-              height={294}
-              className="h-auto max-w-full object-contain"
-            />
-          ) : (
-            <div className="w-full h-full grid place-items-center text-black-chocolate/60">
-              Image
-            </div>
-          )}
+      <div className="flex flex-col items-center justify-center overflow-hidden px-2 py-5 bg-[#F7F5F4] h-85">
+        <div className="relative h-full w-full">
+          <Image
+            src={item.property_award_certificate_image}
+            alt={item.property_award_certificate_caption}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
         </div>
-      </div>
-      <div className="mt-5 text-center text-sm md:text-base text-black-chocolate px-8 w-[479px] max-w-full mx-auto">
-        {item.property_award_certificate_caption}
+        <div className="mt-5 text-center text-sm md:text-base text-black-chocolate px-8 w-[479px] max-w-full mx-auto">
+          {item.property_award_certificate_caption}
+        </div>
       </div>
     </div>
   ));

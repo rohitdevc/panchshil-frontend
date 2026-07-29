@@ -1,3 +1,6 @@
+import { PropertyAmenitiesSection } from "@/interfaces";
+import type { PropertyAwardCertificate } from "@/interfaces";
+
 export type CareerHeroContent = {
   imageSrc: string;
   title: string | undefined;
@@ -64,6 +67,7 @@ export type CareerSafetyAwardsContent = {
   heading?: string;
   subHeading: string;
   description: string;
+  property_award_certificates: PropertyAwardCertificate[];
 };
 
 export type CareerInsideLifeSlide = {
@@ -297,6 +301,7 @@ export const careerPageData: CareerPageDataProp = {
     subHeading: "A SAFE, RESPONSIBLE PLACE TO WORK",
     description:
       "Panchshil's office parks and developments are recognised globally for safety and operational standards. Multiple campuses have received the British Safety Council's Sword Of Honour, one of the highest benchmarks for workplace health and safety, across millions of square feet of office space. Our ESG initiatives focus on energy efficiency, water conservation, waste management and responsible construction, guided by a dedicated ESG steering committee.",
+    property_award_certificates: [],
   },
   insideLife: {
     subHeading: "INSIDE LIFE @ PANCHSHIL",

@@ -98,6 +98,7 @@ const API_CONSTANTS = {
   CAREERS_WORK_CULTURE: `/careers/work-culture`,
   CAREERS_GROWTH_INTRO: `/careers/growth/intro`,
   CAREERS_GROWTH: `/careers/growth`,
+  CAREERS_AWARDS_INTRO: `/careers/awards/intro`,
   CAREERS_LIFE_AT_PANCHSHIL_INTRO: `/careers/life-at-panchshil/intro`,
   CAREERS_LIFE_AT_PANCHSHIL: `/careers/life-at-panchshil`,
   CAREERS_FOOTER_INTRO: `/careers/footer/intro`,

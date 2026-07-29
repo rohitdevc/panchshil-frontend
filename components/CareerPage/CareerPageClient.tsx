@@ -32,6 +32,9 @@ export default function CareerPageClient({ data }: CareerPageClientProps) {
       <AmenitiesAwardsCertificates
         subTitle={data.safetyAwards.subHeading}
         description={data.safetyAwards.description}
+        property_award_certificates={
+          data.safetyAwards.property_award_certificates
+        }
       />
       <CareerInsideLife content={data.insideLife} />
       <CareerFitInBanner content={data.fitInBanner} />

@@ -453,6 +453,10 @@ export const getCareersGrowth = () => {
   return doGet(API_CONSTANTS.CAREERS_GROWTH);
 };
 
+export const getCareersAwardsIntro = () => {
+  return doGet(API_CONSTANTS.CAREERS_AWARDS_INTRO);
+};
+
 export const getCareersLifeAtPanchshilIntro = () => {
   return doGet(API_CONSTANTS.CAREERS_LIFE_AT_PANCHSHIL_INTRO);
 };

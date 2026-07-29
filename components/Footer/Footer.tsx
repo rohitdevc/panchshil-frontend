@@ -130,7 +130,9 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
                     height={18}
                   />
                 </div>
-                <Link href={`tel:${contact.contact_number}`}>
+                <Link
+                  href={`tel:${contact.contact_number.replace(/\s+/g, "")}`}
+                >
                   <span>{contact.contact_number}</span>
                 </Link>
               </div>

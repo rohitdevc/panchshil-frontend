@@ -104,7 +104,9 @@ export function EmblaCardsCarousel({
             onClick={() => emblaApi?.scrollPrev()}
             disabled={!canPrev}
             className={`grid place-items-center text-gold-beige transition-opacity ${
-              canPrev ? "opacity-100" : "opacity-40 cursor-not-allowed"
+              canPrev
+                ? "opacity-100 cursor-pointer"
+                : "opacity-40 cursor-not-allowed"
             }`}
           >
             <ArrowLeftIcon />
@@ -114,7 +116,9 @@ export function EmblaCardsCarousel({
             onClick={() => emblaApi?.scrollNext()}
             disabled={!canNext}
             className={`grid place-items-center text-gold-beige transition-opacity ${
-              canNext ? "opacity-100" : "opacity-40 cursor-not-allowed"
+              canNext
+                ? "opacity-100 cursor-pointer"
+                : "opacity-40 cursor-not-allowed"
             }`}
           >
             <ArrowRightIcon />
