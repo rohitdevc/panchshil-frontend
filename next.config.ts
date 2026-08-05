@@ -20,6 +20,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/press",
+        destination: "/media",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

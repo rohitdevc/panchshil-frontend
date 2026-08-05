@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import type { CareerSearchJob } from "@/app/careers/search/career-search-page.data";
+import type { CareerSearchJob } from "@/app/careers/vacancies/career-search-page.data";
 
 type CareerSearchListingsDetailsProps = {
   jobs: CareerSearchJob[];

@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { CareerHero } from "@/components/CareerHero";
 import { CareerSearchListingsDetails } from "@/components/CareerSearchListingsDetails";
 import { CareerSearchFilterBar } from "@/components/CareerSearchFilterBar";
-import type { CareerSearchPageData } from "@/app/careers/search/career-search-page.data";
+import type { CareerSearchPageData } from "@/app/careers/vacancies/career-search-page.data";
 
 type CareerSearchPageClientProps = {
   data: CareerSearchPageData;

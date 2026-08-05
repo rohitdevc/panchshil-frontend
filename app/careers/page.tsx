@@ -23,7 +23,6 @@ import {
   CareersLifeAtPanchshilProps,
   CareersCategoryProps,
   CareersGrowthProps,
-  PropertyAwardCertificate,
 } from "@/interfaces";
 import { getBanner, getMetaData } from "@/api/CMS.api";
 import { BannersProps, MetaDataProps } from "@/interfaces";

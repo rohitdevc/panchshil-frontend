@@ -41,7 +41,7 @@ export const careerSearchPageData: CareerSearchPageData = {
     },
     secondaryCta: {
       label: "Discover Life @ Panchshil",
-      href: "/careers",
+      href: "/careers/life-at-panchshil",
     },
   },
   itemsPerPage: 4,

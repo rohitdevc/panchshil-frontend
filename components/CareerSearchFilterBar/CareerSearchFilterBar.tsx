@@ -103,9 +103,7 @@ function FilterSelect({
           {displayLabel}
         </span>
         <span
-          className={`text-[#646464] transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`text-[#646464] transition-transform ${isOpen ? "rotate-180" : ""}`}
         >
           ˅
         </span>
@@ -223,19 +221,13 @@ export default function CareerSearchFilterBar({
 
   return (
     <section
-      className={`z-40 w-full border-y border-black/10 bg-[#FFFAF7]/95 backdrop-blur transition-all duration-300 ${
-        shouldShowDocked
-          ? "fixed bottom-0 left-0 right-0 shadow-[0_-6px_20px_rgba(0,0,0,0.12)] opacity-100 translate-y-0"
-          : isDocked
-            ? "fixed bottom-0 left-0 right-0 opacity-0 translate-y-full pointer-events-none"
-            : "relative"
-      }`}
+      className={`z-40 w-full border-y border-black/10 bg-[#FFFAF7]/95 backdrop-blur transition-all duration-300 ${shouldShowDocked ? "fixed bottom-0 left-0 right-0 shadow-[0_-6px_20px_rgba(0,0,0,0.12)] opacity-100 translate-y-0" : isDocked ? "fixed bottom-0 left-0 right-0 opacity-0 translate-y-full pointer-events-none" : "relative"}`}
     >
       <div
         ref={barRef}
         className="mx-auto max-w-[1440px] px-4 md:px-8 py-6 md:py-8"
       >
-        <div className="flex items-center gap-4 border-b border-[#bfbfbf] pb-3">
+        <div className="flex items-center gap-4 border-b border-[#bfbfbf] pb-3 mb-6 hidden">
           <SearchIcon />
           <input
             value={searchText}
@@ -252,7 +244,7 @@ export default function CareerSearchFilterBar({
           </button>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           <FilterSelect
             label="Select Location"
             value={selectedLocation}
