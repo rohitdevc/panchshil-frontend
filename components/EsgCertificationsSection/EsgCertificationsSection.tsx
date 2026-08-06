@@ -465,6 +465,11 @@ export default function EsgCertificationsSection({
             ))}
           </div>
         </div>
+        <div className="w-full mt-5">
+          <span className="text-[11px] md:text-xs text-gray-500 font-sans font-light tracking-wide block">
+            All data is for FY 2025-26 unless stated otherwise.
+          </span>
+        </div>
       </div>
     </section>
   );
