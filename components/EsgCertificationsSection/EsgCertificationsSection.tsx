@@ -125,6 +125,12 @@ function formatNumber(num: number, decimals: number): string {
   return num.toLocaleString("en-IN");
 }
 
+function getDecimalPlaces(value: string) {
+  const cleaned = value.replace(/[^0-9.-]/g, "");
+  const parts = cleaned.split(".");
+  return parts[1]?.length ?? 0;
+}
+
 function AnimatedMetric({
   value,
   isActive,
@@ -138,7 +144,7 @@ function AnimatedMetric({
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const animatedValue = useCountUp(target, isActive);
-  const decimals = 0;
+  const decimals = getDecimalPlaces(value);
   const display = prefix + formatNumber(animatedValue, decimals) + suffix;
   return <>{display}</>;
 }
