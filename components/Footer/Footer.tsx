@@ -35,7 +35,7 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
     { title: "Services", link: "/services" },
     { title: "Testimonials", link: "/testimonials" },
     { title: "Media", link: "/media" },
-    { title: "Blogs", link: "/blogs" },
+    { title: "Blogs", link: "/blog" },
   ];
   const usefulLinks: { title: string; link: string }[] = [
     {
