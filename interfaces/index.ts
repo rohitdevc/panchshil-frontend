@@ -798,6 +798,11 @@ export type EsgPerformanceApiItem = {
   performance_image?: string;
 };
 
+export type EsgPerformanceCategory = {
+  performance_category_name: string;
+  performances: EsgPerformanceApiItem[];
+};
+
 export type EsgIntroductionApiResponse = {
   intro_heading?: string;
   intro_caption?: string;

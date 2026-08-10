@@ -21,6 +21,7 @@ import {
   EsgReportsIntroApiResponse,
   EsgSafetyGovernanceCategoryApiItem,
   EsgTickerApiItem,
+  EsgPerformanceCategory,
   MetaDataProps,
   BannersProps,
 } from "@/interfaces";
@@ -93,7 +94,7 @@ export default async function EsgPage() {
   let esgMilestones: EsgMilestoneApiItem[] = [];
   let esgTicker: EsgTickerApiItem[] = [];
   let esgIntroduction: EsgIntroductionApiResponse | null = null;
-  let esgPerformance: EsgPerformanceApiItem[] = [];
+  let esgPerformance: EsgPerformanceCategory[] = [];
   let esgSafetyGovernance: EsgSafetyGovernanceCategoryApiItem[] = [];
   let esgReportsIntro: EsgReportsIntroApiResponse | null = null;
   let esgReportsList: EsgReportApiItem[] = [];
@@ -126,7 +127,7 @@ export default async function EsgPage() {
   }
 
   try {
-    const response = (await getEsgPerformance()) as EsgPerformanceApiItem[];
+    const response = (await getEsgPerformance()) as EsgPerformanceCategory[];
     esgPerformance = Array.isArray(response) ? response : [];
   } catch (error) {
     console.error("Error fetching ESG performance:", error);
@@ -154,13 +155,13 @@ export default async function EsgPage() {
     console.error("Error fetching ESG reports:", error);
   }
 
-  const data: EsgPageData = {
+  const data = {
     milestones: esgMilestones,
     ticker: esgTicker,
     safetyGovernance: esgSafetyGovernance,
     reportsIntro: esgReportsIntro,
     reportsList: esgReportsList,
-    performance: esgPerformance,
+    performance_categories: esgPerformance,
     introduction: esgIntroduction
       ? {
           ...esgIntroduction,

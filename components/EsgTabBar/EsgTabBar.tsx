@@ -1,19 +1,24 @@
 "use client";
 
-import { EsgPerformanceApiItem } from "@/interfaces";
+import { EsgPerformanceApiItem, EsgPerformanceCategory } from "@/interfaces";
 import React, { useState, useEffect, useRef } from "react";
+import lodash from "lodash";
 
 interface TabItem {
   id: string;
   label: string;
 }
 
-const createTabs = (tabsData: EsgPerformanceApiItem[] = []): TabItem[] => [
-  {
-    id: "overview",
-    label: "ALL IMPACT AREAS",
-  },
-  ...tabsData.map((item) => ({
+const createTabs = (tabsData: EsgPerformanceCategory): TabItem[] => [
+  ...(tabsData.performance_category_name === "Environmental"
+    ? [
+        {
+          id: "overview",
+          label: "ALL IMPACT AREAS",
+        },
+      ]
+    : []),
+  ...tabsData.performances.map((item) => ({
     id: item?.performance_title
       .toLowerCase()
       .replace(/&/g, "and")
@@ -24,14 +29,15 @@ const createTabs = (tabsData: EsgPerformanceApiItem[] = []): TabItem[] => [
 ];
 
 export default function EsgTabBar({
-  performance,
+  performance_categories,
 }: {
-  performance?: EsgPerformanceApiItem[];
+  performance_categories: EsgPerformanceCategory[];
 }) {
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
+  const [activeCategory, setActiveCategory] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<string>("overview");
-  const tabs = createTabs(performance ?? []);
+  const tabs = createTabs(performance_categories[activeCategory] ?? []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +64,7 @@ export default function EsgTabBar({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [tabs]);
 
   useEffect(() => {
     const activeButton = tabRefs.current[activeTab];
@@ -71,6 +77,18 @@ export default function EsgTabBar({
       });
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    const activeButton = tabRefs.current[activeCategory];
+
+    if (activeButton) {
+      activeButton.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [activeCategory]);
 
   const handleTabClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -88,9 +106,62 @@ export default function EsgTabBar({
       setActiveTab(id);
     }
   };
+
+  const handleCategoryTabClick = (
+    e: React.MouseEvent,
+    id: string,
+    key: number
+  ) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 220;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+      setActiveCategory(key);
+    }
+  };
   return (
     <div className="w-full bg-white border-b border-gray-200/40 py-4 px-4 sticky top-[98px] md:top-[158px] z-40 transition-all duration-300">
-      <div className="max-w-[1540px] mx-auto flex items-center justify-start lg:justify-center overflow-x-auto no-scrollbar gap-2 md:gap-4 lg:gap-6">
+      <div className="max-w-[1540px] mx-auto flex items-center justify-start lg:justify-center overflow-x-auto no-scrollbar gap-2 md:gap-4 lg:gap-6 border-b pb-2">
+        {performance_categories.map((performance_category, key) => {
+          const isActive = activeCategory === key;
+          return (
+            <button
+              key={lodash.kebabCase(
+                performance_category.performance_category_name
+              )}
+              ref={(el) => {
+                if (el)
+                  tabRefs.current[
+                    lodash.kebabCase(
+                      performance_category.performance_category_name
+                    )
+                  ] = el;
+              }}
+              onClick={(e) => {
+                handleCategoryTabClick(
+                  e,
+                  lodash.kebabCase(
+                    performance_category.performance_category_name
+                  ),
+                  key
+                );
+              }}
+              className={`text-[10px] md:text-xs tracking-widest font-semibold font-sans uppercase transition-all duration-300 whitespace-nowrap cursor-pointer ${isActive ? "bg-[#0C190E] border-2 border-[#B2D5AE] text-white px-5 py-2 rounded-full" : "text-[#7F847E] hover:text-black px-4 py-2 border-2 border-transparent"}`}
+            >
+              {performance_category.performance_category_name}
+            </button>
+          );
+        })}
+      </div>
+      <div className="max-w-[1540px] mx-auto flex items-center justify-start lg:justify-center overflow-x-auto no-scrollbar gap-2 md:gap-4 lg:gap-6 pt-2">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (

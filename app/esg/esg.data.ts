@@ -157,7 +157,7 @@ export const esgBeyondTheBuildDecorDefaults: Pick<
   leafImageSrc2: "/assets/images/esg/right-leaf-artwork.png",
   birdImageSrc: "/assets/images/esg/bird-background.png",
 };
-
+/*
 export const esgPageData: EsgPageData = {
   milestones: [],
   ticker: [],
@@ -176,7 +176,7 @@ export const esgPageData: EsgPageData = {
       href: "#esg-progress",
     },
   },
-};
+} */
 
 export const esgAccordion: EsgAccordionContent = {
   heading: "ESG PILLARS",
