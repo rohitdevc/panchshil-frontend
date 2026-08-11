@@ -69,7 +69,8 @@ export default function EsgOverviewSection({
               <div>
                 {/* Number */}
                 <span className="font-display text-[44px] md:text-[54px] lg:text-[60px] font-medium text-[#E2DFD7] leading-none transition-colors duration-300 group-hover:text-[#40A937] block">
-                  0{index + 1}
+                  {index + 1 > 9 ? "" : 0}
+                  {index + 1}
                 </span>
 
                 {/* Title */}

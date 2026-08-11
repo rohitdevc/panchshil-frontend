@@ -134,9 +134,9 @@ export default function EsgEnergySection({ performance }: Props) {
                       onClick={() => toggleAccordion(index)}
                       className="cursor-pointer w-full py-6 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between text-left group transition-colors duration-200"
                     >
-                      <span className="font-display text-lg md:text-[22px] font-medium text-[#1F180D]  transition-colors leading-tight">
+                      <h3 className="font-display text-[22px] md:text-[26px] font-medium text-[#1F180D] mt-5 transition-colors duration-300 leading-tight">
                         {item.value}
-                      </span>
+                      </h3>
 
                       <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
                         <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans">
