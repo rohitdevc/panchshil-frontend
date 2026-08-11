@@ -19,6 +19,7 @@ import { EsgPanchshilPulseSection } from "@/components/EsgPanchshilPulseSection"
 import { EsgOccupierSection } from "@/components/EsgOccupierSection";
 import { EsgFoundationSection } from "@/components/EsgFoundationSection";
 import { EsgPoliciesSection } from "@/components/EsgPoliciesSection";
+import { EsgTrainingSection } from "@/components/EsgTrainingSection";
 
 import {
   EsgIntroductionApiResponse,
@@ -94,6 +95,9 @@ export default function EsgPageClient({ data }: EsgPageClientProps) {
       </div>
       <div id="governance">
         <EsgPoliciesSection
+          performance={data.performance_categories[2].performances}
+        />
+        <EsgTrainingSection
           performance={data.performance_categories[2].performances}
         />
       </div>

@@ -59,15 +59,6 @@ const defaultPortfolioData = [
   },
 ];
 
-const borderClasses = [
-  "border-b md:border-r border-[#E2DFD7]/60",
-  "border-b md:border-r border-[#E2DFD7]/60",
-  "border-b border-[#E2DFD7]/60",
-  "border-b md:border-b-0 md:border-r border-[#E2DFD7]/60",
-  "border-b md:border-b-0 md:border-r border-[#E2DFD7]/60 last:border-b-0",
-  "border-none",
-];
-
 function parseNumericValue(value: string): {
   target: number;
   prefix: string;
@@ -345,10 +336,7 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
                                     className="flex flex-col border-t border-[#E2DFD7]/80 pt-8 p-6 transition-all duration-300  group"
                                   >
                                     <span className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight">
-                                      <AnimatedMetric
-                                        value={sub.value}
-                                        isActive={isInView}
-                                      />
+                                      {sub.value}
                                     </span>
                                     <span className="text-[10px] md:text-[11px] font-normal text-[#40A937] tracking-wider font-sans mt-2 block">
                                       {sub.label}

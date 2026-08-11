@@ -61,6 +61,12 @@ export default function EsgEnergySection({ performance }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
 
+  const [expandedIndex, setExpandedIndex] = useState<number>(0);
+
+  const toggleAccordion = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? 0 : index);
+  };
+
   const energyData = findTypeMetrics(performance, 0);
   const metrics: MetricItem[] =
     energyData?.metrics!.map((m) => ({
@@ -117,28 +123,57 @@ export default function EsgEnergySection({ performance }: Props) {
             </div>
           </div>
           <div className="lg:col-span-7 lg:pt-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-6">
-              {metrics.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col p-6 transition-all duration-300"
-                >
-                  <div>
-                    <span className="font-display text-3xl md:text-[44px] lg:text-[48px] font-normal text-[#1F180D] leading-none tracking-tight">
-                      <AnimatedMetric value={item.value} isActive={isInView} />
-                    </span>
-                    <span className="font-display text-[10px] md:text-xs font-normal text-[#7F847E] font-sans ml-2 tracking-wide select-none align-baseline">
-                      {item.unit}
-                    </span>
+            {metrics &&
+              metrics.length > 0 &&
+              metrics.map((item, index) => {
+                const isExpanded = expandedIndex === index;
+
+                return (
+                  <div key={index} className="border-b border-[#E2DFD7]/80">
+                    <button
+                      onClick={() => toggleAccordion(index)}
+                      className="cursor-pointer w-full py-6 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between text-left group transition-colors duration-200"
+                    >
+                      <span className="font-display text-lg md:text-[22px] font-medium text-[#1F180D]  transition-colors leading-tight">
+                        {item.value}
+                      </span>
+
+                      <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
+                        <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans">
+                          {item.unit}
+                        </span>
+                        <svg
+                          className={`w-4 h-4 text-[#7F847E]  transition-transform duration-300 transform ${
+                            isExpanded ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isExpanded
+                          ? "max-h-auto opacity-100 pb-10"
+                          : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <p className="font-sans text-sm text-[#626A70] mt-2 leading-relaxed font-light">
+                        {item.label}
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-44">
-                    <span className="text-[10px] md:text-[11px] font-normal text-[#40A937] tracking-wider font-sans mt-3 block leading-relaxed">
-                      {item.label}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+                );
+              })}
           </div>
         </div>
       </div>
