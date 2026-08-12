@@ -169,7 +169,7 @@ export default function EsgCertificationsSection({ performance }: Props) {
         .replace(/\./g, "")
         .replace(/\s+/g, "-")}
       ref={sectionRef}
-      className="w-full bg-[#F8F5EE] pt-16 md:py-24 border-t border-[#E2DFD7]/30 transition-colors duration-300"
+      className="w-full bg-white pt-16 md:py-24 border-t border-[#E2DFD7]/30 transition-colors duration-300"
     >
       <div className="max-w-[1540px] mx-auto px-6 md:px-10 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-5">
