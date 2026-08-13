@@ -11,7 +11,7 @@ import { EsgWasteSection } from "@/components/EsgWasteSection";
 import { EsgMobilitySection } from "@/components/EsgMobilitySection";
 import { EsgIndoorAirSection } from "@/components/EsgIndoorAirSection";
 import { EsgCertificationsSection } from "@/components/EsgCertificationsSection";
-import { EsgSafetyGovernance } from "@/components/EsgSafetyGovernance";
+
 import { EsgReportsSection } from "@/components/EsgReportsSection";
 import { CareerHeroContent } from "@/app/careers/career-page.data";
 import { EsgCHARMSection } from "@/components/EsgCHARMSection";
@@ -77,6 +77,7 @@ export default function EsgPageClient({ data }: EsgPageClientProps) {
         />
         <EsgCertificationsSection
           performance={data.performance_categories[0].performances}
+          safetyGovernance={data.safetyGovernance}
         />
       </div>
       <div id="social">
@@ -101,7 +102,6 @@ export default function EsgPageClient({ data }: EsgPageClientProps) {
           performance={data.performance_categories[2].performances}
         />
       </div>
-      <EsgSafetyGovernance safetyGovernance={data.safetyGovernance} />
       <EsgReportsSection
         reportsIntro={data.reportsIntro}
         reportsList={data.reportsList}

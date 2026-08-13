@@ -265,108 +265,106 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
   }
 
   return (
-    <section className="w-full bg-[#F8F5EE] py-16 md:py-24 border-t border-[#E2DFD7]/30 transition-colors duration-300">
-      <div className="max-w-[1540px] mx-auto px-6 md:px-10 lg:px-12">
-        <div id="safety-governance" className="w-full scroll-mt-24">
-          <div className="w-full flex flex-col border-t border-[#E2DFD7]/80">
-            {acData.map((categoryData, categoryIndex) => (
-              <React.Fragment key={categoryIndex}>
-                <span
-                  className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight uppercase py-10 border-b border-[#E2DFD7]/80"
-                  key={categoryIndex}
-                >
-                  {numberToRoman(categoryIndex)}. {categoryData.categoryName}
-                </span>
-                {categoryData.safetyData &&
-                  categoryData.safetyData.length > 0 &&
-                  categoryData.safetyData.map((item, index) => {
-                    const isExpanded =
-                      expandedIndex === `${categoryIndex}-${index}`;
+    <div className="w-full">
+      <div id="safety-governance" className="w-full scroll-mt-24">
+        <div className="w-full flex flex-col border-t border-[#E2DFD7]/80">
+          {acData.map((categoryData, categoryIndex) => (
+            <React.Fragment key={categoryIndex}>
+              <span
+                className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight uppercase py-10 border-b border-[#E2DFD7]/80"
+                key={categoryIndex}
+              >
+                {numberToRoman(categoryIndex)}. {categoryData.categoryName}
+              </span>
+              {categoryData.safetyData &&
+                categoryData.safetyData.length > 0 &&
+                categoryData.safetyData.map((item, index) => {
+                  const isExpanded =
+                    expandedIndex === `${categoryIndex}-${index}`;
 
-                    return (
-                      <div key={index} className="border-b border-[#E2DFD7]/80">
-                        <button
-                          onClick={() =>
-                            toggleAccordion(`${categoryIndex}-${index}`)
-                          }
-                          className="cursor-pointer w-full py-6 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between text-left group transition-colors duration-200"
-                        >
-                          <span className="font-display text-lg md:text-[22px] font-medium text-[#1F180D]  transition-colors leading-tight">
-                            <span className="uppercase">
-                              {numberToAlphabet(index)}.{" "}
-                            </span>
-                            {item.title}
+                  return (
+                    <div key={index} className="border-b border-[#E2DFD7]/80">
+                      <button
+                        onClick={() =>
+                          toggleAccordion(`${categoryIndex}-${index}`)
+                        }
+                        className="cursor-pointer w-full py-6 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between text-left group transition-colors duration-200"
+                      >
+                        <span className="font-display text-lg md:text-[22px] font-medium text-[#1F180D]  transition-colors leading-tight">
+                          <span className="uppercase">
+                            {numberToAlphabet(index)}.{" "}
                           </span>
+                          {item.title}
+                        </span>
 
-                          <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
-                            <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans">
-                              {item.subtitle}
-                            </span>
-                            <svg
-                              className={`w-4 h-4 text-[#7F847E]  transition-transform duration-300 transform ${
-                                isExpanded ? "rotate-180" : ""
-                              }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
-                          </div>
-                        </button>
-
-                        <div
-                          className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                            isExpanded
-                              ? "max-h-auto opacity-100 pb-10"
-                              : "max-h-0 opacity-0"
-                          }`}
-                        >
-                          {item.subGrid && (
-                            <>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-                                {item.subGrid.map((sub, sIdx) => (
-                                  <div
-                                    key={sIdx}
-                                    className="flex flex-col border-t border-[#E2DFD7]/80 pt-8 p-6 transition-all duration-300  group"
-                                  >
-                                    <span className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight">
-                                      {sub.value}
-                                    </span>
-                                    <span className="text-[10px] md:text-[11px] font-normal text-[#40A937] tracking-wider font-sans mt-2 block">
-                                      {sub.label}
-                                    </span>
-                                    <p className="font-sans text-xs text-[#626A70] mt-2 leading-relaxed font-light">
-                                      {sub.desc}
-                                    </p>
-                                  </div>
-                                ))}
-                              </div>
-                              {item.title ===
-                                "ISO Integrated Management Systems" && (
-                                <PortfolioCoverage data={pfData} />
-                              )}
-                            </>
-                          )}
+                        <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
+                          <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans">
+                            {item.subtitle}
+                          </span>
+                          <svg
+                            className={`w-4 h-4 text-[#7F847E]  transition-transform duration-300 transform ${
+                              isExpanded ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </div>
+                      </button>
+
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          isExpanded
+                            ? "max-h-auto opacity-100 pb-10"
+                            : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        {item.subGrid && (
+                          <>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                              {item.subGrid.map((sub, sIdx) => (
+                                <div
+                                  key={sIdx}
+                                  className="flex flex-col border-t border-[#E2DFD7]/80 pt-8 p-6 transition-all duration-300  group"
+                                >
+                                  <span className="font-display text-2xl md:text-3xl font-normal text-[#1F180D] leading-none tracking-tight">
+                                    {sub.value}
+                                  </span>
+                                  <span className="text-[10px] md:text-[11px] font-normal text-[#40A937] tracking-wider font-sans mt-2 block">
+                                    {sub.label}
+                                  </span>
+                                  <p className="font-sans text-xs text-[#626A70] mt-2 leading-relaxed font-light">
+                                    {sub.desc}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                            {item.title ===
+                              "ISO Integrated Management Systems" && (
+                              <PortfolioCoverage data={pfData} />
+                            )}
+                          </>
+                        )}
                       </div>
-                    );
-                  })}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-        <div className="w-full mt-5">
-          <span className="text-[11px] md:text-xs text-gray-500 font-sans font-light tracking-wide block">
-            All data is for FY 2025-26 unless stated otherwise.
-          </span>
+                    </div>
+                  );
+                })}
+            </React.Fragment>
+          ))}
         </div>
       </div>
-    </section>
+      <div className="w-full mt-5">
+        <span className="text-[11px] md:text-xs text-gray-500 font-sans font-light tracking-wide block">
+          All data is for FY 2025-26 unless stated otherwise.
+        </span>
+      </div>
+    </div>
   );
 }

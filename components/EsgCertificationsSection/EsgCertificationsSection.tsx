@@ -3,8 +3,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useCountUp } from "@/hooks/useCountUp";
-import { EsgPerformanceApiItem } from "@/interfaces";
+import {
+  EsgPerformanceApiItem,
+  EsgSafetyGovernanceCategoryApiItem,
+} from "@/interfaces";
 import { findTypeMetrics } from "@/utils/utils";
+import { EsgSafetyGovernance } from "@/components/EsgSafetyGovernance";
 
 interface SubGridItem {
   value: string;
@@ -33,6 +37,7 @@ interface MetricItem {
 
 type Props = {
   performance?: EsgPerformanceApiItem[];
+  safetyGovernance?: EsgSafetyGovernanceCategoryApiItem[];
 };
 
 const defaultPortfolioData = [
@@ -132,7 +137,10 @@ function AnimatedMetric({
   return <>{display}</>;
 }
 
-export default function EsgCertificationsSection({ performance }: Props) {
+export default function EsgCertificationsSection({
+  performance,
+  safetyGovernance,
+}: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
   const certificationData = findTypeMetrics(performance, 5);
@@ -229,6 +237,7 @@ export default function EsgCertificationsSection({ performance }: Props) {
             </div>
           ))}
         </div>
+        <EsgSafetyGovernance safetyGovernance={safetyGovernance} />
       </div>
     </section>
   );
