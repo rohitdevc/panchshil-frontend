@@ -27,6 +27,8 @@ ENV NEXT_PUBLIC_BASE_API_ENDPOINT=$NEXT_PUBLIC_BASE_API_ENDPOINT
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN rm -rf .next
+
 RUN npm run build
 
 
