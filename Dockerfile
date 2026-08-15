@@ -52,4 +52,4 @@ USER nextjs
 
 EXPOSE 2982
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
