@@ -59,6 +59,11 @@ const nextConfig: NextConfig = {
         destination: "/luxury-residences/page/1",
         permanent: true,
       },
+      {
+        source: "/nest-panchshil-admin-panel",
+        destination: "/panchshil-admin-panel",
+        permanent: true,
+      },
     ];
   },
 };

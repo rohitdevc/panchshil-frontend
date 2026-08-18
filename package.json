@@ -8,7 +8,7 @@
     "prebuild": "tsx scripts/generate-search-index.ts",
     "build": "next build",
     "start": "next start -p 2982",
-    "lint": "next lint",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
