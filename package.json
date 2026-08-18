@@ -8,11 +8,10 @@
     "prebuild": "tsx scripts/generate-search-index.ts",
     "build": "next build",
     "start": "next start -p 2982",
-    "lint": "eslint .",
+    "lint": "next lint",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky install",
     "type-check": "tsc --noEmit"
   },
   "lint-staged": {
@@ -56,7 +55,6 @@
     "eslint-config-next": "16.0.7",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
-    "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
     "tailwindcss": "^4",
