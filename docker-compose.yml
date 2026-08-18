@@ -14,4 +14,7 @@ services:
     env_file:
       - .env
 
+    volumes:
+      - ./public:/app/public
+
     restart: unless-stopped
