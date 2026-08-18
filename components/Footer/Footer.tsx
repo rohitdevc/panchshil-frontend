@@ -49,6 +49,7 @@ export const Footer = forwardRef<HTMLElement>((props, ref) => {
       title: "Awards",
       link: "/awards-and-recognitions",
     },
+    { title: "ESG", link: "/esg" },
   ];
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
