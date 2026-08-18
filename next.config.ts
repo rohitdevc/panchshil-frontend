@@ -50,8 +50,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/events/ppl-day-three",
+        source: "/events/ipl-2025-screening",
         destination: "/events/ipl-2025-screening",
+        permanent: true,
+      },
+      {
+        source: "/luxury-residences/42-east-residences",
+        destination: "/luxury-residences/page/1",
         permanent: true,
       },
     ];
