@@ -64,6 +64,26 @@ const nextConfig: NextConfig = {
         destination: "/panchshil-admin-panel",
         permanent: true,
       },
+      {
+        source: "/luxury-residences/:id(\\d+)/:slug*",
+        destination: "/luxury-residences/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/office-parks/:id(\\d+)/:slug*",
+        destination: "/office-parks/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/hospitality/:id(\\d+)/:slug*",
+        destination: "/hospitality/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/retail/:id(\\d+)/:slug*",
+        destination: "/retail/:slug*",
+        permanent: true,
+      },
     ];
   },
 };
