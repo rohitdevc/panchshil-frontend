@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "tsx scripts/generate-search-index.ts",
     "dev": "next dev -p 2982",
     "prebuild": "tsx scripts/generate-search-index.ts",
     "build": "next build",
     "start": "next start -p 2982",
-    "lint": "eslint .",
+    "lint": "eslint . --quiet",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

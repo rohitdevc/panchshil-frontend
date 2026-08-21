@@ -8,6 +8,7 @@ export interface EnquiryFormProps {
   isOpen: boolean;
   onClose: () => void;
   propertyName?: string;
+  propertyBrochure?: string | null;
 }
 
 export interface EnquiryFormData {

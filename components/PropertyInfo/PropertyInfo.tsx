@@ -51,13 +51,17 @@ export function PropertyInfo({
 
           {/* Right side - Action Buttons */}
           <div className="flex items-center gap-2 w-full lg:w-auto">
-            <Link
-              href={info?.property_brochure || "#"}
-              className="flex-1 lg:flex-none bg-[#35393B] hover:bg-black text-white px-3 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-colors duration-200 whitespace-nowrap text-center"
-              target="_blank"
-            >
-              Download Brochure
-            </Link>
+            {
+              info?.property_brochure && (
+              <Link
+                href={info?.property_brochure || "#"}
+                className="flex-1 lg:flex-none bg-[#35393B] hover:bg-black text-white px-3 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-colors duration-200 whitespace-nowrap text-center"
+                target="_blank"
+              >
+                Download Brochure
+              </Link>
+            )
+            }
             <Link
               href={info?.property_brochure || "#"}
               className="flex-1 lg:flex-none bg-[#35393B] hover:bg-black text-white px-3 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-colors duration-200 whitespace-nowrap text-center cursor-pointer"
@@ -76,6 +80,7 @@ export function PropertyInfo({
         isOpen={isEnquiryOpen}
         onClose={() => setIsEnquiryOpen(false)}
         propertyName={info?.property_name}
+        propertyBrochure={info?.property_brochure}
       />
     </section>
   );

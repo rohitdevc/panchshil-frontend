@@ -82,6 +82,7 @@ export function EnquiryForm({
   isOpen,
   onClose,
   propertyName,
+  propertyBrochure
 }: EnquiryFormProps) {
   const [propertyGroups, setPropertyGroups] = useState<EnquiryPropertyGroup[]>(
     []
@@ -192,6 +193,10 @@ export function EnquiryForm({
         if (!response.ok) {
           console.error("Failed to submit enquiry form:", result?.error);
           return;
+        }
+
+        if(propertyBrochure) {
+          window.open(propertyBrochure, '_blank');
         }
 
         setIsSubmitted(true);
