@@ -59,7 +59,7 @@ export default function AboutUsPageClient({ data }: AboutUsPageClientProps) {
                 data.esg?.about_esg_image ||
                 data.sustainability.slides[0]?.imageSrc,
               title: data.esg?.about_esg_description
-                ? `CARING FOR PEOPLE, PLANET & LEGACY\n${data.esg.about_esg_caption || "OUR SUSTAINABILITY PROMISE"}`
+                ? `${data.esg.about_esg_caption || "OUR SUSTAINABILITY PROMISE"}`
                 : data.sustainability.slides[0]?.title,
               description:
                 data.esg?.about_esg_description ||
