@@ -55,6 +55,9 @@ export async function generateMetadata({
     notFound();
   }
 
+  const pageParam = resolvedParams.page;
+  const page = pageParam ? parseInt(pageParam, 10) : 1;
+
   return {
     title:
       propertyCategory?.meta_title ||
@@ -63,13 +66,13 @@ export async function generateMetadata({
       propertyCategory?.meta_description ||
       "Since 2002, Panchshil Realty has set benchmarks in design, delivery and urban placemaking.",
     alternates: propertyCategory?.canonical_tag
-      ? { canonical: propertyCategory.canonical_tag }
+      ? { canonical: propertyCategory.canonical_tag + '/page/' + page }
       : undefined,
     openGraph: {
       title: propertyCategory?.meta_title,
       description: propertyCategory?.meta_description,
       type: "website",
-      url: propertyCategory?.canonical_tag,
+      url: propertyCategory?.canonical_tag + '/page/' + page,
       siteName: "Panchshil Realty",
       images: [
         {
