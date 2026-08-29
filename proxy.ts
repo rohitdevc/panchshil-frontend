@@ -8,14 +8,19 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segments = pathname.split("/").filter(Boolean);
 
+  // /category
   if (segments.length === 1) {
     const [categorySlug] = segments;
 
     if (KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug)) {
       const targetUrl = new URL(`/${categorySlug}/page/1`, request.url);
+
       return NextResponse.redirect(targetUrl, 301);
     }
-  } else if (segments.length === 2) {
+  }
+
+  // /category/page
+  if (segments.length === 2) {
     const [categorySlug, pageSegment] = segments;
 
     if (
@@ -28,11 +33,23 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Match: /categorySlug/propertySlug - validate property exists
+  // /category/page/number
+  if (segments.length === 3) {
+    const [categorySlug, pageSegment, pageNumber] = segments;
+
+    if (
+      KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug) &&
+      pageSegment === "page" &&
+      /^\d+$/.test(pageNumber)
+    ) {
+      return NextResponse.next();
+    }
+  }
+
+  // /category/property
   if (segments.length === 2) {
     const [categorySlug, propertySlug] = segments;
 
-    // Skip if numeric (backward compat - handle in page component)
     if (/^\d+$/.test(propertySlug)) {
       const targetUrl = new URL(`/${categorySlug}`, request.url);
 
@@ -41,34 +58,30 @@ export async function proxy(request: NextRequest) {
 
     if (KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug)) {
       try {
-        try {
-          await getPropertyDetail(categorySlug, propertySlug);
-          return NextResponse.next();
-        } catch (error) {
-          if (error instanceof ApiException) {
-            if (error.statusCode === 404) {
-              const targetUrl = new URL(`/${categorySlug}`, request.url);
-              return NextResponse.redirect(targetUrl, 301);
-            }
+        await getPropertyDetail(categorySlug, propertySlug);
+        return NextResponse.next();
+      } catch (error) {
+        if (error instanceof ApiException) {
+          if (error.statusCode === 404) {
+            const targetUrl = new URL(`/${categorySlug}`, request.url);
+            return NextResponse.redirect(targetUrl, 301);
+          }
 
-            if (error.statusCode === 400 && error.response) {
-              const apiResponse = error.response as {
-                errors?: Array<{ msg?: string }>;
-              };
-              if (
-                apiResponse.errors?.some((err) =>
-                  err.msg?.includes("Invalid Property URL Slug")
-                )
-              ) {
-                const targetUrl = new URL(`/${categorySlug}`, request.url);
-                return NextResponse.redirect(targetUrl, 301);
-              }
-            }
+          if (
+            error.statusCode === 400 &&
+            error.response &&
+            (error.response as {
+              errors?: Array<{ msg?: string }>;
+            }).errors?.some((err) =>
+              err.msg?.includes("Invalid Property URL Slug")
+            )
+          ) {
+            const targetUrl = new URL(`/${categorySlug}`, request.url);
+            return NextResponse.redirect(targetUrl, 301);
           }
         }
-      } catch (error) {
-        console.error("Middleware error validating property:", error);
 
+        console.error("Middleware error validating property:", error);
         return NextResponse.next();
       }
     }
@@ -81,6 +94,7 @@ export const config = {
   matcher: [
     "/:categorySlug",
     "/:categorySlug/page",
-    "/:categorySlug/:propertySlug", // Match property detail routes
+    "/:categorySlug/page/:pageNumber",
+    "/:categorySlug/:propertySlug",
   ],
 };
