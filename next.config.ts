@@ -60,6 +60,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/office-parks/page/undefinedoffice-parks/page/2",
+        destination: "/office-parks/page/2",
+        permanent: true,
+      },
+      {
         source: "/nest-panchshil-admin-panel",
         destination: "/panchshil-admin-panel",
         permanent: true,

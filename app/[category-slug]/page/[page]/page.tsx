@@ -103,6 +103,7 @@ export default async function PaginatedListPage({
 
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
   const pageParam = resolvedParams.page;
+
   const page = pageParam ? parseInt(pageParam, 10) : 1;
 
   if (isNaN(page) || page < 1) {
