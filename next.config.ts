@@ -60,8 +60,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/office-parks/page/undefinedoffice-parks/page/:page",
-        destination: "/office-parks/page/:page",
+        source: "/:slug/page/undefinedoffice-parks/page/:page",
+        destination: "/:slug/page/:page",
         permanent: true
       },
       {
