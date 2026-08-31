@@ -60,8 +60,23 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:slug/page/undefinedoffice-parks/page/:page",
-        destination: "/:slug/page/:page",
+        source: "/luxury-residences/page/undefinedluxury-residences/page/:page",
+        destination: "/luxury-residences/page/:page",
+        permanent: true
+      },
+      {
+        source: "/office-parks/page/undefinedoffice-parks/page/:page",
+        destination: "/office-parks/page/:page",
+        permanent: true
+      },
+      {
+        source: "/hospitality/page/undefinedhospitality/page/:page",
+        destination: "/hospitality/page/:page",
+        permanent: true
+      },
+      {
+        source: "/retail/page/undefinedretail/page/:page",
+        destination: "/retail/page/:page",
         permanent: true
       },
       {
