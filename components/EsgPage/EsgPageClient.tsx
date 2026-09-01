@@ -46,6 +46,7 @@ type EsgPageClientProps = {
 };
 
 export default function EsgPageClient({ data }: EsgPageClientProps) {
+
   return (
     <main className="min-h-screen bg-[#0F140D]">
       <Header />

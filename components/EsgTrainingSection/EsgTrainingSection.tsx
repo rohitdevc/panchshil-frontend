@@ -88,7 +88,7 @@ export default function EsgTrainingSection({
         .replace(/&/g, "and")
         .replace(/\./g, "")
         .replace(/\s+/g, "-")}
-      className="w-full bg-[#FFFFFF] py-16 md:py-24 border-t border-[#E2DFD7]/30 transition-colors duration-300"
+      className="w-full bg-[#FFFFFF] py-16 border-t border-[#E2DFD7]/30 transition-colors duration-300"
     >
       <div className="max-w-[1540px] mx-auto px-6 md:px-10 lg:px-12">
         {/* Header centered */}

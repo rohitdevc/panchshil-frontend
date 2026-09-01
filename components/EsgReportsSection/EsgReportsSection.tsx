@@ -16,34 +16,32 @@ export default function EsgReportsSection({
   reportsIntro,
   reportsList,
 }: Props) {
-  if (typeof reportsIntro !== "object" && reportsList?.length === 0)
+  if (reportsList?.length === 0)
     return null;
   return (
-    <section
-      id="reports"
-      className="w-full bg-[#FFFFFF] py-16 md:py-24 border-t border-[#E2DFD7]/30 transition-colors duration-300"
-    >
+    <section id="esg-reports" className="w-full bg-[#FFFFFF] py-5 border-t border-[#E2DFD7]/30 transition-colors duration-300">
       <div className="max-w-[1540px] mx-auto px-6 md:px-10 lg:px-12">
         {typeof reportsIntro === "object" && (
           <>
             {/* Header split layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-8 md:mb-4">
+            <div className="flex justify-center items-center mb-8 md:mb-4">
               {/* Left Side: Mockup Image */}
-              <div className="lg:col-span-5 flex justify-start">
+              <div className="lg:col-span-5 flex justify-start hidden">
                 {reportsIntro?.reports_image && (
-                  <div className="w-full relative aspect-[5/3] max-w-full overflow-hidden shadow-sm">
-                    <Image
-                      src={reportsIntro?.reports_image}
-                      alt="ESG Reports Mockup Banner"
-                      fill
-                      className="object-cover object-center"
-                    />
-                  </div>
+                  
+                    <div className="w-full relative aspect-[5/3] max-w-full overflow-hidden shadow-sm">
+                      <Image
+                        src={reportsIntro?.reports_image}
+                        alt="ESG Reports Mockup Banner"
+                        fill
+                        className="object-cover object-center"
+                      />
+                    </div>
                 )}
               </div>
 
               {/* Right Side: Text */}
-              <div className="lg:col-span-7 flex flex-col">
+              <div className="flex flex-col">
                 <span className="text-[#40A937] text-xs md:text-sm font-normal tracking-widest uppercase block mb-3 font-sans">
                   - {reportsIntro?.reports_heading || ""}
                 </span>
