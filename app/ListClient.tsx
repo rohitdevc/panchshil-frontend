@@ -60,7 +60,7 @@ export default function ListClient({
       <main
         className={`min-h-screen ${isDarkMode ? "bg-[#232323]" : "bg-[#FFFAF7]"}`}
       >
-        <Header />
+        <Header isDarkMode={isDarkMode} />
         <ListHeroBanner
           propertyCategory={propertyCategory as PropertyCategoryProps}
         />

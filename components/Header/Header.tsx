@@ -20,10 +20,11 @@ function getTopLevelNavHref(item: {
 }
 
 type HeaderProps = {
+  isDarkMode?: boolean;
   blogDetails?: boolean;
 };
 
-export function Header({ blogDetails }: HeaderProps) {
+export function Header({ isDarkMode, blogDetails }: HeaderProps) {
   const navigationMenu = useNavigationMenu();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -66,7 +67,7 @@ export function Header({ blogDetails }: HeaderProps) {
     >
       {/* Background overlay with fade effect */}
       <div
-        className={`absolute shadow inset-0 bg-white/95 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+        className={`absolute shadow inset-0 ${!isDarkMode ? "bg-white/95" : "bg-black/95" } backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
           isScrolled ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -124,7 +125,7 @@ export function Header({ blogDetails }: HeaderProps) {
         <nav className="hidden md:flex justify-center">
           <ul
             className={`flex flex-wrap justify-center gap-3 lg:gap-12 transition-colors duration-300 ${
-              isScrolled ? "text-black-chocolate" : "text-white"
+              isScrolled && !isDarkMode ? "text-black-chocolate" : "text-white"
             }`}
           >
             {navigationMenu?.map((item, i) => {
