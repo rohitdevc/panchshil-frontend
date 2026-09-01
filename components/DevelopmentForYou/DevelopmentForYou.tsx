@@ -58,12 +58,12 @@ const DevelopmentForYou = ({
           }`}
         >
           <div
-            className={`text-lg uppercase font-medium tracking-[0.2em] text-gold-beige mb-2`}
+            className={`text-lg uppercase font-medium tracking-[0.2em] text-gold-beige mb-2 `}
           >
             {title}
           </div>
           <h2
-            className={`text-2xl uppercase md:text-[28px] font-display-semi transition-colors text-black`}
+            className={`text-2xl uppercase md:text-[28px] font-display-semi transition-colors text-black ${isDarkMode ? 'text-white': 'text-black'}`}
           >
             {subtitle}
           </h2>

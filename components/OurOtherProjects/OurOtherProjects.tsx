@@ -41,9 +41,7 @@ const OurOtherProjects = ({
           }`}
         >
           <div
-            className={`text-lg uppercase font-medium tracking-[0.2em] text-gold-beige mb-2 
-            ${theme === "day" ? "text-gold-beige" : "text-white"}
-            `}
+            className={`text-lg uppercase font-medium tracking-[0.2em] text-gold-beige mb-2 `}
           >
             OUR OTHER PROJECTS
           </div>
