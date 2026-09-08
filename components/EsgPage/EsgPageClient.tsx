@@ -31,6 +31,7 @@ import {
   EsgTickerApiItem,
   EsgPerformanceCategory,
 } from "@/interfaces";
+import EsgStatisticsYear from "./EsgStatisticsYear";
 
 type EsgPageClientProps = {
   data: {
@@ -78,8 +79,9 @@ export default function EsgPageClient({ data }: EsgPageClientProps) {
         />
         <EsgCertificationsSection
           performance={data.performance_categories[0].performances}
-          safetyGovernance={data.safetyGovernance}
+          sequence={5}
         />
+        <EsgStatisticsYear caption={data.performance_categories[0].performance_category_caption} />
       </div>
       <div id="social">
         <EsgCHARMSection
@@ -107,6 +109,14 @@ export default function EsgPageClient({ data }: EsgPageClientProps) {
         reportsIntro={data.reportsIntro}
         reportsList={data.reportsList}
       />
+      <div id="entity-level-sustainability">
+        {
+          data.performance_categories[4].performances && data.performance_categories[4].performances.map((performance, key) => (
+            <EsgCertificationsSection key={key} performance={data.performance_categories[4].performances} sequence={key} />
+          ))
+        }
+        <EsgStatisticsYear caption={data.performance_categories[4].performance_category_caption} />
+      </div>
       <Footer />
     </main>
   );

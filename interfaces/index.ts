@@ -797,10 +797,12 @@ export type EsgPerformanceApiItem = {
   performance_description?: string;
   performance_short_desc?: string;
   performance_image?: string;
+  safety_and_governance?: EsgSafetyGovernanceCategoryApiItem[]
 };
 
 export type EsgPerformanceCategory = {
   performance_category_name: string;
+  performance_category_caption?: string;
   performances: EsgPerformanceApiItem[];
 };
 

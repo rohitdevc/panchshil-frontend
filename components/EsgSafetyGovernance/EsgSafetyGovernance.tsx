@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useCountUp } from "@/hooks/useCountUp";
 import { EsgSafetyGovernanceCategoryApiItem } from "@/interfaces";
 
@@ -266,7 +265,7 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
 
   return (
     <div className="w-full">
-      <div id="safety-governance" className="w-full scroll-mt-24">
+      <div className="w-full scroll-mt-24">
         <div className="w-full flex flex-col border-t border-[#E2DFD7]/80">
           {acData.map((categoryData, categoryIndex) => (
             <React.Fragment key={categoryIndex}>
@@ -296,11 +295,11 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
                           </span>
                           {item.title}
                         </span>
-
                         <div className="flex items-center gap-6 mt-2 md:mt-0 justify-between md:justify-end w-full md:w-auto">
                           <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wider text-[#35393B]/80 font-sans">
                             {item.subtitle}
                           </span>
+                          {item.subGrid && item.subGrid.length > 0 && (
                           <svg
                             className={`w-4 h-4 text-[#7F847E]  transition-transform duration-300 transform ${
                               isExpanded ? "rotate-180" : ""
@@ -316,9 +315,10 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
+                          )}
                         </div>
                       </button>
-
+                      {item.subGrid && item.subGrid.length > 0 && (
                       <div
                         className={`overflow-hidden transition-all duration-300 ease-in-out ${
                           isExpanded
@@ -326,7 +326,6 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
                             : "max-h-0 opacity-0"
                         }`}
                       >
-                        {item.subGrid && (
                           <>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
                               {item.subGrid.map((sub, sIdx) => (
@@ -351,19 +350,14 @@ export default function EsgSafetyGovernance({ safetyGovernance }: Props) {
                               <PortfolioCoverage data={pfData} />
                             )}
                           </>
-                        )}
                       </div>
+                      )}
                     </div>
                   );
                 })}
             </React.Fragment>
           ))}
         </div>
-      </div>
-      <div className="w-full mt-5">
-        <span className="text-[11px] md:text-xs text-gray-500 font-sans font-light tracking-wide block">
-          All data is for FY 2025-26 unless stated otherwise.
-        </span>
       </div>
     </div>
   );
