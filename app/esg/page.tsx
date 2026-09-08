@@ -155,13 +155,6 @@ export default async function EsgPage() {
     console.error("Error fetching ESG reports:", error);
   }
 
-  if(esgReportsList.length > 0) {
-    esgPerformance.push({
-      performance_category_name: 'ESG Reports',
-      performances: []
-    }) 
-  }
-
   const data = {
     milestones: esgMilestones,
     ticker: esgTicker,
