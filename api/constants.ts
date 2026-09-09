@@ -73,8 +73,6 @@ const API_CONSTANTS = {
   ESG_AWARDS_API: "/api/esg/awards",
   ESG_REPORTS_INTRO: `/esg/reports/intro`,
   ESG_REPORTS_INTRO_API: "/api/esg/reports/intro",
-  ESG_SAFETY_GOVERNANCE: `/esg/safety-and-governance`,
-  ESG_SAFETY_GOVERNANCE_API: "/api/esg/safety-and-governance",
   ESG_REPORTS: `/esg/reports`,
   ESG_REPORTS_API: "/api/esg/reports",
   ESG_TICKER: `/esg/ticker`,

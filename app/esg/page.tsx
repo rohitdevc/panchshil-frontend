@@ -7,7 +7,6 @@ import {
   getEsgPerformance,
   getEsgReports,
   getEsgReportsIntro,
-  getEsgSafetyGovernance,
   getEsgTicker,
   getMetaData,
   getBanner,
@@ -19,7 +18,6 @@ import {
   EsgPerformanceApiItem,
   EsgReportApiItem,
   EsgReportsIntroApiResponse,
-  EsgSafetyGovernanceCategoryApiItem,
   EsgTickerApiItem,
   EsgPerformanceCategory,
   MetaDataProps,
@@ -95,7 +93,6 @@ export default async function EsgPage() {
   let esgTicker: EsgTickerApiItem[] = [];
   let esgIntroduction: EsgIntroductionApiResponse | null = null;
   let esgPerformance: EsgPerformanceCategory[] = [];
-  let esgSafetyGovernance: EsgSafetyGovernanceCategoryApiItem[] = [];
   let esgReportsIntro: EsgReportsIntroApiResponse | null = null;
   let esgReportsList: EsgReportApiItem[] = [];
 
@@ -134,14 +131,6 @@ export default async function EsgPage() {
   }
 
   try {
-    const response =
-      (await getEsgSafetyGovernance()) as EsgSafetyGovernanceCategoryApiItem[];
-    esgSafetyGovernance = Array.isArray(response) ? response : [];
-  } catch (error) {
-    console.error("Error fetching ESG safety & governance:", error);
-  }
-
-  try {
     esgReportsIntro =
       (await getEsgReportsIntro()) as EsgReportsIntroApiResponse;
   } catch (error) {
@@ -158,7 +147,6 @@ export default async function EsgPage() {
   const data = {
     milestones: esgMilestones,
     ticker: esgTicker,
-    safetyGovernance: esgSafetyGovernance,
     reportsIntro: esgReportsIntro,
     reportsList: esgReportsList,
     performance_categories: esgPerformance,

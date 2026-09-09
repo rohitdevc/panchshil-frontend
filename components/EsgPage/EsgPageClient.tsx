@@ -40,7 +40,6 @@ type EsgPageClientProps = {
     ticker: EsgTickerApiItem[] | [];
     introduction: EsgIntroductionApiResponse | null;
     performance_categories: EsgPerformanceCategory[];
-    safetyGovernance: EsgSafetyGovernanceCategoryApiItem[];
     reportsIntro: EsgReportsIntroApiResponse | object | null;
     reportsList: EsgReportApiItem[] | [];
   };

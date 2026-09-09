@@ -398,12 +398,6 @@ export const getEsgReportsIntro = esgBearerGet(API_CONSTANTS.ESG_REPORTS_INTRO);
 export const getEsgReportsIntroAPI = esgProxyGet(
   API_CONSTANTS.ESG_REPORTS_INTRO_API
 );
-export const getEsgSafetyGovernance = esgBearerGet(
-  API_CONSTANTS.ESG_SAFETY_GOVERNANCE
-);
-export const getEsgSafetyGovernanceAPI = esgProxyGet(
-  API_CONSTANTS.ESG_SAFETY_GOVERNANCE_API
-);
 export const getEsgReports = esgBearerGet(API_CONSTANTS.ESG_REPORTS);
 export const getEsgReportsAPI = esgProxyGet(API_CONSTANTS.ESG_REPORTS_API);
 export const getEsgTicker = esgBearerGet(API_CONSTANTS.ESG_TICKER);
