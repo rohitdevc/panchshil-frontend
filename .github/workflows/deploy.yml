@@ -1,0 +1,16 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest code
+        run: |
+          cd /var/www/html/panchshil/frontend
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/readOnlyRepo -o IdentitiesOnly=yes" git pull origin main
