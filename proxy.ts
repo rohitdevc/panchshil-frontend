@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { KNOWN_PROPERTY_CATEGORY_SLUGS } from "@/lib/property-category-slugs";
 import { getPropertyDetail } from "@/api/CMS.api";
 import ApiException from "@/api/Api.exception";
+import propertyIndex from "@/generated/property-index.json";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -23,10 +24,7 @@ export async function proxy(request: NextRequest) {
   if (segments.length === 2) {
     const [categorySlug, pageSegment] = segments;
 
-    if (
-      KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug) &&
-      pageSegment === "page"
-    ) {
+    if (KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug) && pageSegment === "page") {
       const targetUrl = new URL(`/${categorySlug}/page/1`, request.url);
 
       return NextResponse.redirect(targetUrl, 301);
@@ -37,11 +35,7 @@ export async function proxy(request: NextRequest) {
   if (segments.length === 3) {
     const [categorySlug, pageSegment, pageNumber] = segments;
 
-    if (
-      KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug) &&
-      pageSegment === "page" &&
-      /^\d+$/.test(pageNumber)
-    ) {
+    if (KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug) && pageSegment === "page" && /^\d+$/.test(pageNumber)) {
       return NextResponse.next();
     }
   }
@@ -58,6 +52,7 @@ export async function proxy(request: NextRequest) {
 
     if (KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug)) {
       try {
+
         await getPropertyDetail(categorySlug, propertySlug);
         return NextResponse.next();
       } catch (error) {

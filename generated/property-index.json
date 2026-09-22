@@ -1,0 +1,294 @@
+[
+  {
+    "title": "57 Avenue",
+    "path": "57-avenue"
+  },
+  {
+    "title": "Omnia Residences",
+    "path": "omnia-residences"
+  },
+  {
+    "title": "Trump Towers",
+    "path": "trump-towers"
+  },
+  {
+    "title": "YOO Villas",
+    "path": "yoo-villas"
+  },
+  {
+    "title": "yoopune",
+    "path": "yoopune"
+  },
+  {
+    "title": "EON Waterfront",
+    "path": "eon-waterfront"
+  },
+  {
+    "title": "Panchshil Towers",
+    "path": "panchshil-towers"
+  },
+  {
+    "title": "Avant Garde",
+    "path": "avant-garde"
+  },
+  {
+    "title": "SOHO",
+    "path": "soho"
+  },
+  {
+    "title": "The Address",
+    "path": "the-address"
+  },
+  {
+    "title": "One North",
+    "path": "one-north"
+  },
+  {
+    "title": "Waterfront",
+    "path": "waterfront"
+  },
+  {
+    "title": "Ssilver Woods",
+    "path": "ssilver-woods"
+  },
+  {
+    "title": "Satellite Towers",
+    "path": "satellite-towers"
+  },
+  {
+    "title": "Forest Castle",
+    "path": "forest-castle"
+  },
+  {
+    "title": "Queens Court",
+    "path": "queens-court"
+  },
+  {
+    "title": "Casa 9",
+    "path": "casa-9"
+  },
+  {
+    "title": "Business Bay",
+    "path": "business-bay"
+  },
+  {
+    "title": "Panchshil Business Park West",
+    "path": "panchshil-business-park-west"
+  },
+  {
+    "title": "EON Free Zone I",
+    "path": "eon-free-zone-i"
+  },
+  {
+    "title": "EON Free Zone II",
+    "path": "eon-free-zone-ii"
+  },
+  {
+    "title": "World Trade Center",
+    "path": "world-trade-center"
+  },
+  {
+    "title": "Panchshil Business Park East",
+    "path": "panchshil-business-park-east"
+  },
+  {
+    "title": "ICC Tech Park",
+    "path": "icc-tech-park"
+  },
+  {
+    "title": "ICC Trade Tower",
+    "path": "icc-trade-tower"
+  },
+  {
+    "title": "Panchshil Tech Park",
+    "path": "panchshil-tech-park"
+  },
+  {
+    "title": "The Pavillion",
+    "path": "the-pavillion"
+  },
+  {
+    "title": "Tech Park One",
+    "path": "tech-park-one"
+  },
+  {
+    "title": "Futura",
+    "path": "futura"
+  },
+  {
+    "title": "The Chambers",
+    "path": "the-chambers"
+  },
+  {
+    "title": "Eleven West",
+    "path": "eleven-west"
+  },
+  {
+    "title": "Cummins India",
+    "path": "cummins-india"
+  },
+  {
+    "title": "Emerson Innovation Center",
+    "path": "emerson-innovation-center"
+  },
+  {
+    "title": "Bajaj Brand View",
+    "path": "bajaj-brand-view"
+  },
+  {
+    "title": "AXA Business Services",
+    "path": "axa-business-services"
+  },
+  {
+    "title": "Suzlon One Earth",
+    "path": "suzlon-one-earth"
+  },
+  {
+    "title": "Bajaj Finserv",
+    "path": "bajaj-finserv"
+  },
+  {
+    "title": "Panchshil Tech Park",
+    "path": "panchshil-tech-park"
+  },
+  {
+    "title": "Siemens",
+    "path": "siemens"
+  },
+  {
+    "title": "Panchshil Avenue",
+    "path": "panchshil-avenue"
+  },
+  {
+    "title": "The Golden Bell I",
+    "path": "the-golden-bell-i"
+  },
+  {
+    "title": "Panchshil Edge",
+    "path": "panchshil-edge"
+  },
+  {
+    "title": "WestView",
+    "path": "west-view"
+  },
+  {
+    "title": "EON West II",
+    "path": "eon-west-ii"
+  },
+  {
+    "title": "The Xchange",
+    "path": "the-xchange"
+  },
+  {
+    "title": "Vantage",
+    "path": "vantage"
+  },
+  {
+    "title": "Panchshil Business Hub",
+    "path": "panchshil-business-hub"
+  },
+  {
+    "title": "The Golden Bell II",
+    "path": "the-golden-bell-ii"
+  },
+  {
+    "title": "The Ritz-Carlton",
+    "path": "the-ritz-carlton"
+  },
+  {
+    "title": "Marriott Suites",
+    "path": "marriott-suites"
+  },
+  {
+    "title": "JW Marriott",
+    "path": "jw-marriott"
+  },
+  {
+    "title": "Oakwood Residence",
+    "path": "oakwood-residence"
+  },
+  {
+    "title": "Raaya by Atmosphere",
+    "path": "raaya-by-atmosphere"
+  },
+  {
+    "title": "Courtyard By Marriott",
+    "path": "courtyard-by-marriott"
+  },
+  {
+    "title": "DoubleTree by Hilton",
+    "path": "double-tree-by-hilton"
+  },
+  {
+    "title": "Aloft Bengaluru",
+    "path": "aloft-bengaluru"
+  },
+  {
+    "title": "Aloft Bengaluru Whitefield",
+    "path": "aloft-bengaluru-whitefield"
+  },
+  {
+    "title": "Varanasi Marriott Hotel",
+    "path": "varanasi-marriott-hotel"
+  },
+  {
+    "title": "Conrad Maldives Rangali Island",
+    "path": "conrad-maldives-rangali-island"
+  },
+  {
+    "title": "Pottuvil, a Ritz-Carlton Reserve",
+    "path": "pottuvil-a-ritz-carlton-reserve"
+  },
+  {
+    "title": "Anantara Dhigu Maldives Resort",
+    "path": "anantara-dhigu-maldives-resort"
+  },
+  {
+    "title": "Anantara Veli Maldives Resort",
+    "path": "anantara-veli-maldives-resort"
+  },
+  {
+    "title": "Anantara Naladhu Private Island",
+    "path": "anantara-naladhu-private-island"
+  },
+  {
+    "title": "Hilton Goa Resort",
+    "path": "hilton-goa-resort"
+  },
+  {
+    "title": "Lumina Panchshil JV – LBOM I",
+    "path": "lumina-panchshil-jv-lbom-i"
+  },
+  {
+    "title": "Lumina Panchshil JV – LBOM II",
+    "path": "lumina-panchshil-jv-lbom-ii"
+  },
+  {
+    "title": "NTT NAV 2 – Airoli DC – Phase I",
+    "path": "ntt-nav-2-airoli-dc-phase-i"
+  },
+  {
+    "title": "Balewadi High Street",
+    "path": "balewadi-high-street"
+  },
+  {
+    "title": "The Pavillion",
+    "path": "the-pavillion"
+  },
+  {
+    "title": "ICC High Street",
+    "path": "icc-high-street"
+  },
+  {
+    "title": "Cityhub",
+    "path": "cityhub"
+  },
+  {
+    "title": "Spazio",
+    "path": "spazio"
+  },
+  {
+    "title": "SOHO Street",
+    "path": "soho-street"
+  }
+]

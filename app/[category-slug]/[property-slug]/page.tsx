@@ -9,6 +9,7 @@ import type {
 } from "@/interfaces";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import propertyIndex from "@/generated/property-index.json";
 
 interface PropertyDetailtPageProps {
   params: {
@@ -44,6 +45,12 @@ export async function generateMetadata({
   const resolvedParams = await params;
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
   const propertyUrlSlug = resolvedParams["property-slug"];
+
+  const propertyExists = propertyIndex.some((property) => property.path === propertyUrlSlug);
+  
+  if (!propertyExists) {
+    notFound()
+  }
 
   try {
     const detail = (await getPropertyDetail(
