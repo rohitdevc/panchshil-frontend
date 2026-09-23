@@ -103,6 +103,13 @@ export default async function PropertyDetailPage({
     notFound();
   }
 
+  const propertyExists = propertyIndex.some((property) => property.path === propertyUrlSlug);
+  
+  if (!propertyExists) {
+    notFound()
+  }
+  
+
   let propertyDetail: unknown = null;
   try {
     propertyDetail = await getPropertyDetail(
