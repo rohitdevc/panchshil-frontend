@@ -5,8 +5,6 @@ import { getBanner, getMetaData } from "@/api/CMS.api";
 import { BannersProps, MetaDataProps } from "@/interfaces";
 import { CareerHeroContent } from "../career-page.data";
 
-export const revalidate = 600;
-export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
   try {
     return (await getMetaData("Vacancies")) as MetaDataProps;

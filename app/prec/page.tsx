@@ -24,9 +24,7 @@ import {
   MetaDataProps,
 } from "@/interfaces";
 import type { Metadata } from "next";
-// Revalidate this route every 30 minutes.
-export const revalidate = 1800;
-export const dynamic = "force-dynamic";
+
 async function getPageMetaData(): Promise<MetaDataProps | null> {
   try {
     return (await getMetaData("PREC")) as MetaDataProps;

@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-store", // Disable caching for paginated requests
+      cache: "force-cache", // Disable caching for paginated requests
     });
 
     if (!response.ok) {

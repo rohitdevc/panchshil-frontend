@@ -31,9 +31,6 @@ import {
   MasterSliderData,
 } from "@/interfaces";
 
-// Enable page-level caching - revalidate every 10 minutes (600 seconds)
-export const revalidate = 600;
-export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
   try {
     return (await getMetaData("Home")) as MetaDataProps;

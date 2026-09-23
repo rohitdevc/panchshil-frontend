@@ -258,7 +258,7 @@ export const getAwardsAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -273,7 +273,7 @@ export const getClientsAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -288,7 +288,7 @@ export const getTestimonialsAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -303,7 +303,7 @@ export const getPrecIntroAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -318,7 +318,7 @@ export const getPrecBenefitsAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -333,7 +333,7 @@ export const getPrecFaqsAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -348,7 +348,7 @@ export const getMeetTheCityMagazinesAPI = (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 
@@ -359,7 +359,7 @@ const esgProxyGet = (apiPath: string) => (baseUrl?: string) => {
 
   return doFetch(apiUrl, {
     method: "GET",
-    cache: "no-store",
+    cache: "force-cache",
   });
 };
 

@@ -35,8 +35,6 @@ import {
   MetaDataProps,
 } from "@/interfaces";
 import type { Metadata } from "next";
-export const revalidate = 600;
-export const dynamic = "force-dynamic";
 
 async function getPageMetaData(): Promise<MetaDataProps | null> {
   try {

@@ -84,7 +84,7 @@ const doCall = async (
     // For GET requests, use default caching (respects page revalidate)
     // For POST/PATCH/DELETE, disable caching
     if (option.method && ["POST", "PATCH", "DELETE"].includes(option.method)) {
-      fetchOptions.cache = "no-store";
+      fetchOptions.cache = "force-cache";
     }
     // GET requests will use Next.js default caching behavior
   }

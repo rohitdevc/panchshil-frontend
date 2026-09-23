@@ -4,8 +4,6 @@ import { BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 import { AboutUsHeroContent } from "@/app/about/about.data";
 
-export const dynamic = "force-dynamic";
-
 async function getPageMetaData(): Promise<MetaDataProps | null> {
   try {
     return (await getMetaData("Contact Us")) as MetaDataProps;

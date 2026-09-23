@@ -19,10 +19,9 @@ import {
   parsePropertyCountryKeysFromPageSearchParams,
 } from "@/utils/propertyCities";
 import ListClient from "../../../ListClient";
+import { KNOWN_PROPERTY_CATEGORY_SLUGS } from "@/lib/property-category-slugs";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-
-export const revalidate = 600; // 10 minutes
 
 interface PaginatedListPageProps {
   params: Promise<{
@@ -37,6 +36,10 @@ export async function generateMetadata({
 }: PaginatedListPageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
+
+  if(!KNOWN_PROPERTY_CATEGORY_SLUGS.has(propertyCategoryUrlSlug)) {
+    notFound();
+  }
 
   let propertyCategory: PropertyCategoryProps | null = null;
 
@@ -103,6 +106,10 @@ export default async function PaginatedListPage({
 
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
   const pageParam = resolvedParams.page;
+
+  if(!KNOWN_PROPERTY_CATEGORY_SLUGS.has(propertyCategoryUrlSlug)) {
+    notFound();
+  }
 
   const page = pageParam ? parseInt(pageParam, 10) : 1;
 

@@ -9,6 +9,7 @@ import type {
 } from "@/interfaces";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { KNOWN_PROPERTY_CATEGORY_SLUGS } from "@/lib/property-category-slugs";
 import propertyIndex from "@/generated/property-index.json";
 
 interface PropertyDetailtPageProps {
@@ -17,9 +18,6 @@ interface PropertyDetailtPageProps {
     "property-slug": string;
   };
 }
-
-// Revalidate this page every 10 minutes
-export const revalidate = 600;
 
 function extractImageUrls(input: unknown): string[] {
   if (!input) return [];
@@ -45,6 +43,10 @@ export async function generateMetadata({
   const resolvedParams = await params;
   const propertyCategoryUrlSlug = resolvedParams["category-slug"];
   const propertyUrlSlug = resolvedParams["property-slug"];
+
+  if(!KNOWN_PROPERTY_CATEGORY_SLUGS.has(propertyCategoryUrlSlug)) {
+    notFound();
+  }
 
   const propertyExists = propertyIndex.some((property) => property.path === propertyUrlSlug);
   
@@ -100,6 +102,10 @@ export default async function PropertyDetailPage({
   const propertyUrlSlug = resolvedParams["property-slug"];
 
   if (!propertyCategoryUrlSlug || !propertyUrlSlug) {
+    notFound();
+  }
+  
+  if(!KNOWN_PROPERTY_CATEGORY_SLUGS.has(propertyCategoryUrlSlug)) {
     notFound();
   }
 

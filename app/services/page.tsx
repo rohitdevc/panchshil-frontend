@@ -6,8 +6,6 @@ import type { Metadata } from "next";
 import { getBanner, getMetaData } from "@/api/CMS.api";
 import { BannersProps, MetaDataProps } from "@/interfaces";
 
-export const revalidate = 600;
-export const dynamic = "force-dynamic";
 async function getPageMetaData(): Promise<MetaDataProps | null> {
   try {
     return (await getMetaData("Services")) as MetaDataProps;
