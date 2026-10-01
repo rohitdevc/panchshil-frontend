@@ -1,3 +1,5 @@
+name: panchshil-frontend
+
 services:
   frontend:
     build:
