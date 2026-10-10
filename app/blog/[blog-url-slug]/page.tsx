@@ -1,13 +1,24 @@
 import { BlogDetailsPageClient } from "@/components/BlogDetailsPage";
 import { loadBlog } from "./blog-loader";
-import { BlogDetailProp } from "@/interfaces";
+import { BlogDetailProp, BlogProp } from "@/interfaces";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { getBlog } from "@/api/CMS.api";
 
 interface BlogDetailtPageProps {
-  params: {
+  params: Promise<{
     "blog-url-slug": string;
-  };
+  }>;
+}
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const blogs = await getBlog();
+
+  return (blogs as BlogProp[]).map((blog) => ({
+    "blog-url-slug": blog.blog_url,
+  }));
 }
 
 export async function generateMetadata({

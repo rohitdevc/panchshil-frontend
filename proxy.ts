@@ -9,17 +9,6 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segments = pathname.split("/").filter(Boolean);
 
-  // /category
-  if (segments.length === 1) {
-    const [categorySlug] = segments;
-
-    if (KNOWN_PROPERTY_CATEGORY_SLUGS.has(categorySlug)) {
-      const targetUrl = new URL(`/${categorySlug}/page/1`, request.url);
-
-      return NextResponse.redirect(targetUrl, 301);
-    }
-  }
-
   // /category/page
   if (segments.length === 2) {
     const [categorySlug, pageSegment] = segments;
@@ -87,7 +76,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/:categorySlug",
     "/:categorySlug/page",
     "/:categorySlug/page/:pageNumber",
     "/:categorySlug/:propertySlug",

@@ -5,7 +5,6 @@ import {
 } from "./testimonials-page.data";
 import {
   getTestimonials,
-  getTestimonialsAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
@@ -107,34 +106,14 @@ function mapApiItemToListItem(
 export default async function TestimonialsPage() {
   let testimonialsFromApi: TestimonialsApiItem[] = [];
   let banner: BannersProps | null = null;
-  const metaData: MetaDataProps | null = null;
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "";
 
-  if (siteUrl) {
-    try {
-      const proxyResponse = (await getTestimonialsAPI(siteUrl)) as {
-        success?: boolean;
-        data?: unknown;
-      };
-
-      if (proxyResponse?.success && Array.isArray(proxyResponse.data)) {
-        testimonialsFromApi = proxyResponse.data as TestimonialsApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching testimonials from proxy API:", error);
+  try {
+    const response = await getTestimonials();
+    if (Array.isArray(response)) {
+      testimonialsFromApi = response as TestimonialsApiItem[];
     }
-  }
-
-  if (testimonialsFromApi.length === 0) {
-    try {
-      const response = await getTestimonials();
-      if (Array.isArray(response)) {
-        testimonialsFromApi = response as TestimonialsApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching testimonials:", error);
-    }
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
   }
 
   try {

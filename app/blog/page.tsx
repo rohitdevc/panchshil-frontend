@@ -107,7 +107,7 @@ export default async function BlogsPage() {
       featured: {
         title: blogFeaturedData.blog_title,
         excerpt: blogFeaturedData.blog_preview,
-        readMoreHref: blogFeaturedData.blog_url,
+        readMoreHref: '/blog/' + blogFeaturedData.blog_url,
         imageSrc: blogFeaturedData.blog_thumbnail,
         imageAlt: blogFeaturedData.blog_title,
         publishedOn: dayjs(blogFeaturedData.blog_published_date).format(
@@ -128,7 +128,7 @@ export default async function BlogsPage() {
         title: blog.blog_title,
         publishedOn: dayjs(blog.blog_published_date).format("Do MMM, YYYY"),
         imageSrc: blog.blog_thumbnail,
-        href: blog.blog_url,
+        href: '/blog/' + blog.blog_url,
       })),
     };
   }

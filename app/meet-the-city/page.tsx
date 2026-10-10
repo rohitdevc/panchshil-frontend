@@ -7,7 +7,6 @@ import {
 } from "./meet-the-city-page.data";
 import {
   getMeetTheCityMagazines,
-  getMeetTheCityMagazinesAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
@@ -99,35 +98,15 @@ function mapMagazinesFromApi(
 }
 
 export default async function MeetTheCityPage() {
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "";
-
   let magazinesFromApi: MeetTheCityMagazineApiItem[] | null = null;
 
-  if (siteUrl) {
-    try {
-      const raw = await getMeetTheCityMagazinesAPI(siteUrl);
-      const wrapped = raw as { success?: boolean; data?: unknown };
-      if (wrapped?.success && Array.isArray(wrapped.data)) {
-        magazinesFromApi = wrapped.data as MeetTheCityMagazineApiItem[];
-      }
-    } catch (error) {
-      console.error(
-        "Error fetching Meet The City magazines from proxy API:",
-        error
-      );
+  try {
+    const response = await getMeetTheCityMagazines();
+    if (Array.isArray(response) && response.length > 0) {
+      magazinesFromApi = response as MeetTheCityMagazineApiItem[];
     }
-  }
-
-  if (magazinesFromApi === null || magazinesFromApi.length === 0) {
-    try {
-      const response = await getMeetTheCityMagazines();
-      if (Array.isArray(response) && response.length > 0) {
-        magazinesFromApi = response as MeetTheCityMagazineApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching Meet The City magazines:", error);
-    }
+  } catch (error) {
+    console.error("Error fetching Meet The City magazines:", error);
   }
 
   let banner: BannersProps | null = null;

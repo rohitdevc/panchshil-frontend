@@ -8,11 +8,8 @@ import {
 } from "./prec-page.data";
 import {
   getPrecBenefits,
-  getPrecBenefitsAPI,
   getPrecFaqs,
-  getPrecFaqsAPI,
   getPrecIntro,
-  getPrecIntroAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
@@ -139,67 +136,15 @@ export default async function PrecPage() {
   let introApi: PrecIntroApiResponse | null = null;
   let benefitsApi: PrecBenefitApiItem[] | null = null;
   let faqsApi: PrecFaqApiItem[] | null = null;
-  const metaDataApi: MetaDataProps | null = null;
 
-  if (siteUrl) {
-    try {
-      const [introRes, benefitsRes, faqsRes] = await Promise.all([
-        getPrecIntroAPI(siteUrl),
-        getPrecBenefitsAPI(siteUrl),
-        getPrecFaqsAPI(siteUrl),
-      ]);
-
-      const unwrap = (raw: unknown): unknown => {
-        const w = raw as { success?: boolean; data?: unknown };
-        return w?.success && w.data !== undefined ? w.data : null;
-      };
-
-      const introData = unwrap(introRes);
-      if (isPrecIntroPayload(introData)) {
-        introApi = introData;
-      }
-
-      const benefitsData = unwrap(benefitsRes);
-      if (Array.isArray(benefitsData)) {
-        benefitsApi = benefitsData as PrecBenefitApiItem[];
-      }
-
-      const faqsData = unwrap(faqsRes);
-      if (Array.isArray(faqsData)) {
-        faqsApi = faqsData as PrecFaqApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching PREC from proxy API:", error);
-    }
-  }
-
-  const needIntro = introApi === null;
-  const needBenefits = benefitsApi === null || benefitsApi.length === 0;
-  const needFaqs = faqsApi === null || faqsApi.length === 0;
-
-  if (needIntro || needBenefits || needFaqs) {
-    try {
-      if (needIntro) {
-        const raw = await getPrecIntro();
-        if (isPrecIntroPayload(raw)) {
-          introApi = raw;
-        }
-      }
-      if (needBenefits) {
-        const raw = await getPrecBenefits();
-        if (Array.isArray(raw) && raw.length > 0) {
-          benefitsApi = raw as PrecBenefitApiItem[];
-        }
-      }
-      if (needFaqs) {
-        const raw = await getPrecFaqs();
-        if (Array.isArray(raw) && raw.length > 0) {
-          faqsApi = raw as PrecFaqApiItem[];
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching PREC from CMS:", error);
-    }
+  try {
+      introApi = (await getPrecIntro()) as PrecIntroApiResponse;
+    
+      benefitsApi = (await getPrecBenefits()) as PrecBenefitApiItem[];
+    
+      faqsApi = (await getPrecFaqs()) as PrecFaqApiItem[];
+  } catch (error) {
+    console.error("Error fetching PREC from CMS:", error);
   }
 
   let banner: BannersProps | null = null;

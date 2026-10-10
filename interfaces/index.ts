@@ -537,6 +537,7 @@ export interface PropertyQrCode {
 
 export type PropertyDetailResponse = {
   property_name: string;
+  property_url_slug: string;
   property_qr_codes: PropertyQrCode[];
   banner_data?: {
     banner_image: string | null;

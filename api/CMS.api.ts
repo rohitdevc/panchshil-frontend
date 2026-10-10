@@ -251,105 +251,28 @@ export const getMedia = () => {
   return doGet(API_CONSTANTS.MEDIA);
 };
 
-export const getAwardsAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.AWARDS_API}`
-    : API_CONSTANTS.AWARDS_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
-};
-
 export const getClients = () => {
   return doGet(API_CONSTANTS.CLIENTS);
-};
-
-export const getClientsAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.CLIENTS_API}`
-    : API_CONSTANTS.CLIENTS_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
 };
 
 export const getTestimonials = () => {
   return doGet(API_CONSTANTS.TESTIMONIALS);
 };
 
-export const getTestimonialsAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.TESTIMONIALS_API}`
-    : API_CONSTANTS.TESTIMONIALS_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
-};
-
 export const getPrecIntro = () => {
   return doGet(API_CONSTANTS.PREC_INTRO);
-};
-
-export const getPrecIntroAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.PREC_INTRO_API}`
-    : API_CONSTANTS.PREC_INTRO_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
 };
 
 export const getPrecBenefits = () => {
   return doGet(API_CONSTANTS.PREC_BENEFITS);
 };
 
-export const getPrecBenefitsAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.PREC_BENEFITS_API}`
-    : API_CONSTANTS.PREC_BENEFITS_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
-};
-
 export const getPrecFaqs = () => {
   return doGet(API_CONSTANTS.PREC_FAQS);
 };
 
-export const getPrecFaqsAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.PREC_FAQS_API}`
-    : API_CONSTANTS.PREC_FAQS_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
-};
-
 export const getMeetTheCityMagazines = () => {
   return doGet(API_CONSTANTS.MEET_THE_CITY_MAGAZINES);
-};
-
-export const getMeetTheCityMagazinesAPI = (baseUrl?: string) => {
-  const apiUrl = baseUrl
-    ? `${baseUrl.replace(/\/$/, "")}${API_CONSTANTS.MEET_THE_CITY_MAGAZINES_API}`
-    : API_CONSTANTS.MEET_THE_CITY_MAGAZINES_API;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
 };
 
 const esgBearerGet = (path: string) => () => doGet(path);
@@ -365,43 +288,15 @@ const esgProxyGet = (apiPath: string) => (baseUrl?: string) => {
 
 export const getEsgBanner = esgBearerGet(API_CONSTANTS.ESG_BANNER);
 export const getEsgIntroduction = esgBearerGet(API_CONSTANTS.ESG_INTRODUCTION);
-export const getEsgIntroductionAPI = esgProxyGet(
-  API_CONSTANTS.ESG_INTRODUCTION_API
-);
 export const getEsgPerformance = esgBearerGet(API_CONSTANTS.ESG_PERFORMANCE);
-export const getEsgPerformanceAPI = esgProxyGet(
-  API_CONSTANTS.ESG_PERFORMANCE_API
-);
-export const getEsgInitiatives = esgBearerGet(API_CONSTANTS.ESG_INITIATIVES);
-export const getEsgInitiativesAPI = esgProxyGet(
-  API_CONSTANTS.ESG_INITIATIVES_API
-);
-export const getEsgCommunities = esgBearerGet(API_CONSTANTS.ESG_COMMUNITIES);
-export const getEsgCommunitiesAPI = esgProxyGet(
-  API_CONSTANTS.ESG_COMMUNITIES_API
-);
 export const getEsgPolicies = esgBearerGet(API_CONSTANTS.ESG_POLICIES);
-export const getEsgPoliciesAPI = esgProxyGet(API_CONSTANTS.ESG_POLICIES_API);
 export const getEsgMilestonesIntro = esgBearerGet(
   API_CONSTANTS.ESG_MILESTONES_INTRO
 );
-export const getEsgMilestonesIntroAPI = esgProxyGet(
-  API_CONSTANTS.ESG_MILESTONES_INTRO_API
-);
 export const getEsgMilestones = esgBearerGet(API_CONSTANTS.ESG_MILESTONES);
-export const getEsgMilestonesAPI = esgProxyGet(
-  API_CONSTANTS.ESG_MILESTONES_API
-);
-export const getEsgAwards = esgBearerGet(API_CONSTANTS.ESG_AWARDS);
-export const getEsgAwardsAPI = esgProxyGet(API_CONSTANTS.ESG_AWARDS_API);
 export const getEsgReportsIntro = esgBearerGet(API_CONSTANTS.ESG_REPORTS_INTRO);
-export const getEsgReportsIntroAPI = esgProxyGet(
-  API_CONSTANTS.ESG_REPORTS_INTRO_API
-);
 export const getEsgReports = esgBearerGet(API_CONSTANTS.ESG_REPORTS);
-export const getEsgReportsAPI = esgProxyGet(API_CONSTANTS.ESG_REPORTS_API);
 export const getEsgTicker = esgBearerGet(API_CONSTANTS.ESG_TICKER);
-export const getEsgTickerAPI = esgProxyGet(API_CONSTANTS.ESG_TICKER_API);
 
 export const getBlogFeatured = () => {
   return doGet(API_CONSTANTS.BLOG_FEATURED);

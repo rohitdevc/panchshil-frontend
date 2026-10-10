@@ -10,6 +10,7 @@ import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { AboutUsHeroContent } from "@/app/about/about.data";
+import { getContactUsReasons } from "@/api/CMS.api";
 
 const MAP_STYLE: google.maps.MapTypeStyle[] = [
   {
@@ -192,25 +193,10 @@ export default function ContactUsPageClient({
   useEffect(() => {
     const fetchReasons = async () => {
       try {
-        const res = await fetch("/api/contact-us-reasons");
-        const json = await res.json();
-        if (json.success && json.data) {
-          const reasons = Array.isArray(json.data)
-            ? json.data
-            : (json.data.reasons ?? json.data.data ?? []);
-          setPurposeOptions(
-            reasons
-              .map(
-                (
-                  r: string | { reason?: string; name?: string; title?: string }
-                ) =>
-                  typeof r === "string"
-                    ? r
-                    : (r.reason ?? r.name ?? r.title ?? "")
-              )
-              .filter(Boolean)
-          );
-        }
+        const reasons = (await getContactUsReasons()) as [];
+
+        setPurposeOptions(reasons.map((r: string | { reason?: string; name?: string; title?: string }) => typeof r === "string" ? r : (r.reason ?? r.name ?? r.title ?? "")).filter(Boolean));
+
       } catch (e) {
         console.error("Failed to load contact reasons", e);
       } finally {

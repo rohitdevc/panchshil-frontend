@@ -2,7 +2,6 @@ import { ClientsPageClient } from "@/components/ClientsPage";
 import { ClientItem, clientsPageData } from "./clients.data";
 import {
   getClients,
-  getClientsAPI,
   getBanner,
   getMetaData,
 } from "@/api/CMS.api";
@@ -69,33 +68,15 @@ const toAbsoluteAssetUrl = (imageUrl: string | undefined): string => {
 
 export default async function ClientsPage() {
   let clientsFromApi: ClientsApiItem[] = [];
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "";
+  
 
-  if (siteUrl) {
-    try {
-      const proxyResponse = (await getClientsAPI(siteUrl)) as {
-        success?: boolean;
-        data?: unknown;
-      };
-
-      if (proxyResponse?.success && Array.isArray(proxyResponse.data)) {
-        clientsFromApi = proxyResponse.data as ClientsApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching clients from proxy API:", error);
+  try {
+    const response = await getClients();
+    if (Array.isArray(response)) {
+      clientsFromApi = response as ClientsApiItem[];
     }
-  }
-
-  if (clientsFromApi.length === 0) {
-    try {
-      const response = await getClients();
-      if (Array.isArray(response)) {
-        clientsFromApi = response as ClientsApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching clients:", error);
-    }
+  } catch (error) {
+    console.error("Error fetching clients:", error);
   }
 
   let banner: BannersProps | null = null;

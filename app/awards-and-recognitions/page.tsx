@@ -1,5 +1,5 @@
 import { AwardsPageClient } from "@/components/AwardsPage";
-import { getAwards, getAwardsAPI, getBanner, getMetaData } from "@/api/CMS.api";
+import { getAwards, getBanner, getMetaData } from "@/api/CMS.api";
 import { AwardsApiItem, BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 import { CareerHeroContent } from "../careers/career-page.data";
@@ -65,33 +65,14 @@ const toAbsoluteAssetUrl = (imageUrl: string | undefined): string => {
 
 export default async function AwardsPage() {
   let awardsFromApi: AwardsApiItem[] = [];
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "";
 
-  if (siteUrl) {
-    try {
-      const proxyResponse = (await getAwardsAPI(siteUrl)) as {
-        success?: boolean;
-        data?: unknown;
-      };
-
-      if (proxyResponse?.success && Array.isArray(proxyResponse.data)) {
-        awardsFromApi = proxyResponse.data as AwardsApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching awards from proxy API:", error);
+  try {
+    const response = await getAwards();
+    if (Array.isArray(response)) {
+      awardsFromApi = response as AwardsApiItem[];
     }
-  }
-
-  if (awardsFromApi.length === 0) {
-    try {
-      const response = await getAwards();
-      if (Array.isArray(response)) {
-        awardsFromApi = response as AwardsApiItem[];
-      }
-    } catch (error) {
-      console.error("Error fetching awards:", error);
-    }
+  } catch (error) {
+    console.error("Error fetching awards:", error);
   }
 
   let banner: BannersProps | null = null;

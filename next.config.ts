@@ -56,6 +56,31 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/luxury-residences",
+        destination: "/luxury-residences/page/1",
+        permanent: true,
+      },
+      {
+        source: "/office-parks",
+        destination: "/office-parks/page/1",
+        permanent: true,
+      },
+      {
+        source: "/hospitality",
+        destination: "/hospitality/page/1",
+        permanent: true,
+      },
+      {
+        source: "/retail",
+        destination: "/retail/page/1",
+        permanent: true,
+      },
+      {
+        source: "/data-centres",
+        destination: "/data-centres/page/1",
+        permanent: true,
+      },
+      {
         source: "/luxury-residences/42-east-residences",
         destination: "/luxury-residences/page/1",
         permanent: true,

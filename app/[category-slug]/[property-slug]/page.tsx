@@ -1,22 +1,43 @@
 import { getPropertyDetail } from "@/api/CMS.api";
+import { getPropertiesByCategory } from "@/api/property";
 import PropertyDetailsPageClient from "@/components/PropertyDetailsPage/PropertyDetailsPageClient";
 import type {
   MasterSliderData,
   Property,
   PropertyDetailResponse,
-  // PropertyInfoData,
   PropertyLocationCoOrdinatesProps,
+  PropertyProps,
 } from "@/interfaces";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { KNOWN_PROPERTY_CATEGORY_SLUGS } from "@/lib/property-category-slugs";
 import propertyIndex from "@/generated/property-index.json";
+import { Suspense } from "react";
 
 interface PropertyDetailtPageProps {
   params: {
     "category-slug": string;
     "property-slug": string;
   };
+}
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const categories = Array.from(KNOWN_PROPERTY_CATEGORY_SLUGS);
+
+  const categoryProperties = await Promise.all(
+    categories.map(async (categorySlug) => {
+      const properties = (await getPropertiesByCategory(categorySlug)) as PropertyProps[];
+
+      return properties.filter((property: PropertyProps) => property.listing_only !== true).map((property: PropertyProps) => ({
+        "category-slug": categorySlug,
+        "property-slug": property.property_url_slug,
+      }));
+    })
+  )
+
+  return categoryProperties.flat();
 }
 
 function extractImageUrls(input: unknown): string[] {
@@ -108,12 +129,6 @@ export default async function PropertyDetailPage({
   if(!KNOWN_PROPERTY_CATEGORY_SLUGS.has(propertyCategoryUrlSlug)) {
     notFound();
   }
-
-  const propertyExists = propertyIndex.some((property) => property.path === propertyUrlSlug);
-  
-  if (!propertyExists) {
-    notFound()
-  }
   
 
   let propertyDetail: unknown = null;
@@ -192,6 +207,7 @@ export default async function PropertyDetailPage({
   const property_location_co_ordinates =
     detail?.property_location?.property_location_co_ordinates || "";
   return (
+    <Suspense fallback={null}>
     <PropertyDetailsPageClient
       heroSlide={heroSlide}
       propertyInfo={detail}
@@ -201,5 +217,6 @@ export default async function PropertyDetailPage({
         property_location_co_ordinates as PropertyLocationCoOrdinatesProps
       }
     />
+    </Suspense>
   );
 }
