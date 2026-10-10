@@ -120,22 +120,6 @@ export function WelcomeSection({
   const [isInView, setIsInView] = useState(false);
   const isMobile = useIsMobile();
 
-  // Helper function to get video URL (proxy if external or from API)
-  const getVideoUrl = (videoUrl: string): string => {
-    if (!videoUrl) return "";
-
-    // Check if URL is absolute (starts with http:// or https://)
-    const isAbsoluteUrl = /^https?:\/\//i.test(videoUrl);
-
-    // If it's an absolute URL (external), use the proxy to handle CORS
-    if (isAbsoluteUrl) {
-      return `/api/video-proxy?url=${encodeURIComponent(videoUrl)}`;
-    }
-
-    // For relative URLs, use directly (they're from the same origin)
-    return videoUrl;
-  };
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -247,8 +231,8 @@ export function WelcomeSection({
           <video
             src={
               isMobile
-                ? getVideoUrl(aboutIntroData?.about_intro_mobile_video)
-                : getVideoUrl(aboutIntroData?.about_intro_desktop_video)
+                ? aboutIntroData?.about_intro_mobile_video
+                : aboutIntroData?.about_intro_desktop_video
             }
             autoPlay
             loop

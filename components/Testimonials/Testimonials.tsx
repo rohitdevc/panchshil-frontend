@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { getVideoUrl } from "@/utils/utils";
 import PlayButton from "@/assets/images/play-button.png";
 import { TestimonialData } from "@/interfaces";
 import TestimonialBg from "@/assets/images/testimonial-bg.png";
@@ -200,7 +199,7 @@ export function Testimonials({ testimonial }: TestimonialsProps) {
             </button>
             <video
               ref={videoRef}
-              src={getVideoUrl(testimonialData.videoUrl)}
+              src={testimonialData.videoUrl}
               className="w-full h-full object-contain"
               controls
               autoPlay

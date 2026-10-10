@@ -84,21 +84,6 @@ export const isAllowedPageForTheme = (params: { [key: string]: string }) => {
   return allowedPages.includes(page);
 };
 
-export const getVideoUrl = (videoUrl: string): string => {
-  if (!videoUrl) return "";
-
-  // Check if URL is absolute (starts with http:// or https://)
-  const isAbsoluteUrl = /^https?:\/\//i.test(videoUrl);
-
-  // If it's an absolute URL (external), use the proxy to handle CORS
-  if (isAbsoluteUrl) {
-    return `/api/video-proxy?url=${encodeURIComponent(videoUrl)}`;
-  }
-
-  // For relative URLs, use directly (they're from the same origin)
-  return videoUrl;
-};
-
 export type DeviceType = "mobile" | "desktop";
 
 /** Viewport-based check; on the server returns `"desktop"` (no `window`). */

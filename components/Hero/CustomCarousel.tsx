@@ -28,22 +28,6 @@ export function CustomCarousel({ slides }: { slides: MasterSliderData[] }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [videoErrors, setVideoErrors] = useState<Set<number>>(new Set());
 
-  // Helper function to get video URL (proxy if external or from API)
-  const getVideoUrl = (videoUrl: string): string => {
-    if (!videoUrl) return "";
-
-    // Check if URL is absolute (starts with http:// or https://)
-    const isAbsoluteUrl = /^https?:\/\//i.test(videoUrl);
-
-    // If it's an absolute URL (external), use the proxy to handle CORS
-    if (isAbsoluteUrl) {
-      return `/api/video-proxy?url=${encodeURIComponent(videoUrl)}`;
-    }
-
-    // For relative URLs, use directly (they're from the same origin)
-    return videoUrl;
-  };
-
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -96,7 +80,7 @@ export function CustomCarousel({ slides }: { slides: MasterSliderData[] }) {
                 {shouldShowVideo ? (
                   <video
                     key={slide.master_slider_video}
-                    src={getVideoUrl(slide.master_slider_video)}
+                    src={slide.master_slider_video}
                     className="absolute inset-0 h-full w-full object-cover"
                     autoPlay
                     loop
@@ -113,13 +97,10 @@ export function CustomCarousel({ slides }: { slides: MasterSliderData[] }) {
                       setVideoErrors((prev) => new Set(prev).add(index));
                     }}
                     onLoadedData={() => {
-                      // console.log(
-                      //   "Video loaded successfully:",
-                      //   slide.master_slider_video
-                      // );
+                      
                     }}
                     onCanPlay={() => {
-                      // console.log("Video can play:", slide.master_slider_video);
+                      
                     }}
                   />
                 ) : (

@@ -11,7 +11,6 @@ const PropertyDetailsHero = ({
 }: {
   shouldShowVideo: boolean;
   slide: MasterSliderData;
-  //   getVideoUrl: (videoUrl: string) => string;
   setVideoErrors: (errors: Set<number>) => void;
 }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);

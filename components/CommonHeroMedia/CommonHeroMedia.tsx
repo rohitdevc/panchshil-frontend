@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { getVideoUrl } from "@/utils/utils";
 import { StaticImageData } from "next/image";
 
 type CommonHeroMediaProps = {
@@ -22,7 +21,7 @@ export default function CommonHeroMedia({
       {shouldShowVideo && videoSrc ? (
         <video
           key={videoSrc}
-          src={getVideoUrl(videoSrc)}
+          src={videoSrc}
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           loop
