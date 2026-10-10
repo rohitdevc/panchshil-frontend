@@ -31,6 +31,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blogs",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blogs/flats-in-pune-is-it-the-right-time-to-invest-in-luxury-flats-in-pune",
+        destination: "/blog/flats-in-pune-is-it-the-right-time-to-invest",
+        permanent: true,
+      },
+      {
+        source: "/luxury-residences/ssilver-woods",
+        destination: "/luxury-residences",
+        permanent: true,
+      },
+      {
+        source: "/luxury-residences/satellite-towers",
+        destination: "/luxury-residences",
+        permanent: true,
+      },
+      {
         source: "/events/bmw-xtrials-experience",
         destination: "/events/bmw-xtrials-experience.pdf",
         permanent: true,

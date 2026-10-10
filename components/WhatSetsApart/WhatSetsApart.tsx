@@ -70,7 +70,7 @@ const WhatSetsApart = ({
                 href={
                   property_defining_features_section
                     .property_defining_features_cta.href ||
-                  "https://www.panchshil.com/contact"
+                  "/contact-us"
                 }
                 className="inline-flex mt-10 bg-gold-beige text-white text-xs tracking-wide uppercase px-6 py-3 hover:bg-[#7a6a55] transition-colors"
                 // onClick={(e) => {

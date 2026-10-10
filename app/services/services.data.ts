@@ -78,7 +78,7 @@ export const servicesSections: PropertyDefiningFeaturesSectionType[] = [
       "/assets/images/services/project-management-service.png",
     property_defining_features_cta: {
       label: "Connect With Us",
-      href: "/contact",
+      href: "/contact-us",
     },
     property_defining_features: [
       {
@@ -102,7 +102,7 @@ export const servicesSections: PropertyDefiningFeaturesSectionType[] = [
       "/assets/images/services/facility-managment-service.png",
     property_defining_features_cta: {
       label: "Connect With Us",
-      href: "/contact",
+      href: "/contact-us",
     },
     property_defining_features: [
       {
@@ -130,7 +130,7 @@ export const servicesSections: PropertyDefiningFeaturesSectionType[] = [
       "/assets/images/services/fit-out-service.png",
     property_defining_features_cta: {
       label: "Connect With Us",
-      href: "/contact",
+      href: "/contact-us",
     },
     property_defining_features: [
       {
@@ -160,7 +160,7 @@ export const servicesSections: PropertyDefiningFeaturesSectionType[] = [
       "/assets/images/services/residental-service.png",
     property_defining_features_cta: {
       label: "Connect With Us",
-      href: "/contact",
+      href: "/contact-us",
     },
     property_defining_features: [
       {
