@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - name: Pull latest code
+        env:
+          DEPLOY_PATH: ${{ vars.PRODUCTION_DEPLOY_PATH }}
         run: |
-          cd /var/www/html/panchshil/frontend
+          cd "$DEPLOY_PATH"
           GIT_SSH_COMMAND="ssh -i ~/.ssh/readOnlyRepo -o IdentitiesOnly=yes" git pull origin main
