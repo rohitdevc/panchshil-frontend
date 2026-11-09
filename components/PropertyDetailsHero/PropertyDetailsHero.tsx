@@ -22,8 +22,7 @@ const PropertyDetailsHero = ({
 
     const pickImageSrc = () => {
       const deviceType = getDeviceType();
-      const mobile =
-        slide?.master_slider_image_mobile ?? slide?.banner_image_mobile ?? null;
+      const mobile = slide?.master_slider_image_mobile ?? slide?.banner_image_mobile ?? null;
       const desktop = slide?.master_slider_image ?? slide?.banner_image ?? null;
 
       return deviceType === "mobile"

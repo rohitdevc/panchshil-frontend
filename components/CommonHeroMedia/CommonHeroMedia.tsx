@@ -39,6 +39,7 @@ export default function CommonHeroMedia({
           alt={imageAlt}
           fill
           className="object-cover"
+          unoptimized
           priority
         />
       ) : (
