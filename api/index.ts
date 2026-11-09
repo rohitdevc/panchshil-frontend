@@ -77,16 +77,7 @@ const doCall = async (
     headers: {
       ...option.headers,
     },
-  };
-
-  // Only add caching options on server-side (not in browser)
-  if (!isBrowser()) {
-    // For GET requests, use default caching (respects page revalidate)
-    // For POST/PATCH/DELETE, disable caching
-    if (option.method && ["POST", "PATCH", "DELETE"].includes(option.method)) {
-      fetchOptions.cache = "force-cache";
-    }
-    // GET requests will use Next.js default caching behavior
+    cache: option.cache ?? "force-cache",
   }
 
   return fetch(url, fetchOptions).then((response: Response) => {
@@ -147,7 +138,7 @@ export const doPost = (
   params: ApiParams = {},
   options?: ApiOptions
 ): Promise<unknown> => {
-  return doCall(uri, params, { ...options, method: "POST" }).catch((error) => {
+  return doCall(uri, params, { ...options, method: "POST", cache: options?.cache ?? "force-cache" }).catch((error) => {
     handleApiError(error, uri);
     throw error; // Re-throw to maintain existing error handling behavior
   });

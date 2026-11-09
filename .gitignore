@@ -59,7 +59,6 @@ jspm_packages
 next-env.d.ts
 tsconfig.tsbuildinfo
 .*
-package-lock.json
 !.htaccess
 yarn.lock
 Dockerfile.dev

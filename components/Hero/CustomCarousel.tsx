@@ -151,21 +151,18 @@ export function CustomCarousel({ slides }: { slides: MasterSliderData[] }) {
             {currentSlide?.master_slider_description}
           </p>
 
-          {/* CTA Button */}
+          {
+            currentSlide?.master_slider_link && (
           <Link
-            href={currentSlide?.master_slider_link || "#"}
+            href={currentSlide?.master_slider_link}
             className="pointer-events-auto z-50 relative"
           >
             <Button variant="hero-outline" size="lg">
               {currentSlide?.master_slider_button_caption}
             </Button>
           </Link>
-          {/* <button className="relative w-36 h-12 pointer-events-auto">
-              <span className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-40 hover:opacity-50 cursor-pointer text-white transition-opacity font-medium text-lg"></span>
-              <div className=" w-full absolute z-10 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-                {currentSlide.ctaText}
-              </div>
-            </button> */}
+          )
+          }
         </div>
       </div>
 

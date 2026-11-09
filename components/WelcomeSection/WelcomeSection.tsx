@@ -249,16 +249,10 @@ export function WelcomeSection({
               );
             }}
             onLoadedData={() => {
-              // console.log(
-              //   "Video loaded successfully:",
-              //   aboutIntroData.about_intro_desktop_video
-              // );
+              
             }}
             onCanPlay={() => {
-              // console.log(
-              //   "Video can play:",
-              //   aboutIntroData.about_intro_desktop_video
-              // );
+              
             }}
           />
         </div>

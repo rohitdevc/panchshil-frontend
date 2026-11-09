@@ -84,6 +84,7 @@ export const submitPropertyEnquiryFormDetails = (
         Authorization: `Bearer ${token}`,
       },
       body: formData.toString(),
+      cache: 'no-store'
     }
   );
 };

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken, updateSubscriberFormDetails } from "@/api/CMS.api";
 import { AuthTokenResponse } from "@/interfaces";
 import ApiException from "@/api/Api.exception";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 function getClientIp(request: NextRequest): string {
   // Check various headers for the real client IP
@@ -51,6 +52,10 @@ function getClientIp(request: NextRequest): string {
 }
 
 export async function POST(request: NextRequest) {
+  const blocked = await checkRateLimit(request, "subscriber");
+
+  if (blocked) return blocked;
+
   try {
     // Parse form data from request
     const formData = await request.formData();

@@ -9,6 +9,7 @@ export const getAuthToken = () => {
       headers: {
         "x-secret-key": process.env.X_SECRET_KEY || "",
       },
+      cache: 'no-store'
     }
   );
 };
@@ -49,6 +50,7 @@ export const updateSubscriberFormDetailsAPI = (formData: FormData) => {
   return fetch(API_CONSTANTS.SUBSCRIBER_FORM_DETAILS_API, {
     method: "POST",
     body: formData,
+    cache: 'no-store'
   });
 };
 
@@ -71,6 +73,7 @@ export const updateSubscriberFormDetails = (
         Authorization: `Bearer ${token}`,
       },
       body: formData.toString(),
+      cache: 'no-store'
     }
   );
 };
@@ -105,6 +108,7 @@ export const submitContactEnquiryFormDetails = (
         Authorization: `Bearer ${token}`,
       },
       body: formData.toString(),
+      cache: 'no-store'
     }
   );
 };
@@ -276,15 +280,6 @@ export const getMeetTheCityMagazines = () => {
 };
 
 const esgBearerGet = (path: string) => () => doGet(path);
-
-const esgProxyGet = (apiPath: string) => (baseUrl?: string) => {
-  const apiUrl = baseUrl ? `${baseUrl.replace(/\/$/, "")}${apiPath}` : apiPath;
-
-  return doFetch(apiUrl, {
-    method: "GET",
-    cache: "force-cache",
-  });
-};
 
 export const getEsgBanner = esgBearerGet(API_CONSTANTS.ESG_BANNER);
 export const getEsgIntroduction = esgBearerGet(API_CONSTANTS.ESG_INTRODUCTION);

@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken } from "@/api/CMS.api";
 import { submitPropertyEnquiryFormDetails } from "@/api/property";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
+  const blocked = await checkRateLimit(req, "property_enquiry");
+
+  if (blocked) return blocked;
+
   try {
     const body = await req.json();
 

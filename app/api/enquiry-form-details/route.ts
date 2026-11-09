@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken, submitContactEnquiryFormDetails } from "@/api/CMS.api";
 import { AuthTokenResponse } from "@/interfaces";
 import ApiException from "@/api/Api.exception";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 function getClientIp(request: NextRequest): string {
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -43,6 +44,10 @@ function getClientIp(request: NextRequest): string {
 }
 
 export async function POST(request: NextRequest) {
+  const blocked = await checkRateLimit(request, "contact");
+
+  if (blocked) return blocked;
+
   try {
     const formData = await request.formData();
     const enquiryFirstName = formData.get("enquiry_first_name") as string;
