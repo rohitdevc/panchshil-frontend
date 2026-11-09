@@ -1,5 +1,5 @@
 import ContactUsPageClient from "@/components/ContactUsPage/ContactUsPageClient";
-import { getBanner, getMetaData } from "@/api/CMS.api";
+import { getBanner, getMetaData, getContactUsReasons } from "@/api/CMS.api";
 import { BannersProps, MetaDataProps } from "@/interfaces";
 import type { Metadata } from "next";
 import { AboutUsHeroContent } from "@/app/about/about.data";
@@ -76,5 +76,7 @@ export default async function ContactPage() {
     description: banner?.banner_image_description || "",
   };
 
-  return <ContactUsPageClient hero={hero} />;
+  const reasons = (await getContactUsReasons() as string[]);
+
+  return <ContactUsPageClient hero={hero} purposeOptions={reasons} />;
 }

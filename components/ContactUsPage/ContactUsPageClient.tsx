@@ -10,7 +10,6 @@ import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { AboutUsHeroContent } from "@/app/about/about.data";
-import { getContactUsReasons } from "@/api/CMS.api";
 
 const MAP_STYLE: google.maps.MapTypeStyle[] = [
   {
@@ -91,8 +90,10 @@ const contactLocations: ContactLocation[] = [
 
 export default function ContactUsPageClient({
   hero,
+  purposeOptions
 }: {
   hero: AboutUsHeroContent;
+  purposeOptions: string[]
 }) {
   const [form, setForm] = useState<{
     firstName: string;
@@ -116,8 +117,6 @@ export default function ContactUsPageClient({
     message: string;
   } | null>(null);
 
-  const [purposeOptions, setPurposeOptions] = useState<string[]>([]);
-  const [isPurposeLoading, setIsPurposeLoading] = useState(true);
   const [isPurposeOpen, setIsPurposeOpen] = useState(false);
   const purposeRef = useRef<HTMLDivElement | null>(null);
   const [activeLocationId, setActiveLocationId] = useState<string | null>(
@@ -188,22 +187,6 @@ export default function ContactUsPageClient({
         markersRef.current = {};
       };
     });
-  }, []);
-
-  useEffect(() => {
-    const fetchReasons = async () => {
-      try {
-        const reasons = (await getContactUsReasons()) as [];
-
-        setPurposeOptions(reasons.map((r: string | { reason?: string; name?: string; title?: string }) => typeof r === "string" ? r : (r.reason ?? r.name ?? r.title ?? "")).filter(Boolean));
-
-      } catch (e) {
-        console.error("Failed to load contact reasons", e);
-      } finally {
-        setIsPurposeLoading(false);
-      }
-    };
-    fetchReasons();
   }, []);
 
   const handlePurposeSelect = (value: string) => {
@@ -415,49 +398,39 @@ export default function ContactUsPageClient({
 
                 {isPurposeOpen && (
                   <div className="absolute top-full left-0 mb-2 border border-golden-beige shadow-lg min-w-[220px] max-h-60 overflow-y-auto z-10 bg-white">
-                    {isPurposeLoading ? (
-                      <div className="px-4 py-3 text-sm text-gray-500">
-                        Loading...
-                      </div>
-                    ) : purposeOptions.length === 0 ? (
-                      <div className="px-4 py-3 text-sm text-gray-500">
-                        No options available
-                      </div>
-                    ) : (
-                      <ul>
-                        {purposeOptions.map((option) => {
-                          const selected = form.purpose === option;
-                          return (
-                            <li key={option}>
-                              <button
-                                type="button"
-                                onClick={() => handlePurposeSelect(option)}
-                                className={`w-full text-black-chocolate text-left px-4 py-2 cursor-pointer text-sm flex items-center gap-2 ${selected ? "bg-gold-beige font-medium text-white" : ""}`}
+                    <ul>
+                      {purposeOptions.map((option) => {
+                        const selected = form.purpose === option;
+                        return (
+                          <li key={option}>
+                            <button
+                              type="button"
+                              onClick={() => handlePurposeSelect(option)}
+                              className={`w-full text-black-chocolate text-left px-4 py-2 cursor-pointer text-sm flex items-center gap-2 ${selected ? "bg-gold-beige font-medium text-white" : ""}`}
+                            >
+                              <span
+                                className={`w-3 h-3 border flex items-center justify-center ${selected ? "bg-gold-beige border-white" : "border-black"}`}
                               >
-                                <span
-                                  className={`w-3 h-3 border flex items-center justify-center ${selected ? "bg-gold-beige border-white" : "border-black"}`}
-                                >
-                                  {selected && (
-                                    <svg
-                                      className="w-3 h-3 text-white"
-                                      fill="currentColor"
-                                      viewBox="0 0 20 20"
-                                    >
-                                      <path
-                                        fillRule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clipRule="evenodd"
-                                      />
-                                    </svg>
-                                  )}
-                                </span>
-                                {option}
-                              </button>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
+                                {selected && (
+                                  <svg
+                                    className="w-3 h-3 text-white"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                )}
+                              </span>
+                              {option}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
                 )}
                 {errors.purpose && (
